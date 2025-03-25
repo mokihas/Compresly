@@ -182,3 +182,11 @@ function formatFileSize(bytes) {
     else if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
     else return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
+
+// ===== AD OPTIMIZATION =====
+// Load manual ad only after compression is done
+document.getElementById('results').addEventListener('DOMNodeInserted', function() {
+  if(this.style.display === 'block') {
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  }
+});
