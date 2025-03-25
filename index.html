@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online image compression tool. Reduce image file size while maintaining quality. Supports JPG, PNG, and WebP formats.">
+    <meta name="keywords" content="image compressor, reduce image size, optimize images, online image tool, photo compression">
+    <meta name="author" content="ImageCompressorPro">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Free Online Image Compression Tool">
+    <meta property="og:description" content="Compress your images online for free. Reduce file size without losing quality.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/preview.jpg">
+    
+    <!-- Google AdSense (replace with your publisher ID) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID" crossorigin="anonymous"></script>
+    
+    <title>ImageCompressorPro | Free Online Image Compression Tool</title>
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">Image<span>Compressor</span>Pro</a>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="main">
+        <div class="container">
+            <!-- Top Ad Banner -->
+            <div class="ad-container">
+                <div class="ad-label">Advertisement</div>
+                <!-- Replace with your AdSense code -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                     data-ad-slot="YOUR_AD_SLOT_ID"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            
+            <section class="hero">
+                <h1>Compress Images Online for Free</h1>
+                <p>Reduce image file size without losing quality. Supports JPG, PNG, and WebP formats. Perfect for websites, social media, and email attachments.</p>
+            </section>
+            
+            <section class="compressor-container">
+                <div class="upload-area" id="upload-area">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & Drop your image here or click to browse</p>
+                    <small>Supports: JPG, PNG, WebP (Max: 10MB)</small>
+                    <input type="file" id="file-input" accept="image/jpeg, image/png, image/webp">
+                </div>
+                
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="quality">Compression Level</label>
+                        <div class="slider-container">
+                            <input type="range" id="quality" min="0" max="100" value="80">
+                            <span id="quality-value">80%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="format">Output Format</label>
+                        <select id="format">
+                            <option value="auto">Same as input</option>
+                            <option value="jpeg">JPEG</option>
+                            <option value="png">PNG</option>
+                            <option value="webp">WebP</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="resize">Resize (Max Width)</label>
+                        <select id="resize">
+                            <option value="none">Original Size</option>
+                            <option value="800">800px</option>
+                            <option value="1200">1200px</option>
+                            <option value="1600">1600px</option>
+                            <option value="1920">1920px</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button id="compress-btn" disabled>Compress Image</button>
+                
+                <div class="spinner" id="spinner"></div>
+                
+                <div class="results" id="results">
+                    <h3>Compression Results</h3>
+                    <div class="comparison">
+                        <div class="image-box">
+                            <img id="original-img" src="" alt="Original Image">
+                            <div class="image-info">
+                                <span id="original-size"></span> • <span id="original-dimensions"></span>
+                            </div>
+                        </div>
+                        <div class="image-box">
+                            <img id="compressed-img" src="" alt="Compressed Image">
+                            <div class="image-info">
+                                <span id="compressed-size"></span> • <span id="compressed-dimensions"></span>
+                                <div id="savings"></div>
+                            </div>
+                            <button class="download-btn" id="download-btn">Download Compressed Image</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Middle Ad Banner -->
+            <div class="ad-container">
+                <div class="ad-label">Advertisement</div>
+                <!-- Replace with your AdSense code -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                     data-ad-slot="YOUR_AD_SLOT_ID_2"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            
+            <section id="how-it-works" class="info-section">
+                <h2>How It Works</h2>
+                <p>Our image compression tool uses advanced algorithms to reduce file size while maintaining visual quality. Simply upload your image, adjust the compression settings, and download the optimized version.</p>
+                <p>The tool works by:</p>
+                <ul>
+                    <li>Analyzing image content to apply optimal compression</li>
+                    <li>Removing unnecessary metadata</li>
+                    <li>Adjusting quality parameters based on your settings</li>
+                    <li>Optionally resizing the image dimensions</li>
+                    <li>Converting to more efficient formats when requested</li>
+                </ul>
+            </section>
+            
+            <section id="faq" class="info-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <h3>Is my image data secure?</h3>
+                    <p>Yes! All processing happens in your browser. Your images are never uploaded to our servers, ensuring complete privacy.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What's the maximum image size I can compress?</h3>
+                    <p>The tool can handle images up to 10MB in size. For larger images, consider resizing first.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Which image formats are supported?</h3>
+                    <p>We support JPEG, PNG, and WebP formats for both input and output.</p>
+                </div>
+            </section>
+            
+            <!-- Bottom Ad Banner -->
+            <div class="ad-container">
+                <div class="ad-label">Advertisement</div>
+                <!-- Replace with your AdSense code -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                     data-ad-slot="YOUR_AD_SLOT_ID_3"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <a href="#" class="logo" style="color: white;">Image<span style="color: #fbbc05;">Compressor</span><span style="color: #ea4335;">Pro</span></a>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+            <div class="copyright">
+                &copy; <span id="year"></span> ImageCompressorPro. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
