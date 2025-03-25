@@ -333,3 +333,22 @@ footer {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* ===== NEW AD STYLES ===== */
+.manual-ad {
+  margin: 40px auto;
+  padding: 15px;
+  text-align: center;
+}
+
+.ad-label {
+  font-size: 0.75rem;
+  color: #6c757d;
+  margin-bottom: 8px;
+}
+
+/* Prevent buttons being hidden by ads */
+#upload-area, #compress-btn, #download-btn {
+  position: relative;
+  z-index: 1000;
+}
