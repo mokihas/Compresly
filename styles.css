@@ -430,3 +430,14 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+footer a {
+    color: #3498db;
+    margin: 0 10px;
+}
