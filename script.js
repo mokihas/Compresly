@@ -202,3 +202,15 @@ links.forEach(link => {
       });
   });
 });
+
+// Add to your script.js
+document.addEventListener('DOMContentLoaded', () => {
+  const favicon = document.querySelector('link[rel="icon"]');
+  if (!favicon || !favicon.href) {
+    console.error('Favicon missing!');
+  } else {
+    fetch(favicon.href)
+      .then(res => !res.ok && console.error('Favicon failed to load'))
+      .catch(() => console.error('Favicon path incorrect'));
+  }
+});
