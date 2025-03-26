@@ -190,3 +190,15 @@ document.getElementById('results').addEventListener('DOMNodeInserted', function(
     (adsbygoogle = window.adsbygoogle || []).push({});
   }
 });
+
+// Link health checker (run occasionally)
+const links = document.querySelectorAll('.external-tools a');
+links.forEach(link => {
+  link.addEventListener('click', (e) => {
+    fetch(link.href, { method: 'HEAD', mode: 'no-cors' })
+      .catch(() => {
+        link.style.opacity = '0.7';
+        link.title = 'Warning: This link might be broken';
+      });
+  });
+});
