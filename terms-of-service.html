@@ -10,20 +10,48 @@
             background: white;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
+            padding: 2.5rem;
             margin: 2rem auto;
             max-width: 800px;
             line-height: 1.7;
+            color: #333;
         }
         h1 {
             color: var(--primary-color);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
             font-size: 2rem;
+            text-align: center;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-gray);
         }
         h2 {
             color: var(--dark-gray);
-            margin: 1.8rem 0 1rem;
+            margin: 2.2rem 0 1.2rem;
             font-size: 1.4rem;
+            font-weight: 600;
+        }
+        p, li {
+            margin-bottom: 1rem;
+            text-align: justify;
+            hyphens: auto;
+        }
+        ul {
+            padding-left: 1.8rem;
+            margin: 1.2rem 0;
+        }
+        li {
+            margin-bottom: 0.6rem;
+        }
+        .effective-date {
+            text-align: center;
+            font-style: italic;
+            color: var(--medium-gray);
+            margin-bottom: 2rem;
+        }
+        .highlight {
+            background-color: rgba(251, 188, 5, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
         }
     </style>
 </head>
@@ -44,26 +72,53 @@
 
     <main class="container">
         <h1>Terms of Service</h1>
-        <p><em>Effective: March 2025</em></p>
+        <p class="effective-date">Effective Date: June 10, 2023</p>
 
-        <h2>1. Service Usage</h2>
-        <p>ImageCompressorPro provides free browser-based image compression. By using our service, you agree:</p>
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing or using ImageCompressorPro ("Service"), you agree to be bound by these Terms of Service. If you disagree with any part, you may not use our service.</p>
+
+        <h2>2. Service Description</h2>
+        <p>ImageCompressorPro provides browser-based image compression tools that:</p>
         <ul>
-            <li>Not to upload illegal or copyrighted material</li>
-            <li>Not to reverse-engineer our technology</li>
-            <li>That processed images are your responsibility</li>
+            <li>Process images locally in your web browser</li>
+            <li>Support JPG, PNG, and WebP formats</li>
+            <li>Offer adjustable compression settings</li>
+        </ul>
+        <p>This is a <span class="highlight">free service</span> with no warranty of uninterrupted availability.</p>
+
+        <h2>3. User Responsibilities</h2>
+        <p>You agree not to:</p>
+        <ul>
+            <li>Upload images containing illegal, copyrighted (without permission), or harmful content</li>
+            <li>Use automated systems (bots, scrapers) to access the service excessively</li>
+            <li>Attempt to reverse-engineer, decompile, or extract our source code</li>
+            <li>Impersonate others or misrepresent affiliation</li>
         </ul>
 
-        <h2>2. Limitations</h2>
-        <p>We're not liable for:</p>
+        <h2>4. Intellectual Property</h2>
+        <p>All uploaded images remain your property. By using our service, you grant us a limited, non-exclusive license to process your images solely for providing the compression functionality.</p>
+        <p>The ImageCompressorPro software, interface, and branding are our exclusive property.</p>
+
+        <h2>5. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by law:</p>
         <ul>
-            <li>Data loss during compression</li>
-            <li>Service interruptions</li>
-            <li>Third-party content (ads)</li>
+            <li>We are not liable for any data loss resulting from image compression</li>
+            <li>We do not guarantee specific compression ratios or quality levels</li>
+            <li>We are not responsible for third-party content (including advertisements)</li>
         </ul>
 
-        <h2>3. Modifications</h2>
-        <p>We may update these terms. Continued use constitutes acceptance.</p>
+        <h2>6. Advertisements</h2>
+        <p>Our free service displays Google AdSense ads. You may see personalized ads based on your browsing history. To manage preferences, visit <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google's Ad Settings</a>.</p>
+
+        <h2>7. Modifications</h2>
+        <p>We reserve the right to modify these terms at any time. Continued use after changes constitutes acceptance. Major changes will be announced via service notifications.</p>
+
+        <h2>8. Governing Law</h2>
+        <p>These Terms shall be governed by the laws of [Your Country/State] without regard to conflict of law principles.</p>
+
+        <h2>9. Contact</h2>
+        <p>For questions regarding these Terms, contact:<br>
+        <a href="mailto:legal@compresly.vercel.app">legal@compresly.vercel.app</a></p>
     </main>
 
     <footer>
