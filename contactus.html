@@ -74,25 +74,53 @@
     <main class="container">
         <h1>Contact Our Team</h1>
         
-        <form id="contactForm">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" rows="5" required></textarea>
-            </div>
-            
-            <button type="submit">Send Message</button>
-        </form>
+       <form id="contactForm">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="from_name" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="from_email" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+  </div>
+  
+  <button type="submit" id="submitBtn">Send Message</button>
+</form>
 
+<!-- Add these before </body> -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  // Initialize EmailJS
+  emailjs.init('S-bfEvWeIPqaJWduk'); // Replace with your Public Key
+  
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    
+    emailjs.sendForm(
+      'service_q4nrg3c',   // Replace with Service ID
+      'template_77ru82o',  // Replace with Template ID
+      this
+    ).then(() => {
+      alert('Message sent successfully!');
+      this.reset();
+    }, (error) => {
+      alert('Failed to send: ' + error.text);
+    }).finally(() => {
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+    });
+  });
+</script>
         <div class="contact-info">
             <p>Prefer email? Contact us at:<br>
             <a href="mailto:mokibul@gmail.com">support@compresly.vercel.app</a></p>
