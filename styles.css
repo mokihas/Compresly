@@ -353,6 +353,35 @@ footer {
   z-index: 1000;
 }
 
+/* For Option 2 (footer) */
+.footer-resources {
+  margin: 1.5rem 0;
+}
+
+.footer-resources h4 {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-resources ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.footer-resources li {
+  margin: 0.5rem 0;
+}
+
+.footer-resources a {
+  color: #bbdefb;
+  text-decoration: none;
+}
+
+.footer-resources a:hover {
+  text-decoration: underline;
+}
+
 /* ======================
    External Tools Section
    ====================== */
