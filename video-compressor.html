@@ -563,25 +563,25 @@
                     <p>Reduce MP4, MOV, and other video file sizes while maintaining quality. All processing happens in your browser - your videos never leave your device.</p>
                 </div>
                 
-                <div class="upload-area" id="upload-area">
+                <div class="upload-area" id="video-upload-area">
                     <i class="fas fa-cloud-upload-alt"></i>
                     <p>Drag & Drop your video here or click to browse</p>
                     <small>Supports: MP4, MOV, AVI (Max: 50MB)</small>
-                    <input type="file" id="file-input" accept="video/*">
+                    <input type="file" id="video-file-input" accept="video/*">
                 </div>
                 
                 <div class="controls">
                     <div class="control-group">
-                        <label for="quality">Video Quality</label>
+                        <label for="video-quality">Video Quality</label>
                         <div class="slider-container">
-                            <input type="range" id="quality" min="0" max="100" value="70">
-                            <span id="quality-value">70%</span>
+                            <input type="range" id="video-quality" min="0" max="100" value="70">
+                            <span id="video-quality-value">70%</span>
                         </div>
                     </div>
                     
                     <div class="control-group">
-                        <label for="resolution">Resolution</label>
-                        <select id="resolution">
+                        <label for="video-resolution">Resolution</label>
+                        <select id="video-resolution">
                             <option value="original">Original Resolution</option>
                             <option value="1080">1080p (Full HD)</option>
                             <option value="720">720p (HD)</option>
@@ -590,44 +590,44 @@
                     </div>
                     
                     <div class="control-group">
-                        <label for="format">Output Format</label>
-                        <select id="format">
+                        <label for="video-format">Output Format</label>
+                        <select id="video-format">
                             <option value="mp4">MP4 (recommended)</option>
                             <option value="webm">WebM</option>
                         </select>
                     </div>
                 </div>
                 
-                <button id="compress-btn" class="btn btn-primary" disabled>Compress Video</button>
+                <button id="video-compress-btn" class="btn btn-primary" disabled>Compress Video</button>
                 
-                <div class="spinner" id="spinner"></div>
+                <div class="spinner" id="video-spinner"></div>
                 
-                <div class="results" id="results">
+                <div class="results" id="video-results">
                     <h3>Compression Results</h3>
                     <div class="comparison">
                         <div class="file-box">
                             <h4>Original Video</h4>
                             <video controls class="video-preview" id="original-video"></video>
                             <div class="file-info">
-                                <p><span>Name:</span> <span id="original-name"></span></p>
-                                <p><span>Size:</span> <span id="original-size"></span></p>
-                                <p><span>Duration:</span> <span id="original-duration"></span></p>
-                                <p><span>Resolution:</span> <span id="original-resolution"></span></p>
+                                <p><span>Name:</span> <span id="original-video-name"></span></p>
+                                <p><span>Size:</span> <span id="original-video-size"></span></p>
+                                <p><span>Duration:</span> <span id="original-video-duration"></span></p>
+                                <p><span>Resolution:</span> <span id="original-video-resolution"></span></p>
                             </div>
                         </div>
                         <div class="file-box">
                             <h4>Compressed Video</h4>
                             <video controls class="video-preview" id="compressed-video"></video>
                             <div class="file-info">
-                                <p><span>Name:</span> <span id="compressed-name"></span></p>
-                                <p><span>Size:</span> <span id="compressed-size"></span></p>
-                                <p><span>Duration:</span> <span id="compressed-duration"></span></p>
-                                <p><span>Resolution:</span> <span id="compressed-resolution"></span></p>
-                                <p><span>Reduction:</span> <span id="savings"></span></p>
+                                <p><span>Name:</span> <span id="compressed-video-name"></span></p>
+                                <p><span>Size:</span> <span id="compressed-video-size"></span></p>
+                                <p><span>Duration:</span> <span id="compressed-video-duration"></span></p>
+                                <p><span>Resolution:</span> <span id="compressed-video-resolution"></span></p>
+                                <p><span>Reduction:</span> <span id="video-savings"></span></p>
                             </div>
                             <div class="action-buttons">
-                                <button class="btn btn-success" id="download-btn">Download</button>
-                                <button class="btn btn-secondary" id="new-file-btn">New Video</button>
+                                <button class="btn btn-success" id="video-download-btn">Download</button>
+                                <button class="btn btn-secondary" id="video-new-file-btn">New Video</button>
                             </div>
                         </div>
                     </div>
@@ -687,230 +687,259 @@
             </div>
             
             <div class="copyright">
-                &copy; <script>document.write(new Date().getFullYear())</script> Compresly. All rights reserved.
+                &copy; <span id="year"></span> Compresly. All rights reserved.
             </div>
         </div>
     </footer>
 
     <script>
-        // DOM Elements
-        const uploadArea = document.getElementById('upload-area');
-        const fileInput = document.getElementById('file-input');
-        const qualitySlider = document.getElementById('quality');
-        const qualityValue = document.getElementById('quality-value');
-        const resolutionSelect = document.getElementById('resolution');
-        const formatSelect = document.getElementById('format');
-        const compressBtn = document.getElementById('compress-btn');
-        const spinner = document.getElementById('spinner');
-        const results = document.getElementById('results');
-        
-        // Original video elements
-        const originalVideo = document.getElementById('original-video');
-        const originalName = document.getElementById('original-name');
-        const originalSize = document.getElementById('original-size');
-        const originalDuration = document.getElementById('original-duration');
-        const originalResolution = document.getElementById('original-resolution');
-        
-        // Compressed video elements
-        const compressedVideo = document.getElementById('compressed-video');
-        const compressedName = document.getElementById('compressed-name');
-        const compressedSize = document.getElementById('compressed-size');
-        const compressedDuration = document.getElementById('compressed-duration');
-        const compressedResolution = document.getElementById('compressed-resolution');
-        const savings = document.getElementById('savings');
-        
-        // Buttons
-        const downloadBtn = document.getElementById('download-btn');
-        const newFileBtn = document.getElementById('new-file-btn');
+        // ==================== GLOBAL UTILITIES ====================
+        // Shared functions across all tools
 
-        // Variables
-        let originalFile = null;
-        let compressedBlob = null;
-        let originalVideoUrl = null;
-        let compressedVideoUrl = null;
-
-        // Event Listeners
-        uploadArea.addEventListener('click', () => fileInput.click());
-        
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('highlight');
-        });
-        
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('highlight');
-        });
-        
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('highlight');
-            
-            if (e.dataTransfer.files.length) {
-                handleFileSelect(e.dataTransfer.files[0]);
-            }
-        });
-
-        fileInput.addEventListener('change', () => {
-            if (fileInput.files.length) {
-                handleFileSelect(fileInput.files[0]);
-            }
-        });
-
-        qualitySlider.addEventListener('input', () => {
-            qualityValue.textContent = `${qualitySlider.value}%`;
-        });
-
-        compressBtn.addEventListener('click', compressVideo);
-        downloadBtn.addEventListener('click', downloadVideo);
-        newFileBtn.addEventListener('click', resetTool);
-
-        // Functions
-        function handleFileSelect(file) {
-            // Check file type
-            if (!file.type.match('video.*')) {
-                alert('Please select a video file (MP4, MOV, AVI)');
-                return;
-            }
-
-            // Check file size (50MB max)
-            if (file.size > 50 * 1024 * 1024) {
-                alert('Video size exceeds 50MB limit');
-                return;
-            }
-
-            originalFile = file;
-            compressBtn.disabled = false;
-
-            // Display original video
-            if (originalVideoUrl) {
-                URL.revokeObjectURL(originalVideoUrl);
-            }
-            
-            originalVideoUrl = URL.createObjectURL(file);
-            originalVideo.src = originalVideoUrl;
-            
-            // Display original file info
-            originalName.textContent = file.name;
-            originalSize.textContent = formatFileSize(file.size);
-            
-            // Get video metadata when loaded
-            originalVideo.onloadedmetadata = function() {
-                originalDuration.textContent = formatDuration(originalVideo.duration);
-                originalResolution.textContent = `${originalVideo.videoWidth} × ${originalVideo.videoHeight}`;
-            };
-        }
-
-        function compressVideo() {
-            if (!originalFile) return;
-
-            // Show loading spinner
-            spinner.style.display = 'block';
-            results.style.display = 'none';
-            compressBtn.disabled = true;
-
-            // In a real implementation, you would use a library like FFmpeg.js or similar
-            // to compress the video. This is a simplified demo that just shows the UI flow.
-            
-            // Simulate compression delay
-            setTimeout(() => {
-                // For demo purposes, we'll just create a fake compressed blob
-                // In a real app, you would process the video here
-                compressedBlob = new Blob(["Compressed video content would be here"], { type: originalFile.type });
-                
-                if (compressedVideoUrl) {
-                    URL.revokeObjectURL(compressedVideoUrl);
-                }
-                
-                compressedVideoUrl = URL.createObjectURL(compressedBlob);
-                compressedVideo.src = compressedVideoUrl;
-                
-                // Display compressed file info
-                const compressedExtension = formatSelect.value === 'mp4' ? 'mp4' : 'webm';
-                compressedName.textContent = originalFile.name.replace(/\.[^/.]+$/, '') + '-compressed.' + compressedExtension;
-                compressedSize.textContent = formatFileSize(compressedBlob.size);
-                compressedDuration.textContent = originalDuration.textContent;
-                compressedResolution.textContent = getResolutionText(resolutionSelect.value);
-                
-                // Calculate savings
-                const savingsPercent = ((originalFile.size - compressedBlob.size) / originalFile.size * 100).toFixed(1);
-                savings.textContent = `${savingsPercent}% smaller`;
-                
-                // Show results
-                spinner.style.display = 'none';
-                results.style.display = 'block';
-                compressBtn.disabled = false;
-                
-                // Scroll to results
-                window.scrollTo({
-                    top: results.offsetTop - 20,
-                    behavior: 'smooth'
-                });
-            }, 2000);
-        }
-
-        function getResolutionText(resolution) {
-            switch(resolution) {
-                case '1080': return '1920 × 1080';
-                case '720': return '1280 × 720';
-                case '480': return '854 × 480';
-                default: return originalResolution.textContent;
-            }
-        }
-
-        function downloadVideo() {
-            if (!compressedBlob) return;
-            
-            const url = compressedVideoUrl;
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = compressedName.textContent;
-            
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
-
-        function resetTool() {
-            // Revoke object URLs
-            if (originalVideoUrl) URL.revokeObjectURL(originalVideoUrl);
-            if (compressedVideoUrl) URL.revokeObjectURL(compressedVideoUrl);
-            
-            // Reset variables
-            originalFile = null;
-            compressedBlob = null;
-            originalVideoUrl = null;
-            compressedVideoUrl = null;
-            
-            // Reset UI
-            fileInput.value = '';
-            originalVideo.src = '';
-            compressedVideo.src = '';
-            compressBtn.disabled = true;
-            results.style.display = 'none';
-            
-            // Reset file info
-            originalName.textContent = '';
-            originalSize.textContent = '';
-            originalDuration.textContent = '';
-            originalResolution.textContent = '';
-            compressedName.textContent = '';
-            compressedSize.textContent = '';
-            compressedDuration.textContent = '';
-            compressedResolution.textContent = '';
-            savings.textContent = '';
-        }
-
+        // Format file size for display
         function formatFileSize(bytes) {
-            if (bytes < 1024) return bytes + ' bytes';
-            else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
-            else return (bytes / 1048576).toFixed(1) + ' MB';
+            if (bytes < 1024) return `${bytes} bytes`;
+            else if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+            else return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
         }
 
+        // Format duration for audio/video
         function formatDuration(seconds) {
             const minutes = Math.floor(seconds / 60);
             const secs = Math.floor(seconds % 60);
             return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
         }
+
+        // Download file helper
+        function downloadFile(url, filename) {
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 100);
+        }
+
+        // ==================== VIDEO COMPRESSOR ====================
+        function initVideoCompressor() {
+            const uploadArea = document.getElementById('video-upload-area');
+            const fileInput = document.getElementById('video-file-input');
+            const compressBtn = document.getElementById('video-compress-btn');
+            const qualitySlider = document.getElementById('video-quality');
+            const qualityValue = document.getElementById('video-quality-value');
+            const resolutionSelect = document.getElementById('video-resolution');
+            const formatSelect = document.getElementById('video-format');
+            const spinner = document.getElementById('video-spinner');
+            const results = document.getElementById('video-results');
+            
+            // Original video elements
+            const originalVideo = document.getElementById('original-video');
+            const originalName = document.getElementById('original-video-name');
+            const originalSize = document.getElementById('original-video-size');
+            const originalDuration = document.getElementById('original-video-duration');
+            const originalResolution = document.getElementById('original-video-resolution');
+            
+            // Compressed video elements
+            const compressedVideo = document.getElementById('compressed-video');
+            const compressedName = document.getElementById('compressed-video-name');
+            const compressedSize = document.getElementById('compressed-video-size');
+            const compressedDuration = document.getElementById('compressed-video-duration');
+            const compressedResolution = document.getElementById('compressed-video-resolution');
+            const savings = document.getElementById('video-savings');
+            
+            // Buttons
+            const downloadBtn = document.getElementById('video-download-btn');
+            const newFileBtn = document.getElementById('video-new-file-btn');
+
+            // Variables
+            let originalFile = null;
+            let compressedBlob = null;
+            let originalVideoUrl = null;
+            let compressedVideoUrl = null;
+
+            // Event Listeners
+            uploadArea.addEventListener('click', () => fileInput.click());
+            
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('highlight');
+            });
+            
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('highlight');
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('highlight');
+                
+                if (e.dataTransfer.files.length) {
+                    handleFileSelect(e.dataTransfer.files[0]);
+                }
+            });
+
+            fileInput.addEventListener('change', () => {
+                if (fileInput.files.length) {
+                    handleFileSelect(fileInput.files[0]);
+                }
+            });
+
+            qualitySlider.addEventListener('input', () => {
+                qualityValue.textContent = `${qualitySlider.value}%`;
+            });
+
+            compressBtn.addEventListener('click', compressVideo);
+            downloadBtn.addEventListener('click', downloadVideo);
+            newFileBtn.addEventListener('click', resetTool);
+
+            // Functions
+            function handleFileSelect(file) {
+                // Check file type
+                if (!file.type.match('video.*')) {
+                    alert('Please select a video file (MP4, MOV, AVI)');
+                    return;
+                }
+
+                // Check file size (50MB max)
+                if (file.size > 50 * 1024 * 1024) {
+                    alert('Video size exceeds 50MB limit');
+                    return;
+                }
+
+                originalFile = file;
+                compressBtn.disabled = false;
+
+                // Display original video
+                if (originalVideoUrl) {
+                    URL.revokeObjectURL(originalVideoUrl);
+                }
+                
+                originalVideoUrl = URL.createObjectURL(file);
+                originalVideo.src = originalVideoUrl;
+                
+                // Display original file info
+                originalName.textContent = file.name;
+                originalSize.textContent = formatFileSize(file.size);
+                
+                // Get video metadata when loaded
+                originalVideo.onloadedmetadata = function() {
+                    originalDuration.textContent = formatDuration(originalVideo.duration);
+                    originalResolution.textContent = `${originalVideo.videoWidth} × ${originalVideo.videoHeight}`;
+                };
+            }
+
+            function compressVideo() {
+                if (!originalFile) return;
+
+                // Show loading spinner
+                spinner.style.display = 'block';
+                results.style.display = 'none';
+                compressBtn.disabled = true;
+
+                // In a real implementation, you would use a library like FFmpeg.js or similar
+                // to compress the video. This is a simplified demo that just shows the UI flow.
+                
+                // Simulate compression delay
+                setTimeout(() => {
+                    // For demo purposes, we'll just create a fake compressed blob
+                    // In a real app, you would process the video here
+                    compressedBlob = new Blob(["Compressed video content would be here"], { type: originalFile.type });
+                    
+                    if (compressedVideoUrl) {
+                        URL.revokeObjectURL(compressedVideoUrl);
+                    }
+                    
+                    compressedVideoUrl = URL.createObjectURL(compressedBlob);
+                    compressedVideo.src = compressedVideoUrl;
+                    
+                    // Display compressed file info
+                    const compressedExtension = formatSelect.value === 'mp4' ? 'mp4' : 'webm';
+                    compressedName.textContent = originalFile.name.replace(/\.[^/.]+$/, '') + '-compressed.' + compressedExtension;
+                    compressedSize.textContent = formatFileSize(compressedBlob.size);
+                    compressedDuration.textContent = originalDuration.textContent;
+                    compressedResolution.textContent = getResolutionText(resolutionSelect.value);
+                    
+                    // Calculate savings
+                    const savingsPercent = ((originalFile.size - compressedBlob.size) / originalFile.size * 100).toFixed(1);
+                    savings.textContent = `${savingsPercent}% smaller`;
+                    
+                    // Show results
+                    spinner.style.display = 'none';
+                    results.style.display = 'block';
+                    compressBtn.disabled = false;
+                    
+                    // Scroll to results
+                    window.scrollTo({
+                        top: results.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                }, 2000);
+            }
+
+            function getResolutionText(resolution) {
+                switch(resolution) {
+                    case '1080': return '1920 × 1080';
+                    case '720': return '1280 × 720';
+                    case '480': return '854 × 480';
+                    default: return originalResolution.textContent;
+                }
+            }
+
+            function downloadVideo() {
+                if (!compressedBlob) return;
+                
+                const url = compressedVideoUrl;
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = compressedName.textContent;
+                
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+
+            function resetTool() {
+                // Revoke object URLs
+                if (originalVideoUrl) URL.revokeObjectURL(originalVideoUrl);
+                if (compressedVideoUrl) URL.revokeObjectURL(compressedVideoUrl);
+                
+                // Reset variables
+                originalFile = null;
+                compressedBlob = null;
+                originalVideoUrl = null;
+                compressedVideoUrl = null;
+                
+                // Reset UI
+                fileInput.value = '';
+                originalVideo.src = '';
+                compressedVideo.src = '';
+                compressBtn.disabled = true;
+                results.style.display = 'none';
+                
+                // Reset file info
+                originalName.textContent = '';
+                originalSize.textContent = '';
+                originalDuration.textContent = '';
+                originalResolution.textContent = '';
+                compressedName.textContent = '';
+                compressedSize.textContent = '';
+                compressedDuration.textContent = '';
+                compressedResolution.textContent = '';
+                savings.textContent = '';
+            }
+        }
+
+        // ==================== INITIALIZATION ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+            
+            // Initialize the video compressor
+            if (document.getElementById('video-upload-area')) initVideoCompressor();
+        });
 
         // Initialize AdSense ads
         (adsbygoogle = window.adsbygoogle || []).push({});
