@@ -404,6 +404,64 @@
             font-size: 1.1rem;
         }
 
+        /* External Tools Section */
+        .external-tools {
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin: 60px 0;
+        }
+
+        .external-tools h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--dark-color);
+        }
+
+        .external-tools ul {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .external-tools li {
+            margin-bottom: 15px;
+        }
+
+        .external-tools a {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: var(--transition);
+        }
+
+        .external-tools a:hover {
+            background: rgba(66, 133, 244, 0.1);
+            transform: translateX(5px);
+        }
+
+        .external-tools i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: var(--primary-color);
+            width: 40px;
+            text-align: center;
+        }
+
+        .external-tools span {
+            flex: 1;
+        }
+
+        .external-tools .fa-external-link-alt {
+            font-size: 1rem;
+            color: var(--gray-color);
+        }
+
         /* Footer */
         footer {
             background-color: var(--dark-color);
@@ -421,6 +479,12 @@
         .footer-links {
             display: flex;
             flex-direction: column;
+        }
+
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
         }
 
         .footer-links a {
@@ -497,6 +561,14 @@
 
             .hero .subtitle {
                 font-size: 1rem;
+            }
+
+            .tool-selector {
+                grid-template-columns: 1fr;
+            }
+
+            .external-tools {
+                padding: 20px;
             }
         }
     </style>
@@ -722,7 +794,45 @@
                         <i class="fas fa-video"></i>
                         <h3>Reduce Videos</h3>
                     </a>
+                    <a href="/audio-compressor.html" class="tool-card">
+                        <i class="fas fa-music"></i>
+                        <h3>Optimize Audio</h3>
+                    </a>
                 </div>
+            </section>
+
+            <section class="external-tools">
+                <h3>More Helpful Online Tools</h3>
+                <ul>
+                    <li>
+                        <a href="https://tinypng.com/" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-image"></i>
+                            <span>TinyPNG - Smart PNG and JPEG compression</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://squoosh.app/" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-compress-alt"></i>
+                            <span>Squoosh - Advanced image optimization by Google</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.ilovepdf.com/" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>iLovePDF - Comprehensive PDF tools</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youcompress.com/" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-file-video"></i>
+                            <span>YouCompress - Simple video compression</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </li>
+                </ul>
             </section>
         </div>
     </main>
@@ -752,7 +862,7 @@
                 </div>
                 
                 <div>
-                    <h4 style="color: white; margin-bottom: 15px;">Connect With Us</h4>
+                    <h4>Connect With Us</h4>
                     <div class="social-links">
                         <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
