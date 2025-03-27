@@ -678,7 +678,7 @@
             </div>
             
             <div class="copyright">
-                &copy; <script>document.write(new Date().getFullYear())</script> Compresly. All rights reserved.
+                &copy; <span id="year"></span> Compresly. All rights reserved.
             </div>
         </div>
     </footer>
@@ -686,223 +686,243 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     <script>
-        // Set PDF.js worker path
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.min.js';
+        // ==================== GLOBAL UTILITIES ====================
+        // Shared functions across all tools
 
-        // DOM Elements
-        const uploadArea = document.getElementById('pdf-upload-area');
-        const fileInput = document.getElementById('pdf-file-input');
-        const qualitySlider = document.getElementById('pdf-quality');
-        const qualityValue = document.getElementById('pdf-quality-value');
-        const resolutionSelect = document.getElementById('pdf-resolution');
-        const optimizeSelect = document.getElementById('pdf-optimize');
-        const compressBtn = document.getElementById('pdf-compress-btn');
-        const spinner = document.getElementById('pdf-spinner');
-        const results = document.getElementById('pdf-results');
-        
-        // Original PDF elements
-        const originalName = document.getElementById('pdf-original-name');
-        const originalSize = document.getElementById('pdf-original-size');
-        const originalPages = document.getElementById('pdf-original-pages');
-        
-        // Compressed PDF elements
-        const compressedName = document.getElementById('pdf-compressed-name');
-        const compressedSize = document.getElementById('pdf-compressed-size');
-        const compressedPages = document.getElementById('pdf-compressed-pages');
-        const savings = document.getElementById('pdf-savings');
-        
-        // Buttons
-        const downloadBtn = document.getElementById('pdf-download-btn');
-        const newFileBtn = document.getElementById('pdf-new-btn');
-
-        // Variables
-        let originalFile = null;
-        let compressedBlob = null;
-        let originalPdfUrl = null;
-        let pageCount = 0;
-
-        // Event Listeners
-        uploadArea.addEventListener('click', () => fileInput.click());
-        
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('highlight');
-        });
-        
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('highlight');
-        });
-        
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('highlight');
-            
-            if (e.dataTransfer.files.length) {
-                handleFileSelect(e.dataTransfer.files[0]);
-            }
-        });
-
-        fileInput.addEventListener('change', () => {
-            if (fileInput.files.length) {
-                handleFileSelect(fileInput.files[0]);
-            }
-        });
-
-        qualitySlider.addEventListener('input', () => {
-            qualityValue.textContent = `${qualitySlider.value}%`;
-        });
-
-        compressBtn.addEventListener('click', compressPDF);
-        downloadBtn.addEventListener('click', downloadPDF);
-        newFileBtn.addEventListener('click', resetTool);
-
-        // Functions
-        async function handleFileSelect(file) {
-            // Check file type
-            if (!file.name.toLowerCase().endsWith('.pdf')) {
-                alert('Please select a PDF file');
-                return;
-            }
-
-            // Check file size (25MB max)
-            if (file.size > 25 * 1024 * 1024) {
-                alert('PDF size exceeds 25MB limit');
-                return;
-            }
-
-            originalFile = file;
-            compressBtn.disabled = false;
-
-            // Display original file info
-            originalName.textContent = file.name;
-            originalSize.textContent = formatFileSize(file.size);
-            
-            // Get page count
-            try {
-                if (originalPdfUrl) {
-                    URL.revokeObjectURL(originalPdfUrl);
-                }
-                
-                originalPdfUrl = URL.createObjectURL(file);
-                const loadingTask = pdfjsLib.getDocument(originalPdfUrl);
-                const pdf = await loadingTask.promise;
-                pageCount = pdf.numPages;
-                originalPages.textContent = pageCount;
-            } catch (error) {
-                console.error('Error loading PDF:', error);
-                originalPages.textContent = 'Error loading';
-            }
+        // Format file size for display
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return `${bytes} bytes`;
+            else if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+            else return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
         }
 
-        async function compressPDF() {
-            if (!originalFile) return;
-
-            // Show loading spinner
-            spinner.style.display = 'block';
-            results.style.display = 'none';
-            compressBtn.disabled = true;
-
-            try {
-                // Load the PDF
-                const pdfBytes = await originalFile.arrayBuffer();
-                const pdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
-                
-                // Set compression options based on user selections
-                const quality = parseInt(qualitySlider.value) / 100;
-                const resolution = resolutionSelect.value === 'none' ? undefined : parseInt(resolutionSelect.value);
-                const optimizeOption = optimizeSelect.value;
-                
-                // Compress images in the PDF
-                const pages = pdfDoc.getPages();
-                for (let i = 0; i < pages.length; i++) {
-                    const page = pages[i];
-                    const { width, height } = page.getSize();
-                    
-                    // This is a simplified compression - in a real app you'd want more sophisticated PDF compression
-                    // For demo purposes, we're just re-saving with reduced quality
-                }
-                
-                // Save the compressed PDF
-                const compressedPdfBytes = await pdfDoc.save({
-                    useObjectStreams: true,
-                    // This is where you'd add more compression options in a real implementation
-                });
-                
-                compressedBlob = new Blob([compressedPdfBytes], { type: 'application/pdf' });
-                
-                // Display compressed file info
-                compressedName.textContent = originalFile.name.replace('.pdf', '') + '-compressed.pdf';
-                compressedSize.textContent = formatFileSize(compressedBlob.size);
-                compressedPages.textContent = pageCount;
-                
-                // Calculate savings
-                const savingsPercent = ((originalFile.size - compressedBlob.size) / originalFile.size * 100).toFixed(1);
-                savings.textContent = `${savingsPercent}% smaller`;
-                
-                // Show results
-                spinner.style.display = 'none';
-                results.style.display = 'block';
-                compressBtn.disabled = false;
-                
-                // Scroll to results
-                window.scrollTo({
-                    top: results.offsetTop - 20,
-                    behavior: 'smooth'
-                });
-            } catch (error) {
-                console.error('Error compressing PDF:', error);
-                alert('An error occurred while compressing the PDF. Please try again.');
-                spinner.style.display = 'none';
-                compressBtn.disabled = false;
-            }
-        }
-
-        function downloadPDF() {
-            if (!compressedBlob) return;
-            
-            const url = URL.createObjectURL(compressedBlob);
+        // Download file helper
+        function downloadFile(url, filename) {
             const a = document.createElement('a');
             a.href = url;
-            a.download = compressedName.textContent;
-            
+            a.download = filename;
             document.body.appendChild(a);
             a.click();
-            document.body.removeChild(a);
-            
-            // Clean up
-            setTimeout(() => URL.revokeObjectURL(url), 100);
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 100);
         }
 
-        function resetTool() {
-            // Revoke object URLs
-            if (originalPdfUrl) URL.revokeObjectURL(originalPdfUrl);
+        // ==================== PDF COMPRESSOR ====================
+        function initPDFCompressor() {
+            // Set PDF.js worker path
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.min.js';
+
+            // DOM Elements
+            const uploadArea = document.getElementById('pdf-upload-area');
+            const fileInput = document.getElementById('pdf-file-input');
+            const qualitySlider = document.getElementById('pdf-quality');
+            const qualityValue = document.getElementById('pdf-quality-value');
+            const resolutionSelect = document.getElementById('pdf-resolution');
+            const optimizeSelect = document.getElementById('pdf-optimize');
+            const compressBtn = document.getElementById('pdf-compress-btn');
+            const spinner = document.getElementById('pdf-spinner');
+            const results = document.getElementById('pdf-results');
             
-            // Reset variables
-            originalFile = null;
-            compressedBlob = null;
-            originalPdfUrl = null;
-            pageCount = 0;
+            // Original PDF elements
+            const originalName = document.getElementById('pdf-original-name');
+            const originalSize = document.getElementById('pdf-original-size');
+            const originalPages = document.getElementById('pdf-original-pages');
             
-            // Reset UI
-            fileInput.value = '';
-            compressBtn.disabled = true;
-            results.style.display = 'none';
+            // Compressed PDF elements
+            const compressedName = document.getElementById('pdf-compressed-name');
+            const compressedSize = document.getElementById('pdf-compressed-size');
+            const compressedPages = document.getElementById('pdf-compressed-pages');
+            const savings = document.getElementById('pdf-savings');
             
-            // Reset file info
-            originalName.textContent = '';
-            originalSize.textContent = '';
-            originalPages.textContent = 'Calculating...';
-            compressedName.textContent = '';
-            compressedSize.textContent = '';
-            compressedPages.textContent = '';
-            savings.textContent = '';
+            // Buttons
+            const downloadBtn = document.getElementById('pdf-download-btn');
+            const newFileBtn = document.getElementById('pdf-new-btn');
+
+            // Variables
+            let originalFile = null;
+            let compressedBlob = null;
+            let originalPdfUrl = null;
+            let pageCount = 0;
+
+            // Event Listeners
+            uploadArea.addEventListener('click', () => fileInput.click());
+            
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('highlight');
+            });
+            
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('highlight');
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('highlight');
+                
+                if (e.dataTransfer.files.length) {
+                    handleFileSelect(e.dataTransfer.files[0]);
+                }
+            });
+
+            fileInput.addEventListener('change', () => {
+                if (fileInput.files.length) {
+                    handleFileSelect(fileInput.files[0]);
+                }
+            });
+
+            qualitySlider.addEventListener('input', () => {
+                qualityValue.textContent = `${qualitySlider.value}%`;
+            });
+
+            compressBtn.addEventListener('click', compressPDF);
+            downloadBtn.addEventListener('click', downloadPDF);
+            newFileBtn.addEventListener('click', resetTool);
+
+            // Functions
+            async function handleFileSelect(file) {
+                // Check file type
+                if (!file.name.toLowerCase().endsWith('.pdf')) {
+                    alert('Please select a PDF file');
+                    return;
+                }
+
+                // Check file size (25MB max)
+                if (file.size > 25 * 1024 * 1024) {
+                    alert('PDF size exceeds 25MB limit');
+                    return;
+                }
+
+                originalFile = file;
+                compressBtn.disabled = false;
+
+                // Display original file info
+                originalName.textContent = file.name;
+                originalSize.textContent = formatFileSize(file.size);
+                
+                // Get page count
+                try {
+                    if (originalPdfUrl) {
+                        URL.revokeObjectURL(originalPdfUrl);
+                    }
+                    
+                    originalPdfUrl = URL.createObjectURL(file);
+                    const loadingTask = pdfjsLib.getDocument(originalPdfUrl);
+                    const pdf = await loadingTask.promise;
+                    pageCount = pdf.numPages;
+                    originalPages.textContent = pageCount;
+                } catch (error) {
+                    console.error('Error loading PDF:', error);
+                    originalPages.textContent = 'Error loading';
+                }
+            }
+
+            async function compressPDF() {
+                if (!originalFile) return;
+
+                // Show loading spinner
+                spinner.style.display = 'block';
+                results.style.display = 'none';
+                compressBtn.disabled = true;
+
+                try {
+                    // Load the PDF
+                    const pdfBytes = await originalFile.arrayBuffer();
+                    const pdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
+                    
+                    // Set compression options based on user selections
+                    const quality = parseInt(qualitySlider.value) / 100;
+                    const resolution = resolutionSelect.value === 'none' ? undefined : parseInt(resolutionSelect.value);
+                    const optimizeOption = optimizeSelect.value;
+                    
+                    // Compress images in the PDF
+                    const pages = pdfDoc.getPages();
+                    for (let i = 0; i < pages.length; i++) {
+                        const page = pages[i];
+                        const { width, height } = page.getSize();
+                        
+                        // This is a simplified compression - in a real app you'd want more sophisticated PDF compression
+                        // For demo purposes, we're just re-saving with reduced quality
+                    }
+                    
+                    // Save the compressed PDF
+                    const compressedPdfBytes = await pdfDoc.save({
+                        useObjectStreams: true,
+                        // This is where you'd add more compression options in a real implementation
+                    });
+                    
+                    compressedBlob = new Blob([compressedPdfBytes], { type: 'application/pdf' });
+                    
+                    // Display compressed file info
+                    compressedName.textContent = originalFile.name.replace('.pdf', '') + '-compressed.pdf';
+                    compressedSize.textContent = formatFileSize(compressedBlob.size);
+                    compressedPages.textContent = pageCount;
+                    
+                    // Calculate savings
+                    const savingsPercent = ((originalFile.size - compressedBlob.size) / originalFile.size * 100).toFixed(1);
+                    savings.textContent = `${savingsPercent}% smaller`;
+                    
+                    // Show results
+                    spinner.style.display = 'none';
+                    results.style.display = 'block';
+                    compressBtn.disabled = false;
+                    
+                    // Scroll to results
+                    window.scrollTo({
+                        top: results.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                } catch (error) {
+                    console.error('Error compressing PDF:', error);
+                    alert('An error occurred while compressing the PDF. Please try again.');
+                    spinner.style.display = 'none';
+                    compressBtn.disabled = false;
+                }
+            }
+
+            function downloadPDF() {
+                if (!compressedBlob) return;
+                
+                const url = URL.createObjectURL(compressedBlob);
+                downloadFile(url, compressedName.textContent);
+            }
+
+            function resetTool() {
+                // Revoke object URLs
+                if (originalPdfUrl) URL.revokeObjectURL(originalPdfUrl);
+                
+                // Reset variables
+                originalFile = null;
+                compressedBlob = null;
+                originalPdfUrl = null;
+                pageCount = 0;
+                
+                // Reset UI
+                fileInput.value = '';
+                compressBtn.disabled = true;
+                results.style.display = 'none';
+                
+                // Reset file info
+                originalName.textContent = '';
+                originalSize.textContent = '';
+                originalPages.textContent = 'Calculating...';
+                compressedName.textContent = '';
+                compressedSize.textContent = '';
+                compressedPages.textContent = '';
+                savings.textContent = '';
+            }
         }
 
-        function formatFileSize(bytes) {
-            if (bytes < 1024) return bytes + ' bytes';
-            else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
-            else return (bytes / 1048576).toFixed(1) + ' MB';
-        }
+        // ==================== INITIALIZATION ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+            
+            // Initialize the PDF compressor
+            if (document.getElementById('pdf-upload-area')) initPDFCompressor();
+        });
 
         // Initialize AdSense ads
         (adsbygoogle = window.adsbygoogle || []).push({});
