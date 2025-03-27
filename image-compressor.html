@@ -183,7 +183,7 @@
             color: var(--gray);
         }
 
-        #file-input {
+        #image-file-input {
             display: none;
         }
 
@@ -397,7 +397,7 @@
             color: var(--dark);
         }
 
-        #savings {
+        #image-savings {
             font-weight: 500;
             color: #34A853;
             margin-top: 0.5rem;
@@ -557,25 +557,25 @@
                     <p>Reduce JPG, PNG, and WebP file sizes without noticeable quality loss. All processing happens in your browser - your images never leave your device.</p>
                 </div>
                 
-                <div class="upload-area" id="upload-area">
+                <div class="upload-area" id="image-upload-area">
                     <i class="fas fa-cloud-upload-alt"></i>
                     <p>Drag & Drop your image here or click to browse</p>
                     <small>Supports: JPG, PNG, WebP (Max: 15MB)</small>
-                    <input type="file" id="file-input" accept="image/jpeg, image/png, image/webp">
+                    <input type="file" id="image-file-input" accept="image/jpeg, image/png, image/webp">
                 </div>
                 
                 <div class="controls">
                     <div class="control-group">
-                        <label for="quality">Compression Level</label>
+                        <label for="image-quality">Compression Level</label>
                         <div class="slider-container">
-                            <input type="range" id="quality" min="0" max="100" value="80">
-                            <span id="quality-value">80%</span>
+                            <input type="range" id="image-quality" min="0" max="100" value="80">
+                            <span id="image-quality-value">80%</span>
                         </div>
                     </div>
                     
                     <div class="control-group">
-                        <label for="format">Output Format</label>
-                        <select id="format">
+                        <label for="image-format">Output Format</label>
+                        <select id="image-format">
                             <option value="auto">Same as input</option>
                             <option value="jpeg">JPEG</option>
                             <option value="png">PNG</option>
@@ -584,8 +584,8 @@
                     </div>
                     
                     <div class="control-group">
-                        <label for="resize">Resize (Max Width)</label>
-                        <select id="resize">
+                        <label for="image-resize">Resize (Max Width)</label>
+                        <select id="image-resize">
                             <option value="none">Original Size</option>
                             <option value="800">800px</option>
                             <option value="1200">1200px</option>
@@ -595,36 +595,36 @@
                     </div>
                 </div>
                 
-                <button id="compress-btn" class="btn btn-primary" disabled>Compress Image</button>
+                <button id="image-compress-btn" class="btn btn-primary" disabled>Compress Image</button>
                 
-                <div class="spinner" id="spinner"></div>
+                <div class="spinner" id="image-spinner"></div>
                 
-                <div class="results" id="results">
+                <div class="results" id="image-results">
                     <h3>Compression Results</h3>
                     <div class="comparison">
                         <div class="image-box">
                             <h4>Original Image</h4>
-                            <img id="original-img" src="" alt="Original Image">
+                            <img id="image-original-img" src="" alt="Original Image">
                             <div class="image-info">
-                                <p><span>Name:</span> <span id="original-name"></span></p>
-                                <p><span>Size:</span> <span id="original-size"></span></p>
-                                <p><span>Dimensions:</span> <span id="original-dimensions"></span></p>
-                                <p><span>Type:</span> <span id="original-type"></span></p>
+                                <p><span>Name:</span> <span id="image-original-name"></span></p>
+                                <p><span>Size:</span> <span id="image-original-size"></span></p>
+                                <p><span>Dimensions:</span> <span id="image-original-dimensions"></span></p>
+                                <p><span>Type:</span> <span id="image-original-type"></span></p>
                             </div>
                         </div>
                         <div class="image-box">
                             <h4>Compressed Image</h4>
-                            <img id="compressed-img" src="" alt="Compressed Image">
+                            <img id="image-compressed-img" src="" alt="Compressed Image">
                             <div class="image-info">
-                                <p><span>Name:</span> <span id="compressed-name"></span></p>
-                                <p><span>Size:</span> <span id="compressed-size"></span></p>
-                                <p><span>Dimensions:</span> <span id="compressed-dimensions"></span></p>
-                                <p><span>Type:</span> <span id="compressed-type"></span></p>
-                                <p><span>Reduction:</span> <span id="savings"></span></p>
+                                <p><span>Name:</span> <span id="image-compressed-name"></span></p>
+                                <p><span>Size:</span> <span id="image-compressed-size"></span></p>
+                                <p><span>Dimensions:</span> <span id="image-compressed-dimensions"></span></p>
+                                <p><span>Type:</span> <span id="image-compressed-type"></span></p>
+                                <p><span>Reduction:</span> <span id="image-savings"></span></p>
                             </div>
                             <div class="action-buttons">
-                                <button class="btn btn-success" id="download-btn">Download</button>
-                                <button class="btn btn-secondary" id="new-image-btn">New Image</button>
+                                <button class="btn btn-success" id="image-download-btn">Download</button>
+                                <button class="btn btn-secondary" id="image-new-btn">New Image</button>
                             </div>
                         </div>
                     </div>
@@ -691,34 +691,34 @@
 
     <script>
         // DOM Elements
-        const uploadArea = document.getElementById('upload-area');
-        const fileInput = document.getElementById('file-input');
-        const qualitySlider = document.getElementById('quality');
-        const qualityValue = document.getElementById('quality-value');
-        const formatSelect = document.getElementById('format');
-        const resizeSelect = document.getElementById('resize');
-        const compressBtn = document.getElementById('compress-btn');
-        const spinner = document.getElementById('spinner');
-        const results = document.getElementById('results');
+        const uploadArea = document.getElementById('image-upload-area');
+        const fileInput = document.getElementById('image-file-input');
+        const qualitySlider = document.getElementById('image-quality');
+        const qualityValue = document.getElementById('image-quality-value');
+        const formatSelect = document.getElementById('image-format');
+        const resizeSelect = document.getElementById('image-resize');
+        const compressBtn = document.getElementById('image-compress-btn');
+        const spinner = document.getElementById('image-spinner');
+        const results = document.getElementById('image-results');
         
         // Original image elements
-        const originalImg = document.getElementById('original-img');
-        const originalName = document.getElementById('original-name');
-        const originalSize = document.getElementById('original-size');
-        const originalDimensions = document.getElementById('original-dimensions');
-        const originalType = document.getElementById('original-type');
+        const originalImg = document.getElementById('image-original-img');
+        const originalName = document.getElementById('image-original-name');
+        const originalSize = document.getElementById('image-original-size');
+        const originalDimensions = document.getElementById('image-original-dimensions');
+        const originalType = document.getElementById('image-original-type');
         
         // Compressed image elements
-        const compressedImg = document.getElementById('compressed-img');
-        const compressedName = document.getElementById('compressed-name');
-        const compressedSize = document.getElementById('compressed-size');
-        const compressedDimensions = document.getElementById('compressed-dimensions');
-        const compressedType = document.getElementById('compressed-type');
-        const savings = document.getElementById('savings');
+        const compressedImg = document.getElementById('image-compressed-img');
+        const compressedName = document.getElementById('image-compressed-name');
+        const compressedSize = document.getElementById('image-compressed-size');
+        const compressedDimensions = document.getElementById('image-compressed-dimensions');
+        const compressedType = document.getElementById('image-compressed-type');
+        const savings = document.getElementById('image-savings');
         
         // Buttons
-        const downloadBtn = document.getElementById('download-btn');
-        const newImageBtn = document.getElementById('new-image-btn');
+        const downloadBtn = document.getElementById('image-download-btn');
+        const newImageBtn = document.getElementById('image-new-btn');
 
         // Variables
         let originalFile = null;
