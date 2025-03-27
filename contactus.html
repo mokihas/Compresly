@@ -10,65 +10,306 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="manifest" href="/favicon/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4cc9f0;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7ff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
         main {
+            flex: 1;
+            padding: 2rem 0;
+        }
+
+        /* Contact Page Specific Styles */
+        .contact-container {
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            margin: 2rem auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2.5rem;
+            margin: 0 auto;
             max-width: 600px;
         }
-        h1 {
-            color: var(--primary-color);
+
+        .contact-container h1 {
+            color: var(--primary);
             margin-bottom: 1.5rem;
             text-align: center;
+            font-size: 2rem;
         }
+
         .form-group {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
         }
+
         label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
+            color: var(--dark);
         }
-        input, textarea {
+
+        input, textarea, select {
             width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: inherit;
+            padding: 0.875rem 1rem;
+            border: 1px solid #E8EAED;
+            border-radius: var(--border-radius);
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
         }
-        button[type="submit"] {
-            background: var(--primary-color);
-            color: white;
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 0.875rem 1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            border-radius: var(--border-radius);
             border: none;
-            padding: 0.8rem 1.5rem;
-            font-size: 1rem;
-            border-radius: 4px;
             cursor: pointer;
-            width: 100%;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            text-align: center;
         }
-        button[type="submit"]:hover {
-            background: var(--primary-dark);
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
         }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary:disabled {
+            background: #E8EAED;
+            color: #5F6368;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
         .contact-info {
             text-align: center;
             margin-top: 2rem;
-            padding: 1rem;
-            background: #f9f9f9;
-            border-radius: 4px;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
         }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
         .success-message {
             display: none;
-            background: #4CAF50;
+            background: #34A853;
             color: white;
             padding: 1rem;
-            border-radius: 4px;
-            margin-bottom: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
             text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo .logo {
+            color: white;
+        }
+
+        .footer-about {
+            color: #BDC1C6;
+            margin-bottom: 1rem;
+            max-width: 300px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .footer-links a {
+            color: #BDC1C6;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            color: #BDC1C6;
+            padding-top: 1.5rem;
+            border-top: 1px solid #495057;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .contact-container {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -79,56 +320,97 @@
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/#how-it-works">How It Works</a></li>
-                    <li><a href="/#faq">FAQ</a></li>
-                    <li><a href="/contactus.html">Contact</a></li>
+                    <li><a href="/image-compressor.html">Image Compressor</a></li>
+                    <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
+                    <li><a href="/video-compressor.html">Video Compressor</a></li>
+                    <li><a href="/contactus.html" class="active">Contact Us</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="container">
-        <h1>Contact Our Team</h1>
-        
-        <div id="successMessage" class="success-message">
-            Thank you! We'll respond within 48 hours.
-        </div>
-        
-        <form id="contactForm">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="from_name" required>
+        <div class="contact-container">
+            <h1>Contact Our Team</h1>
+            
+            <div id="successMessage" class="success-message">
+                <i class="fas fa-check-circle"></i> Thank you! We'll respond within 48 hours.
             </div>
             
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="from_email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            
-            <button type="submit" id="submitBtn">Send Message</button>
-        </form>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="from_name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="from_email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject">
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Support Request">Support Request</option>
+                        <option value="Feature Suggestion">Feature Suggestion</option>
+                        <option value="Business Inquiry">Business Inquiry</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <button type="submit" id="submitBtn" class="btn btn-primary">Send Message</button>
+            </form>
 
-        <div class="contact-info">
-            <p>Prefer email? Contact us at:<br>
-            <a href="mailto:support@compresly.com">support@compresly.com</a></p>
-            
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> Prefer email? Contact us at:</p>
+                <p><a href="mailto:support@compresly.com">support@compresly.com</a></p>
+                <p class="response-time"><i class="fas fa-clock"></i> Typical response time: 24-48 hours</p>
+            </div>
         </div>
     </main>
 
     <footer>
-        <div class="container footer-content">
-            <a href="/" class="logo" style="color: white;">Compresly</a>
-            <div class="footer-links">
-                <a href="/privacy-policy.html">Privacy Policy</a>
-                <a href="/terms-of-service.html">Terms of Service</a>
-                <a href="/about-us.html">About Us</a>
-                <a href="/contactus.html">Contact Us</a>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">
+                        <a href="/" class="logo">Compresly</a>
+                    </div>
+                    <p class="footer-about">The simplest way to compress files online. Free, secure, and no registration required.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Tools</h4>
+                    <a href="/image-compressor.html">Image Compressor</a>
+                    <a href="/pdf-compressor.html">PDF Compressor</a>
+                    <a href="/video-compressor.html">Video Compressor</a>
+                    <a href="/audio-compressor.html">Audio Compressor</a>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="/about-us.html">About Us</a>
+                    <a href="/contactus.html">Contact</a>
+                    <a href="/privacy-policy.html">Privacy Policy</a>
+                    <a href="/terms-of-service.html">Terms of Service</a>
+                </div>
+                
+                <div>
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
             </div>
+            
             <div class="copyright">
                 &copy; <script>document.write(new Date().getFullYear())</script> Compresly. All rights reserved.
             </div>
@@ -159,6 +441,12 @@
                 setTimeout(() => {
                     successMsg.style.display = 'none';
                 }, 5000);
+                
+                // Scroll to show success message
+                window.scrollTo({
+                    top: successMsg.offsetTop - 20,
+                    behavior: 'smooth'
+                });
             }, (error) => {
                 alert('Failed to send: ' + error.text);
             }).finally(() => {
