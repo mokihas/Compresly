@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - ImageCompressorPro</title>
+    <title>Contact Us - Compresly</title>
     <!-- Favicon Config -->
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-<link rel="manifest" href="/favicon/site.webmanifest">
-<meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="styles.css">
     <style>
         main {
@@ -49,17 +49,33 @@
             border-radius: 4px;
             cursor: pointer;
             width: 100%;
+            transition: background 0.3s;
+        }
+        button[type="submit"]:hover {
+            background: var(--primary-dark);
         }
         .contact-info {
             text-align: center;
             margin-top: 2rem;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+        .success-message {
+            display: none;
+            background: #4CAF50;
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <header>
         <div class="container header-content">
-            <a href="/" class="logo">Image<span>Compressor</span>Pro</a>
+            <a href="/" class="logo">Compresly</a>
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
@@ -74,78 +90,81 @@
     <main class="container">
         <h1>Contact Our Team</h1>
         
-       <form id="contactForm">
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="from_name" required>
-  </div>
-  
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" id="email" name="from_email" required>
-  </div>
-  
-  <div class="form-group">
-    <label for="message">Message</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
-  </div>
-  
-  <button type="submit" id="submitBtn">Send Message</button>
-</form>
+        <div id="successMessage" class="success-message">
+            Thank you! We'll respond within 48 hours.
+        </div>
+        
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="from_name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="from_email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            
+            <button type="submit" id="submitBtn">Send Message</button>
+        </form>
 
-<!-- Add these before </body> -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>
-  // Initialize EmailJS
-  emailjs.init('S-bfEvWeIPqaJWduk'); // Replace with your Public Key
-  
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const btn = document.getElementById('submitBtn');
-    
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-    
-    emailjs.sendForm(
-      'service_q4nrg3c',   // Replace with Service ID
-      'template_77ru82o',  // Replace with Template ID
-      this
-    ).then(() => {
-      alert('Message sent successfully!');
-      this.reset();
-    }, (error) => {
-      alert('Failed to send: ' + error.text);
-    }).finally(() => {
-      btn.disabled = false;
-      btn.textContent = 'Send Message';
-    });
-  });
-</script>
         <div class="contact-info">
             <p>Prefer email? Contact us at:<br>
-            <a href="mailto:mokibul@gmail.com">support@compresly.vercel.app</a></p>
+            <a href="mailto:support@compresly.com">support@compresly.com</a></p>
+            <p><small>(Note: Replace with your real email when available)</small></p>
         </div>
     </main>
 
     <footer>
         <div class="container footer-content">
-            <a href="/" class="logo" style="color: white;">Image<span style="color: #fbbc05;">Compressor</span><span style="color: #ea4335;">Pro</span></a>
+            <a href="/" class="logo" style="color: white;">Compresly</a>
             <div class="footer-links">
                 <a href="/privacy-policy.html">Privacy Policy</a>
                 <a href="/terms-of-service.html">Terms of Service</a>
+                <a href="/about-us.html">About Us</a>
                 <a href="/contactus.html">Contact Us</a>
             </div>
             <div class="copyright">
-                &copy; <script>document.write(new Date().getFullYear())</script> ImageCompressorPro. All rights reserved.
+                &copy; <script>document.write(new Date().getFullYear())</script> Compresly. All rights reserved.
             </div>
         </div>
     </footer>
 
+    <!-- EmailJS Integration -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
+        // Initialize EmailJS with your public key
+        emailjs.init('S-bfEvWeIPqaJWduk'); // Keep your existing key
+        
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you! We'll respond within 48 hours.');
-            this.reset();
+            const btn = document.getElementById('submitBtn');
+            const successMsg = document.getElementById('successMessage');
+            
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            
+            emailjs.sendForm(
+                'service_q4nrg3c',   // Your service ID
+                'template_77ru82o',  // Your template ID
+                this
+            ).then(() => {
+                successMsg.style.display = 'block';
+                this.reset();
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 5000);
+            }, (error) => {
+                alert('Failed to send: ' + error.text);
+            }).finally(() => {
+                btn.disabled = false;
+                btn.textContent = 'Send Message';
+            });
         });
     </script>
 </body>
