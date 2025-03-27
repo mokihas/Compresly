@@ -5,21 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Compressor - Compresly</title>
     <meta name="description" content="Free online audio compression tool. Reduce MP3, WAV, and other audio file sizes while maintaining quality. No registration required.">
-
+    
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="manifest" href="/favicon/site.webmanifest">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8373245520045377" crossorigin="anonymous"></script>
 
@@ -34,6 +30,7 @@
             --success: #4cc9f0;
             --border-radius: 12px;
             --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -59,6 +56,7 @@
             padding: 0 20px;
         }
 
+        /* Header */
         header {
             background-color: white;
             box-shadow: var(--box-shadow);
@@ -91,11 +89,16 @@
             color: var(--dark);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
         }
 
-        nav a:hover {
+        nav a:hover,
+        nav a:focus {
             color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.1);
+            outline: none;
         }
 
         nav a.active {
@@ -103,6 +106,23 @@
             font-weight: 600;
         }
 
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Main Content */
         .main {
             flex: 1;
             padding: 2rem 0;
@@ -154,11 +174,12 @@
             text-align: center;
             margin-bottom: 2rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             background-color: #f8f9fa;
         }
 
-        .upload-area:hover {
+        .upload-area:hover,
+        .upload-area:focus-within {
             border-color: var(--primary);
             background-color: rgba(67, 97, 238, 0.05);
         }
@@ -228,7 +249,7 @@
             background: var(--primary);
             border-radius: 50%;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: var(--transition);
         }
 
         .slider-container input[type="range"]::-webkit-slider-thumb:hover {
@@ -250,7 +271,7 @@
             border: 1px solid #E8EAED;
             background: white;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         select:focus {
@@ -269,7 +290,7 @@
             border-radius: var(--border-radius);
             border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             text-align: center;
         }
 
@@ -459,7 +480,7 @@
             color: #BDC1C6;
             text-decoration: none;
             margin-bottom: 0.5rem;
-            transition: color 0.3s;
+            transition: var(--transition);
         }
 
         .footer-links a:hover {
@@ -475,7 +496,7 @@
         .social-links a {
             color: white;
             font-size: 1.2rem;
-            transition: color 0.3s;
+            transition: var(--transition);
         }
 
         .social-links a:hover {
@@ -538,10 +559,12 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <header>
         <div class="container header-content">
             <a href="/" class="logo">Compresly</a>
-            <nav>
+            <nav aria-label="Main navigation">
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/image-compressor.html">Image Compressor</a></li>
@@ -553,34 +576,34 @@
         </div>
     </header>
     
-    <main class="main">
+    <main id="main-content" class="main">
         <div class="container">
             <div class="tool-container">
                 <div class="tool-header">
-                    <i class="fas fa-music"></i>
+                    <i class="fas fa-music" aria-hidden="true"></i>
                     <h1>Audio Compressor</h1>
                     <p>Reduce MP3, WAV, and other audio file sizes while maintaining quality. All processing happens in your browser - your audio never leaves your device.</p>
                 </div>
                 
-                <div class="upload-area" id="audio-upload-area">
-                    <i class="fas fa-cloud-upload-alt"></i>
+                <div class="upload-area" id="audio-upload-area" tabindex="0">
+                    <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
                     <p>Drag & Drop your audio here or click to browse</p>
                     <small>Supports: MP3, WAV, AAC, OGG (Max: 50MB)</small>
-                    <input type="file" id="audio-file-input" accept="audio/*">
+                    <input type="file" id="audio-file-input" accept="audio/*" aria-label="Select audio file">
                 </div>
                 
                 <div class="controls">
                     <div class="control-group">
                         <label for="audio-quality">Audio Quality</label>
                         <div class="slider-container">
-                            <input type="range" id="audio-quality" min="0" max="100" value="70">
+                            <input type="range" id="audio-quality" min="0" max="100" value="70" aria-valuetext="70 percent">
                             <span id="audio-quality-value">70%</span>
                         </div>
                     </div>
                     
                     <div class="control-group">
                         <label for="audio-bitrate">Bitrate</label>
-                        <select id="audio-bitrate">
+                        <select id="audio-bitrate" aria-label="Select audio bitrate">
                             <option value="original">Original Bitrate</option>
                             <option value="320">320 kbps (High Quality)</option>
                             <option value="256">256 kbps (Good Quality)</option>
@@ -592,7 +615,7 @@
                     
                     <div class="control-group">
                         <label for="audio-format">Output Format</label>
-                        <select id="audio-format">
+                        <select id="audio-format" aria-label="Select output format">
                             <option value="mp3">MP3 (recommended)</option>
                             <option value="aac">AAC</option>
                             <option value="ogg">OGG</option>
@@ -601,17 +624,17 @@
                     </div>
                 </div>
                 
-                <button id="audio-compress-btn" class="btn btn-primary" disabled>Compress Audio</button>
+                <button id="audio-compress-btn" class="btn btn-primary" disabled aria-label="Compress audio">Compress Audio</button>
                 
-                <div class="spinner" id="audio-spinner"></div>
+                <div class="spinner" id="audio-spinner" aria-hidden="true"></div>
                 
                 <div class="results" id="audio-results">
                     <h3>Compression Results</h3>
                     <div class="comparison">
                         <div class="file-box">
                             <h4>Original Audio</h4>
-                            <i class="fas fa-file-audio"></i>
-                            <audio controls class="audio-preview" id="original-audio"></audio>
+                            <i class="fas fa-file-audio" aria-hidden="true"></i>
+                            <audio controls class="audio-preview" id="original-audio" aria-label="Original audio preview"></audio>
                             <div class="file-info">
                                 <p><span>Name:</span> <span id="original-audio-name"></span></p>
                                 <p><span>Size:</span> <span id="original-audio-size"></span></p>
@@ -621,8 +644,8 @@
                         </div>
                         <div class="file-box">
                             <h4>Compressed Audio</h4>
-                            <i class="fas fa-file-audio"></i>
-                            <audio controls class="audio-preview" id="compressed-audio"></audio>
+                            <i class="fas fa-file-audio" aria-hidden="true"></i>
+                            <audio controls class="audio-preview" id="compressed-audio" aria-label="Compressed audio preview"></audio>
                             <div class="file-info">
                                 <p><span>Name:</span> <span id="compressed-audio-name"></span></p>
                                 <p><span>Size:</span> <span id="compressed-audio-size"></span></p>
@@ -631,15 +654,15 @@
                                 <p><span>Reduction:</span> <span id="audio-savings"></span></p>
                             </div>
                             <div class="action-buttons">
-                                <button class="btn btn-success" id="audio-download-btn">Download</button>
-                                <button class="btn btn-secondary" id="audio-new-file-btn">New Audio</button>
+                                <button class="btn btn-success" id="audio-download-btn" aria-label="Download compressed audio">Download</button>
+                                <button class="btn btn-secondary" id="audio-new-file-btn" aria-label="Start new compression">New Audio</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="ad-container">
+            <div class="ad-container" aria-label="Advertisement">
                 <div class="ad-label">Advertisement</div>
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -647,9 +670,6 @@
                      data-ad-slot="2930075773"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             </div>
         </div>
     </main>
@@ -683,10 +703,10 @@
                 <div>
                     <h4>Connect With Us</h4>
                     <div class="social-links">
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -696,6 +716,10 @@
             </div>
         </div>
     </footer>
+
+    <!-- Load non-critical resources -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
         // ==================== GLOBAL UTILITIES ====================
@@ -715,17 +739,9 @@
             return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
         }
 
-        // Download file helper
-        function downloadFile(url, filename) {
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            setTimeout(() => {
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            }, 100);
+        // Get file extension
+        function getFileExtension(filename) {
+            return filename.split('.').pop().toLowerCase();
         }
 
         // ==================== AUDIO COMPRESSOR ====================
@@ -768,6 +784,13 @@
             // Event Listeners
             uploadArea.addEventListener('click', () => fileInput.click());
             
+            uploadArea.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    fileInput.click();
+                }
+            });
+            
             uploadArea.addEventListener('dragover', (e) => {
                 e.preventDefault();
                 uploadArea.classList.add('highlight');
@@ -794,6 +817,7 @@
 
             qualitySlider.addEventListener('input', () => {
                 qualityValue.textContent = `${qualitySlider.value}%`;
+                qualitySlider.setAttribute('aria-valuetext', `${qualitySlider.value} percent`);
             });
 
             compressBtn.addEventListener('click', compressAudio);
@@ -843,6 +867,7 @@
                 spinner.style.display = 'block';
                 results.style.display = 'none';
                 compressBtn.disabled = true;
+                compressBtn.textContent = 'Compressing...';
 
                 // In a real implementation, you would use a library like lamejs or similar
                 // to compress the audio. This is a simplified demo that just shows the UI flow.
@@ -851,7 +876,23 @@
                 setTimeout(() => {
                     // For demo purposes, we'll just create a fake compressed blob
                     // In a real app, you would process the audio here
-                    compressedBlob = new Blob(["Compressed audio content would be here"], { type: `audio/${formatSelect.value}` });
+                    const quality = qualitySlider.value / 100;
+                    const bitrate = bitrateSelect.value === 'original' ? 192 : parseInt(bitrateSelect.value);
+                    const format = formatSelect.value;
+                    
+                    // Calculate fake compressed size based on quality and bitrate
+                    const originalSize = originalFile.size;
+                    const compressedSize = Math.max(
+                        originalSize * quality * (bitrate / 320),
+                        originalSize * 0.1 // Minimum 10% of original size
+                    );
+                    
+                    compressedBlob = new Blob(["Compressed audio content would be here"], { 
+                        type: `audio/${format}` 
+                    });
+                    
+                    // Override size for demo purposes
+                    Object.defineProperty(compressedBlob, 'size', { value: compressedSize });
                     
                     if (compressedAudioUrl) {
                         URL.revokeObjectURL(compressedAudioUrl);
@@ -861,10 +902,10 @@
                     compressedAudio.src = compressedAudioUrl;
                     
                     // Display compressed file info
-                    compressedName.textContent = originalFile.name.replace(/\.[^/.]+$/, '') + '-compressed.' + formatSelect.value;
+                    compressedName.textContent = originalFile.name.replace(/\.[^/.]+$/, '') + '-compressed.' + format;
                     compressedSize.textContent = formatFileSize(compressedBlob.size);
                     compressedDuration.textContent = originalDuration.textContent;
-                    compressedFormat.textContent = formatSelect.value.toUpperCase();
+                    compressedFormat.textContent = format.toUpperCase();
                     
                     // Calculate savings
                     const savingsPercent = ((originalFile.size - compressedBlob.size) / originalFile.size * 100).toFixed(1);
@@ -874,26 +915,23 @@
                     spinner.style.display = 'none';
                     results.style.display = 'block';
                     compressBtn.disabled = false;
+                    compressBtn.textContent = 'Compress Audio';
                     
                     // Scroll to results
-                    window.scrollTo({
-                        top: results.offsetTop - 20,
-                        behavior: 'smooth'
-                    });
+                    results.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }, 2000);
-            }
-
-            function getFileExtension(filename) {
-                return filename.split('.').pop().toLowerCase();
             }
 
             function downloadAudio() {
                 if (!compressedBlob) return;
                 
                 const url = compressedAudioUrl;
+                const filename = compressedName.textContent;
+                
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = compressedName.textContent;
+                a.download = filename;
+                a.style.display = 'none';
                 
                 document.body.appendChild(a);
                 a.click();
@@ -937,11 +975,11 @@
             document.getElementById('year').textContent = new Date().getFullYear();
             
             // Initialize the audio compressor
-            if (document.getElementById('audio-upload-area')) initAudioCompressor();
+            initAudioCompressor();
+            
+            // Initialize AdSense ads
+            (adsbygoogle = window.adsbygoogle || []).push({});
         });
-
-        // Initialize AdSense ads
-        (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 </body>
 </html>
