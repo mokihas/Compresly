@@ -77,6 +77,13 @@
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
         }
 
         nav ul {
@@ -453,10 +460,18 @@
 
         .footer-logo {
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .footer-logo .logo {
             color: white;
+            font-size: 1.8rem;
+        }
+
+        .footer-logo i {
+            font-size: 2rem;
         }
 
         .footer-about {
@@ -563,7 +578,7 @@
     
     <header>
         <div class="container header-content">
-            <a href="/" class="logo">Compresly</a>
+            <a href="/" class="logo"><i class="fas fa-compress-alt"></i>Compresly</a>
             <nav aria-label="Main navigation">
                 <ul>
                     <li><a href="/">Home</a></li>
@@ -679,7 +694,7 @@
             <div class="footer-content">
                 <div>
                     <div class="footer-logo">
-                        <a href="/" class="logo">Compresly</a>
+                        <a href="/" class="logo"><i class="fas fa-compress-alt"></i>Compresly</a>
                     </div>
                     <p class="footer-about">The simplest way to compress files online. Free, secure, and no registration required.</p>
                 </div>
@@ -727,6 +742,7 @@
 
         // Format file size for display
         function formatFileSize(bytes) {
+            if (bytes === 0) return '0 bytes';
             if (bytes < 1024) return `${bytes} bytes`;
             else if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
             else return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
@@ -734,6 +750,7 @@
 
         // Format duration for audio/video
         function formatDuration(seconds) {
+            if (isNaN(seconds)) return '0:00';
             const minutes = Math.floor(seconds / 60);
             const secs = Math.floor(seconds % 60);
             return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
@@ -741,7 +758,9 @@
 
         // Get file extension
         function getFileExtension(filename) {
-            return filename.split('.').pop().toLowerCase();
+            if (!filename) return '';
+            const parts = filename.split('.');
+            return parts.length > 1 ? parts.pop().toLowerCase() : '';
         }
 
         // ==================== AUDIO COMPRESSOR ====================
@@ -827,7 +846,7 @@
             // Functions
             function handleFileSelect(file) {
                 // Check file type
-                if (!file.type.match('audio.*')) {
+                if (!file.type.match('audio.*') && !['mp3', 'wav', 'aac', 'ogg', 'm4a'].includes(getFileExtension(file.name))) {
                     alert('Please select an audio file (MP3, WAV, AAC, OGG)');
                     return;
                 }
@@ -858,6 +877,9 @@
                 originalAudio.onloadedmetadata = function() {
                     originalDuration.textContent = formatDuration(originalAudio.duration);
                 };
+                
+                // Reset results if they were showing
+                results.style.display = 'none';
             }
 
             function compressAudio() {
@@ -888,7 +910,7 @@
                     );
                     
                     compressedBlob = new Blob(["Compressed audio content would be here"], { 
-                        type: `audio/${format}` 
+                        type: `audio/${format === 'mp3' ? 'mpeg' : format}` 
                     });
                     
                     // Override size for demo purposes
@@ -955,6 +977,7 @@
                 compressedAudio.src = '';
                 compressBtn.disabled = true;
                 results.style.display = 'none';
+                spinner.style.display = 'none';
                 
                 // Reset file info
                 originalName.textContent = '';
@@ -966,6 +989,9 @@
                 compressedDuration.textContent = '';
                 compressedFormat.textContent = '';
                 savings.textContent = '';
+                
+                // Reset button text
+                compressBtn.textContent = 'Compress Audio';
             }
         }
 
