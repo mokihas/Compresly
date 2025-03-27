@@ -400,7 +400,7 @@
             font-size: 1.1rem;
         }
 
-        /* External Tools Section */
+        /* Updated External Tools Section - Tile Format */
         .external-tools {
             background: white;
             padding: 2.5rem;
@@ -415,47 +415,76 @@
             color: var(--dark);
         }
 
-        .external-tools ul {
-            list-style: none;
-            max-width: 800px;
+        .tool-tiles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .external-tools li {
-            margin-bottom: 1rem;
+        .tool-tile {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 1px solid var(--light);
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .external-tools a {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            color: var(--dark);
+        .tool-tile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            border-color: var(--primary);
+        }
+
+        .tool-tile i.fas {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            background: rgba(67, 97, 238, 0.1);
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
             transition: var(--transition);
         }
 
-        .external-tools a:hover {
-            background: rgba(67, 97, 238, 0.1);
-            transform: translateX(5px);
+        .tool-tile:hover i.fas {
+            background: rgba(67, 97, 238, 0.2);
         }
 
-        .external-tools i {
-            font-size: 1.5rem;
-            margin-right: 1rem;
-            color: var(--primary);
-            width: 40px;
-            text-align: center;
+        .tool-tile h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
         }
 
-        .external-tools span {
-            flex: 1;
-        }
-
-        .external-tools .fa-external-link-alt {
-            font-size: 1rem;
+        .tool-tile p {
             color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .tool-tile .external-link {
+            font-size: 0.9rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: auto;
+        }
+
+        .tool-tile .external-link i {
+            margin-left: 0.3rem;
+            font-size: 0.8rem;
         }
 
         /* Ad Container */
@@ -811,36 +840,35 @@
 
             <section class="external-tools">
                 <h3>More Helpful Online Tools</h3>
-                <ul>
-                    <li>
-                        <a href="https://tinypng.com/" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-image"></i>
-                            <span>TinyPNG - Smart PNG and JPEG compression</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://squoosh.app/" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-compress-alt"></i>
-                            <span>Squoosh - Advanced image optimization by Google</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.ilovepdf.com/" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-file-pdf"></i>
-                            <span>iLovePDF - Comprehensive PDF tools</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.youcompress.com/" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-file-video"></i>
-                            <span>YouCompress - Simple video compression</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </li>
-                </ul>
+                <div class="tool-tiles">
+                    <a href="https://tinypng.com/" target="_blank" rel="noopener noreferrer" class="tool-tile">
+                        <i class="fas fa-image"></i>
+                        <h4>TinyPNG</h4>
+                        <p>Smart PNG and JPEG compression with excellent quality preservation</p>
+                        <span class="external-link">Visit Tool <i class="fas fa-external-link-alt"></i></span>
+                    </a>
+                    
+                    <a href="https://squoosh.app/" target="_blank" rel="noopener noreferrer" class="tool-tile">
+                        <i class="fas fa-compress-alt"></i>
+                        <h4>Squoosh</h4>
+                        <p>Advanced image optimization tool developed by Google</p>
+                        <span class="external-link">Visit Tool <i class="fas fa-external-link-alt"></i></span>
+                    </a>
+                    
+                    <a href="https://www.ilovepdf.com/" target="_blank" rel="noopener noreferrer" class="tool-tile">
+                        <i class="fas fa-file-pdf"></i>
+                        <h4>iLovePDF</h4>
+                        <p>Comprehensive PDF tools for all your document needs</p>
+                        <span class="external-link">Visit Tool <i class="fas fa-external-link-alt"></i></span>
+                    </a>
+                    
+                    <a href="https://www.youcompress.com/" target="_blank" rel="noopener noreferrer" class="tool-tile">
+                        <i class="fas fa-file-video"></i>
+                        <h4>YouCompress</h4>
+                        <p>Simple video compression tool for various formats</p>
+                        <span class="external-link">Visit Tool <i class="fas fa-external-link-alt"></i></span>
+                    </a>
+                </div>
             </section>
         </div>
     </main>
