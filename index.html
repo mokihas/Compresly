@@ -21,13 +21,13 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="manifest" href="/favicon/site.webmanifest">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BP01PS3NM1"></script>
@@ -35,7 +35,10 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-BP01PS3NM1');
+      gtag('config', 'G-BP01PS3NM1', {
+        'anonymize_ip': true,
+        'allow_ad_personalization_signals': false
+      });
     </script>
     
     <!-- Google AdSense -->
@@ -112,15 +115,36 @@
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
         }
 
-        nav a:hover {
+        nav a:hover,
+        nav a:focus {
             color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.1);
+            outline: none;
         }
 
         nav a.active {
             color: var(--primary);
             font-weight: 600;
+        }
+
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
         }
 
         /* Hero Section */
@@ -160,12 +184,15 @@
             border: 1px solid var(--light);
             color: var(--dark);
             text-decoration: none;
+            display: block;
         }
 
-        .tool-card:hover {
+        .tool-card:hover,
+        .tool-card:focus {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.12);
             border-color: var(--primary);
+            outline: none;
         }
 
         .tool-card i {
@@ -181,7 +208,8 @@
             transition: var(--transition);
         }
 
-        .tool-card:hover i {
+        .tool-card:hover i,
+        .tool-card:focus i {
             background: rgba(67, 97, 238, 0.2);
         }
 
@@ -400,7 +428,7 @@
             font-size: 1.1rem;
         }
 
-        /* Updated External Tools Section - Tile Format */
+        /* External Tools Section */
         .external-tools {
             background: white;
             padding: 2.5rem;
@@ -495,6 +523,10 @@
             margin: 3rem 0;
             text-align: center;
             box-shadow: var(--box-shadow);
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .ad-label {
@@ -610,10 +642,12 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <header>
         <div class="container header-content">
             <a href="/" class="logo">Compresly</a>
-            <nav>
+            <nav aria-label="Main navigation">
                 <ul>
                     <li><a href="/" class="active">Home</a></li>
                     <li><a href="/image-compressor.html">Image Compressor</a></li>
@@ -625,32 +659,32 @@
         </div>
     </header>
     
-    <main class="main">
+    <main id="main-content" class="main">
         <div class="container">
             <section class="hero">
                 <h1>Optimize Your Files in Seconds</h1>
                 <p class="subtitle">Reduce file sizes without quality loss - perfect for websites, emails, and storage optimization</p>
                 
                 <div class="tool-selector">
-                    <a href="/image-compressor.html" class="tool-card">
+                    <a href="/image-compressor.html" class="tool-card" aria-label="Image Compressor">
                         <i class="fas fa-image"></i>
                         <h3>Image Compressor</h3>
                         <p>Reduce JPG, PNG, WebP sizes by up to 80% while preserving quality</p>
                     </a>
                     
-                    <a href="/pdf-compressor.html" class="tool-card">
+                    <a href="/pdf-compressor.html" class="tool-card" aria-label="PDF Compressor">
                         <i class="fas fa-file-pdf"></i>
                         <h3>PDF Compressor</h3>
                         <p>Shrink PDF documents without losing text clarity or image quality</p>
                     </a>
                     
-                    <a href="/video-compressor.html" class="tool-card">
+                    <a href="/video-compressor.html" class="tool-card" aria-label="Video Compressor">
                         <i class="fas fa-video"></i>
                         <h3>Video Compressor</h3>
                         <p>Compress MP4, MOV videos while maintaining good resolution</p>
                     </a>
                     
-                    <a href="/audio-compressor.html" class="tool-card">
+                    <a href="/audio-compressor.html" class="tool-card" aria-label="Audio Compressor">
                         <i class="fas fa-music"></i>
                         <h3>Audio Compressor</h3>
                         <p>Reduce MP3, WAV file sizes for faster sharing and streaming</p>
@@ -658,7 +692,7 @@
                 </div>
             </section>
 
-            <div class="ad-container">
+            <div class="ad-container" aria-label="Advertisement">
                 <div class="ad-label">Advertisement</div>
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -666,44 +700,41 @@
                      data-ad-slot="2930075773"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             </div>
 
-            <section id="how-it-works" class="info-section">
-                <h2>How Compresly Works</h2>
+            <section id="how-it-works" class="info-section" aria-labelledby="how-it-works-heading">
+                <h2 id="how-it-works-heading">How Compresly Works</h2>
                 <p class="section-description">Our 3-step process makes file optimization simple and secure</p>
                 
                 <div class="steps">
-                    <div class="step">
+                    <article class="step">
                         <div class="step-number">1</div>
                         <h3>Select Your Tool</h3>
                         <p>Choose the appropriate compressor for your file type. We support images (JPG, PNG, WebP), PDF documents, videos (MP4, MOV), and audio files (MP3, WAV). Each tool is specially optimized for that file type.</p>
-                    </div>
+                    </article>
                     
-                    <div class="step">
+                    <article class="step">
                         <div class="step-number">2</div>
                         <h3>Upload & Adjust</h3>
                         <p>Drag and drop your file or click to browse. Use our intuitive controls to set your preferred compression level. See real-time estimates of the output file size before processing.</p>
-                    </div>
+                    </article>
                     
-                    <div class="step">
+                    <article class="step">
                         <div class="step-number">3</div>
                         <h3>Download & Use</h3>
                         <p>Get your optimized file instantly. Typical reductions of 50-80% without noticeable quality loss. All processing happens in your browser - your files never leave your device.</p>
-                    </div>
+                    </article>
                 </div>
             </section>
             
-            <section id="faq" class="info-section">
-                <h2>Frequently Asked Questions</h2>
+            <section id="faq" class="info-section" aria-labelledby="faq-heading">
+                <h2 id="faq-heading">Frequently Asked Questions</h2>
                 <p class="section-description">Everything you need to know about Compresly</p>
                 
                 <div class="faq-container">
-                    <div class="faq-item">
-                        <div class="faq-question">Is my data private and secure?</div>
-                        <div class="faq-answer">
+                    <article class="faq-item">
+                        <h3 class="faq-question" id="faq1-question" tabindex="0" aria-expanded="false" aria-controls="faq1-answer">Is my data private and secure?</h3>
+                        <div id="faq1-answer" class="faq-answer" aria-labelledby="faq1-question" hidden>
                             <p>Absolutely! Unlike many online tools, Compresly processes all files directly in your web browser. This means:</p>
                             <ul>
                                 <li>Your files never upload to any server</li>
@@ -712,11 +743,11 @@
                                 <li>We use industry-standard encryption for all transfers</li>
                             </ul>
                         </div>
-                    </div>
+                    </article>
                     
-                    <div class="faq-item">
-                        <div class="faq-question">What file types and sizes can I compress?</div>
-                        <div class="faq-answer">
+                    <article class="faq-item">
+                        <h3 class="faq-question" id="faq2-question" tabindex="0" aria-expanded="false" aria-controls="faq2-answer">What file types and sizes can I compress?</h3>
+                        <div id="faq2-answer" class="faq-answer" aria-labelledby="faq2-question" hidden>
                             <p>We support a wide range of formats with generous size limits:</p>
                             <div class="format-grid">
                                 <div>
@@ -737,11 +768,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </article>
                     
-                    <div class="faq-item">
-                        <div class="faq-question">Will compression reduce my file quality?</div>
-                        <div class="faq-answer">
+                    <article class="faq-item">
+                        <h3 class="faq-question" id="faq3-question" tabindex="0" aria-expanded="false" aria-controls="faq3-answer">Will compression reduce my file quality?</h3>
+                        <div id="faq3-answer" class="faq-answer" aria-labelledby="faq3-question" hidden>
                             <p>Our smart algorithms minimize quality loss while maximizing size reduction:</p>
                             <ul>
                                 <li>Images: Adjustable quality settings let you balance size vs quality</li>
@@ -750,11 +781,11 @@
                                 <li>Audio: Maintains clarity while optimizing file size</li>
                             </ul>
                         </div>
-                    </div>
+                    </article>
                     
-                    <div class="faq-item">
-                        <div class="faq-question">How is this service free?</div>
-                        <div class="faq-answer">
+                    <article class="faq-item">
+                        <h3 class="faq-question" id="faq4-question" tabindex="0" aria-expanded="false" aria-controls="faq4-answer">How is this service free?</h3>
+                        <div id="faq4-answer" class="faq-answer" aria-labelledby="faq4-question" hidden>
                             <p>Compresly is supported by non-intrusive advertisements. You can help us by:</p>
                             <ul>
                                 <li>Whitelisting us in your ad blocker</li>
@@ -763,11 +794,11 @@
                             </ul>
                             <p>We never charge for basic compression features.</p>
                         </div>
-                    </div>
+                    </article>
                     
-                    <div class="faq-item">
-                        <div class="faq-question">Do you store my files after compression?</div>
-                        <div class="faq-answer">
+                    <article class="faq-item">
+                        <h3 class="faq-question" id="faq5-question" tabindex="0" aria-expanded="false" aria-controls="faq5-answer">Do you store my files after compression?</h3>
+                        <div id="faq5-answer" class="faq-answer" aria-labelledby="faq5-question" hidden>
                             <p>No. Compresly was designed with privacy in mind:</p>
                             <ul>
                                 <li>All processing happens in your browser</li>
@@ -776,33 +807,33 @@
                                 <li>No account registration required</li>
                             </ul>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </section>
 
-            <section class="testimonials">
-                <h2>Trusted by Thousands of Users</h2>
+            <section class="testimonials" aria-labelledby="testimonials-heading">
+                <h2 id="testimonials-heading">Trusted by Thousands of Users</h2>
                 <p class="section-description">Here's what our community says about Compresly</p>
                 
                 <div class="testimonial-grid">
-                    <div class="testimonial-card">
+                    <blockquote class="testimonial-card">
                         <div class="quote">"As a photographer, I need to send high-quality images to clients without huge file sizes. Compresly reduced my portfolio images by 75% with no visible difference. It's now my go-to tool."</div>
-                        <div class="author">- Sarah K., Professional Photographer</div>
-                    </div>
+                        <footer class="author">- Sarah K., Professional Photographer</footer>
+                    </blockquote>
                     
-                    <div class="testimonial-card">
+                    <blockquote class="testimonial-card">
                         <div class="quote">"The PDF compressor saved my thesis submission! I was over the size limit and Compresly reduced it perfectly without affecting any of my charts or images."</div>
-                        <div class="author">- Michael T., Graduate Student</div>
-                    </div>
+                        <footer class="author">- Michael T., Graduate Student</footer>
+                    </blockquote>
                     
-                    <div class="testimonial-card">
+                    <blockquote class="testimonial-card">
                         <div class="quote">"I run a small business and need to send product videos via email. Before Compresly, this was impossible. Now I can compress 2-minute videos to under 10MB!"</div>
-                        <div class="author">- Raj P., E-commerce Owner</div>
-                    </div>
+                        <footer class="author">- Raj P., E-commerce Owner</footer>
+                    </blockquote>
                 </div>
             </section>
             
-            <div class="ad-container">
+            <div class="ad-container" aria-label="Advertisement">
                 <div class="ad-label">Advertisement</div>
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -810,59 +841,56 @@
                      data-ad-slot="2930075773"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             </div>
             
-            <section class="cta-section">
-                <h2>Ready to Optimize Your Files?</h2>
+            <section class="cta-section" aria-labelledby="cta-heading">
+                <h2 id="cta-heading">Ready to Optimize Your Files?</h2>
                 <p>Join thousands of users who save time and space with Compresly</p>
                 <div class="tool-selector">
-                    <a href="/image-compressor.html" class="tool-card">
+                    <a href="/image-compressor.html" class="tool-card" aria-label="Compress Images">
                         <i class="fas fa-image"></i>
                         <h3>Compress Images</h3>
                     </a>
-                    <a href="/pdf-compressor.html" class="tool-card">
+                    <a href="/pdf-compressor.html" class="tool-card" aria-label="Shrink PDFs">
                         <i class="fas fa-file-pdf"></i>
                         <h3>Shrink PDFs</h3>
                     </a>
-                    <a href="/video-compressor.html" class="tool-card">
+                    <a href="/video-compressor.html" class="tool-card" aria-label="Reduce Videos">
                         <i class="fas fa-video"></i>
                         <h3>Reduce Videos</h3>
                     </a>
-                    <a href="/audio-compressor.html" class="tool-card">
+                    <a href="/audio-compressor.html" class="tool-card" aria-label="Optimize Audio">
                         <i class="fas fa-music"></i>
                         <h3>Optimize Audio</h3>
                     </a>
                 </div>
             </section>
 
-            <section class="external-tools">
-                <h3>More Helpful Online Tools</h3>
+            <section class="external-tools" aria-labelledby="external-tools-heading">
+                <h3 id="external-tools-heading">More Helpful Online Tools</h3>
                 <div class="tool-tiles">
-                    <a href="https://tinypng.com/" target="_blank" rel="noopener noreferrer" class="tool-tile">
+                    <a href="https://tinypng.com/" target="_blank" rel="noopener noreferrer" class="tool-tile" aria-label="TinyPNG">
                         <i class="fas fa-image"></i>
                         <h4>TinyPNG</h4>
                         <p>Smart PNG and JPEG compression with excellent quality preservation</p>
                         <span class="external-link">Visit Tool <i class="fas fa-external-link-alt"></i></span>
                     </a>
                     
-                    <a href="https://squoosh.app/" target="_blank" rel="noopener noreferrer" class="tool-tile">
+                    <a href="https://squoosh.app/" target="_blank" rel="noopener noreferrer" class="tool-tile" aria-label="Squoosh">
                         <i class="fas fa-compress-alt"></i>
                         <h4>Squoosh</h4>
                         <p>Advanced image optimization tool developed by Google</p>
                         <span class="external-link">Visit Tool <i class="fas fa-external-link-alt"></i></span>
                     </a>
                     
-                    <a href="https://www.ilovepdf.com/" target="_blank" rel="noopener noreferrer" class="tool-tile">
+                    <a href="https://www.ilovepdf.com/" target="_blank" rel="noopener noreferrer" class="tool-tile" aria-label="iLovePDF">
                         <i class="fas fa-file-pdf"></i>
                         <h4>iLovePDF</h4>
                         <p>Comprehensive PDF tools for all your document needs</p>
                         <span class="external-link">Visit Tool <i class="fas fa-external-link-alt"></i></span>
                     </a>
                     
-                    <a href="https://www.youcompress.com/" target="_blank" rel="noopener noreferrer" class="tool-tile">
+                    <a href="https://www.youcompress.com/" target="_blank" rel="noopener noreferrer" class="tool-tile" aria-label="YouCompress">
                         <i class="fas fa-file-video"></i>
                         <h4>YouCompress</h4>
                         <p>Simple video compression tool for various formats</p>
@@ -917,26 +945,51 @@
     </footer>
 
     <script>
-        // FAQ Accordion
+        // Enhanced FAQ accordion
         document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const item = question.parentNode;
-                const isActive = item.classList.contains('active');
-                
-                // Close all other items
-                document.querySelectorAll('.faq-item').forEach(el => {
-                    el.classList.remove('active');
-                });
-                
-                // Toggle current item
-                if (!isActive) {
-                    item.classList.add('active');
+            question.addEventListener('click', toggleFAQ);
+            question.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleFAQ(e);
                 }
             });
         });
 
-        // Initialize AdSense ads
-        (adsbygoogle = window.adsbygoogle || []).push({});
+        function toggleFAQ(e) {
+            const question = e.currentTarget;
+            const answer = document.getElementById(question.getAttribute('aria-controls'));
+            const isExpanded = question.getAttribute('aria-expanded') === 'true';
+            
+            // Toggle current item
+            question.setAttribute('aria-expanded', !isExpanded);
+            answer.hidden = isExpanded;
+            
+            // Close other items if this is being opened
+            if (!isExpanded) {
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    if (q !== question && q.getAttribute('aria-expanded') === 'true') {
+                        q.setAttribute('aria-expanded', 'false');
+                        document.getElementById(q.getAttribute('aria-controls')).hidden = true;
+                    }
+                });
+            }
+        }
+
+        // Lazy load ads
+        document.addEventListener('DOMContentLoaded', () => {
+            const adContainers = document.querySelectorAll('.ad-container ins');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            adContainers.forEach(ad => observer.observe(ad));
+        });
     </script>
 </body>
 </html>
