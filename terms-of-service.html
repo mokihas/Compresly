@@ -10,54 +10,267 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="manifest" href="/favicon/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4cc9f0;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7ff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
         main {
+            flex: 1;
+            padding: 2rem 0;
+        }
+
+        /* Terms of Service Specific Styles */
+        .terms-container {
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
             padding: 2.5rem;
-            margin: 2rem auto;
+            margin: 0 auto;
             max-width: 800px;
             line-height: 1.7;
-            color: #333;
         }
-        h1 {
-            color: var(--primary-color);
+
+        .terms-container h1 {
+            color: var(--primary);
             margin-bottom: 1.8rem;
             font-size: 2rem;
             text-align: center;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--light-gray);
+            border-bottom: 2px solid var(--light);
         }
-        h2 {
-            color: var(--dark-gray);
+
+        .effective-date {
+            text-align: center;
+            font-style: italic;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .terms-container h2 {
+            color: var(--dark);
             margin: 2.2rem 0 1.2rem;
             font-size: 1.4rem;
             font-weight: 600;
         }
-        p, li {
+
+        .terms-container p, .terms-container li {
             margin-bottom: 1rem;
-            text-align: justify;
-            hyphens: auto;
         }
-        ul {
+
+        .terms-container ul {
             padding-left: 1.8rem;
             margin: 1.2rem 0;
         }
-        li {
-            margin-bottom: 0.6rem;
+
+        .terms-container li {
+            margin-bottom: 0.8rem;
+            position: relative;
         }
-        .effective-date {
-            text-align: center;
-            font-style: italic;
-            color: var(--medium-gray);
-            margin-bottom: 2rem;
+
+        .terms-container li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
         }
+
+        .terms-container strong {
+            color: var(--dark);
+        }
+
+        .terms-container a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .terms-container a:hover {
+            text-decoration: underline;
+        }
+
         .highlight {
             background-color: rgba(251, 188, 5, 0.1);
             padding: 0.2rem 0.4rem;
-            border-radius: 3px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo .logo {
+            color: white;
+        }
+
+        .footer-about {
+            color: #BDC1C6;
+            margin-bottom: 1rem;
+            max-width: 300px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .footer-links a {
+            color: #BDC1C6;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            color: #BDC1C6;
+            padding-top: 1.5rem;
+            border-top: 1px solid #495057;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .terms-container {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -68,77 +281,108 @@
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/#how-it-works">How It Works</a></li>
-                    <li><a href="/#faq">FAQ</a></li>
-                    <li><a href="/contactus.html">Contact</a></li>
+                    <li><a href="/image-compressor.html">Image Compressor</a></li>
+                    <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
+                    <li><a href="/video-compressor.html">Video Compressor</a></li>
+                    <li><a href="/terms-of-service.html" class="active">Terms</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="container">
-        <h1>Terms of Service</h1>
-        <p class="effective-date">Effective Date: June 28, 2024</p>
+        <div class="terms-container">
+            <h1>Terms of Service</h1>
+            <p class="effective-date">Effective Date: June 28, 2024</p>
 
-        <h2>1. Acceptance of Terms</h2>
-        <p>By accessing or using Compresly ("Service"), you agree to be bound by these Terms of Service. If you disagree with any part, you may not use our service.</p>
+            <h2>1. Acceptance of Terms</h2>
+            <p>By accessing or using Compresly ("Service"), you agree to be bound by these Terms of Service. If you disagree with any part, you may not use our service.</p>
 
-        <h2>2. Service Description</h2>
-        <p>Compresly provides browser-based file compression tools that:</p>
-        <ul>
-            <li>Process files locally in your web browser (images, PDFs, videos)</li>
-            <li>Support multiple formats (JPG, PNG, WebP, PDF, MP4, etc.)</li>
-            <li>Offer adjustable compression settings</li>
-        </ul>
-        <p>This is a <span class="highlight">free service</span> with no warranty of uninterrupted availability. No refunds are applicable.</p>
+            <h2>2. Service Description</h2>
+            <p>Compresly provides browser-based file compression tools that:</p>
+            <ul>
+                <li>Process files locally in your web browser (images, PDFs, videos)</li>
+                <li>Support multiple formats (JPG, PNG, WebP, PDF, MP4, etc.)</li>
+                <li>Offer adjustable compression settings</li>
+            </ul>
+            <p>This is a <span class="highlight">free service</span> with no warranty of uninterrupted availability. No refunds are applicable.</p>
 
-        <h2>3. User Responsibilities</h2>
-        <p>You agree not to:</p>
-        <ul>
-            <li>Upload files containing illegal, copyrighted (without permission), or harmful content</li>
-            <li>Use automated systems (bots, scrapers) to access the service excessively</li>
-            <li>Attempt to reverse-engineer, decompile, or extract our source code</li>
-            <li>Impersonate others or misrepresent affiliation</li>
-        </ul>
+            <h2>3. User Responsibilities</h2>
+            <p>You agree not to:</p>
+            <ul>
+                <li>Upload files containing illegal, copyrighted (without permission), or harmful content</li>
+                <li>Use automated systems (bots, scrapers) to access the service excessively</li>
+                <li>Attempt to reverse-engineer, decompile, or extract our source code</li>
+                <li>Impersonate others or misrepresent affiliation</li>
+            </ul>
 
-        <h2>4. Intellectual Property</h2>
-        <p>All uploaded files remain your property. By using our service, you grant us a limited, non-exclusive license to process your files solely for providing the compression functionality.</p>
-        <p>Files are processed temporarily and not stored permanently.</p>
-        <p>The Compresly software, interface, and branding are our exclusive property.</p>
+            <h2>4. Intellectual Property</h2>
+            <p>All uploaded files remain your property. By using our service, you grant us a limited, non-exclusive license to process your files solely for providing the compression functionality.</p>
+            <p>Files are processed temporarily and not stored permanently.</p>
+            <p>The Compresly software, interface, and branding are our exclusive property.</p>
 
-        <h2>5. Limitation of Liability</h2>
-        <p>To the maximum extent permitted by law:</p>
-        <ul>
-            <li>We are not liable for any data loss resulting from file compression</li>
-            <li>We do not guarantee specific compression ratios or quality levels</li>
-            <li>We are not responsible for third-party content (including advertisements)</li>
-        </ul>
+            <h2>5. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by law:</p>
+            <ul>
+                <li>We are not liable for any data loss resulting from file compression</li>
+                <li>We do not guarantee specific compression ratios or quality levels</li>
+                <li>We are not responsible for third-party content (including advertisements)</li>
+            </ul>
 
-        <h2>6. Advertisements</h2>
-        <p>Our free service displays ads via Google AdSense. These ads may use cookies for personalization (see our <a href="/privacy-policy.html">Privacy Policy</a>). You can manage ad preferences in <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google's Ad Settings</a>. We are not responsible for third-party ad content.</p>
+            <h2>6. Advertisements</h2>
+            <p>Our free service displays ads via Google AdSense. These ads may use cookies for personalization (see our <a href="/privacy-policy.html">Privacy Policy</a>). You can manage ad preferences in <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google's Ad Settings</a>. We are not responsible for third-party ad content.</p>
 
-        <h2>7. Termination</h2>
-        <p>We may suspend or terminate your access to the Service for violations of these Terms.</p>
+            <h2>7. Termination</h2>
+            <p>We may suspend or terminate your access to the Service for violations of these Terms.</p>
 
-        <h2>8. Modifications</h2>
-        <p>We reserve the right to modify these terms at any time. Continued use after changes constitutes acceptance. Major changes will be announced via service notifications.</p>
+            <h2>8. Modifications</h2>
+            <p>We reserve the right to modify these terms at any time. Continued use after changes constitutes acceptance. Major changes will be announced via service notifications.</p>
 
-        <h2>9. Governing Law</h2>
-        <p>These Terms shall be governed by the laws of India without regard to conflict of law principles.</p>
+            <h2>9. Governing Law</h2>
+            <p>These Terms shall be governed by the laws of India without regard to conflict of law principles.</p>
 
-        <h2>10. Contact</h2>
-        <p>For questions regarding these Terms, please use our <a href="/contactus.html">Contact Form</a>.</p>
+            <h2>10. Contact</h2>
+            <p>For questions regarding these Terms, please use our <a href="/contactus.html">Contact Form</a>.</p>
+        </div>
     </main>
 
     <footer>
-        <div class="container footer-content">
-            <a href="/" class="logo" style="color: white;">Compresly</a>
-            <div class="footer-links">
-                <a href="/privacy-policy.html">Privacy Policy</a>
-                <a href="/terms-of-service.html">Terms of Service</a>
-                <a href="/about-us.html">About Us</a>
-                <a href="/contactus.html">Contact Us</a>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">
+                        <a href="/" class="logo">Compresly</a>
+                    </div>
+                    <p class="footer-about">The simplest way to compress files online. Free, secure, and no registration required.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Tools</h4>
+                    <a href="/image-compressor.html">Image Compressor</a>
+                    <a href="/pdf-compressor.html">PDF Compressor</a>
+                    <a href="/video-compressor.html">Video Compressor</a>
+                    <a href="/audio-compressor.html">Audio Compressor</a>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="/about-us.html">About Us</a>
+                    <a href="/contactus.html">Contact</a>
+                    <a href="/privacy-policy.html">Privacy Policy</a>
+                    <a href="/terms-of-service.html">Terms of Service</a>
+                </div>
+                
+                <div>
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
             </div>
+            
             <div class="copyright">
                 &copy; <script>document.write(new Date().getFullYear())</script> Compresly. All rights reserved.
             </div>
