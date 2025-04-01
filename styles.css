@@ -61,7 +61,7 @@ header {
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--primary); /* Changed to var(--primary) */
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -70,6 +70,10 @@ header {
 
 .logo i {
     font-size: 1.8rem;
+}
+
+.logo-footer {
+    color: white;
 }
 
 nav ul {
@@ -547,13 +551,18 @@ footer {
 
 @media (max-width: 768px) {
     .header-content {
-        flex-direction: column;
+        flex-direction: row; /* Changed to row */
         gap: 0.75rem;
-        text-align: center;
+        text-align: left; /* Changed to left */
+        align-items: center;
     }
 
     .logo {
         margin-bottom: 0;
+    }
+
+    nav {
+        display: none; /* hide nav */
     }
 
     nav ul {
@@ -606,6 +615,10 @@ footer {
 
     .action-buttons .btn {
         margin-bottom: 0.75rem;
+    }
+
+    .hamburger-btn{
+        display: block;
     }
 }
 
@@ -722,4 +735,92 @@ footer {
 .value-card h3 {
     color: var(--primary);
     margin-top: 0;
-    margin-bottom: 0.5rem
+    margin-bottom: 0.5rem;
+}
+
+/* mobile menu */
+.hamburger-btn {
+    display: none; /* Hide by default on larger screens */
+    background: none;
+    border: none;
+    color: var(--dark-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: var(--transition);
+}
+
+.hamburger-btn:hover,
+.hamburger-btn:focus {
+    color: var(--primary-color);
+    outline: none;
+}
+
+.mobile-nav {
+    display: none; /* Hide the mobile nav by default */
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 2rem;
+    transform: translateX(100%); /* Start off-screen */
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+}
+
+.mobile-nav.open {
+    transform: translateX(0); /* Slide in when open class is added */
+}
+
+.mobile-nav ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.mobile-nav a {
+    color: var(--dark-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+}
+
+.mobile-nav a:hover,
+.mobile-nav a:focus {
+    color: var(--primary-color);
+    background-color: rgba(66, 133, 244, 0.1);
+    outline: none;
+}
+
+/* Adjust the main navigation for larger screens */
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.75rem;
+}
+
+/* Media query to show hamburger on small screens and adjust header layout*/
+@media (max-width: 768px) {
+    .hamburger-btn {
+        display: block; /* Show hamburger button on small screens */
+    }
+
+    nav {
+        display: none; /* Hide the regular nav on small screens */
+    }
+
+    .header-content {
+        flex-direction: row; /* Ensure logo and button are on the same line */
+        justify-content: space-between; /* Push logo and button to the edges */
+    }
+}
