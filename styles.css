@@ -52,6 +52,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 0;
+    flex-wrap: wrap; /* Added for better wrapping on small screens */
+    gap: 0.75rem; /* Added gap for spacing when items wrap */
 }
 
 .logo {
@@ -72,6 +74,8 @@ nav ul {
     display: flex;
     list-style: none;
     gap: 1.5rem;
+    flex-wrap: wrap; /* Added for wrapping navigation items */
+    justify-content: center; /* Centers items on small screens */
 }
 
 nav a {
@@ -223,6 +227,7 @@ nav a.active {
     background: var(--light-gray);
     border-radius: 3px;
     outline: none;
+    width: 100%; /* Ensure the slider takes full width of its container */
 }
 
 .slider-container input[type="range"]::-webkit-slider-thumb {
@@ -255,6 +260,7 @@ select {
     background: white;
     cursor: pointer;
     transition: var(--transition);
+    box-sizing: border-box; /* Ensure padding doesn't affect overall width */
 }
 
 select:focus {
@@ -275,6 +281,7 @@ select:focus {
     cursor: pointer;
     transition: var(--transition);
     text-align: center;
+    box-sizing: border-box; /* Ensure padding doesn't affect overall width */
 }
 
 .btn-primary {
@@ -331,7 +338,9 @@ select:focus {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* ===== RESULTS ===== */
@@ -342,8 +351,15 @@ select:focus {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .results h3 {
@@ -418,6 +434,12 @@ select:focus {
     display: flex;
     gap: 0.75rem;
     margin-top: 1.5rem;
+    flex-wrap: wrap; /* Added for button wrapping on small screens */
+    justify-content: center; /* Centers buttons on small screens */
+}
+
+.action-buttons .btn{
+    margin-bottom: 0.75rem; /* add margin bottom for wrapped buttons */
 }
 
 /* ===== FOOTER ===== */
@@ -433,7 +455,15 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
     margin-bottom: 1.5rem;
+    flex-wrap: wrap; /* Added for wrapping footer columns */
 }
+
+.footer-content > div {
+    /* Added to ensure consistent alignment of footer items */
+    display: flex;
+    flex-direction: column;
+}
+
 
 .footer-logo {
     margin-bottom: 1rem;
@@ -529,38 +559,51 @@ footer {
         flex-direction: column;
         gap: 0.75rem;
     }
-    
+
     nav ul {
         gap: 0.75rem;
         flex-wrap: wrap;
         justify-content: center;
     }
-    
+
     .tool-container {
         padding: 1rem;
     }
-    
+
     .tool-header i {
         width: 70px;
         height: 70px;
         line-height: 70px;
         font-size: 2rem;
     }
-    
+
     .tool-header h1 {
         font-size: 1.5rem;
     }
-    
+
     .upload-area {
         padding: 1.25rem;
     }
-    
+
+    .controls {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-about {
+        max-width: 100%;
+    }
+
     .action-buttons {
         flex-direction: column;
+        align-items: center; /* Centers buttons in the column */
     }
-    
-    .comparison {
-        grid-template-columns: 1fr;
+    .action-buttons .btn{
+        margin-bottom: 0.75rem;
     }
 }
 
@@ -568,22 +611,22 @@ footer {
     .container {
         padding: 0 15px;
     }
-    
+
     .tool-header i {
         width: 60px;
         height: 60px;
         line-height: 60px;
         font-size: 1.8rem;
     }
-    
+
     .controls {
         grid-template-columns: 1fr;
     }
-    
+
     .footer-content {
         grid-template-columns: 1fr;
     }
-    
+
     .footer-about {
         max-width: 100%;
     }
