@@ -1,308 +1,293 @@
-// ==================== GLOBAL UTILITIES ====================
-function formatFileSize(bytes) {
-    if (bytes < 1024) return `${bytes} bytes`;
-    else if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-    else return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // Mobile menu toggle functionality
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileNav = document.getElementById('mobile-nav');
 
-function formatDuration(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-}
+    if (hamburgerBtn && mobileNav) { // Check if elements exist
+        hamburgerBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+        });
 
-function downloadFile(url, filename) {
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(() => {
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }, 100);
-}
+        // Close menu when a link is clicked (optional)
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+            });
+        });
 
-// ==================== IMAGE COMPRESSOR (REAL) ====================
-function initImageCompressor() {
-    // --- Keep your existing DOM element declarations ---
+        // Close menu when clicking outside (optional)
+        document.addEventListener('click', (event) => {
+            if (!mobileNav.contains(event.target) && !hamburgerBtn.contains(event.target)) {
+                mobileNav.classList.remove('open');
+            }
+        });
+    }
+
+    //image compressor
     const imageInput = document.getElementById('imageInput');
     const qualitySlider = document.getElementById('qualitySlider');
+    const qualityValue = document.getElementById('qualityValue');
     const formatSelect = document.getElementById('formatSelect');
     const resizeSelect = document.getElementById('resizeSelect');
-    const compressedImage = document.getElementById('compressedImage');
-    const downloadLink = document.getElementById('downloadLink');
+    const compressButton = document.getElementById('compressButton');
+    const imageSpinner = document.getElementById('imageSpinner');
+    const imageResults = document.getElementById('imageResults');
+    const originalImageDisplay = document.getElementById('originalImage');
+    const compressedImageDisplay = document.getElementById('compressedImage');
     const originalSizeDisplay = document.getElementById('originalSize');
     const compressedSizeDisplay = document.getElementById('compressedSize');
     const timeTakenDisplay = document.getElementById('timeTaken');
     const compressionRateDisplay = document.getElementById('compressionRate');
+    const downloadLink = document.getElementById('downloadLink');
+    const dropArea = document.querySelector('.drop-area');
 
+    let originalFile;
 
-    let originalImageSize = 0;
-    let compressedImageBlob;
-
-    imageInput.addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        if (file) {
-            originalImageSize = file.size;
-            originalSizeDisplay.textContent = `Original Size: ${formatFileSize(originalImageSize)}`;
-            compressImage(file); // Call the compressImage function
-        } else {
-            alert("Please select an image file."); //handle if no file.
-        }
+    // Update quality value display
+    qualitySlider.addEventListener('input', () => {
+        qualityValue.textContent = qualitySlider.value;
     });
 
+    // Handle file drop
+    dropArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropArea.classList.add('highlight');
+    });
 
-    function compressImage(file) {
-        const quality = parseInt(qualitySlider.value) / 100;
-        const outputFormat = formatSelect.value === 'auto' ? file.type.split('/')[1] : formatSelect.value;
-        const maxWidth = resizeSelect.value === 'none' ? null : parseInt(resizeSelect.value);
+    dropArea.addEventListener('dragleave', () => {
+        dropArea.classList.remove('highlight');
+    });
 
+    dropArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropArea.classList.remove('highlight');
+        handleFile(e.dataTransfer.files[0]);
+    });
+
+    // Handle file input change
+    imageInput.addEventListener('change', (e) => {
+        handleFile(e.target.files[0]);
+    });
+
+    function handleFile(file) {
+        if (!file.type.startsWith('image/')) {
+            alert('Please upload a valid image file.');
+            return;
+        }
+        if (file.size > 10 * 1024 * 1024) {
+            alert('File size exceeds 10MB limit.');
+            return;
+        }
+
+        originalFile = file;
         const reader = new FileReader();
         reader.onload = (e) => {
-            const img = new Image();
-            img.onload = () => {
-                let width = img.width;
-                let height = img.height;
-
-                if (maxWidth && img.width > maxWidth) {
-                    width = maxWidth;
-                    height = (img.height * maxWidth) / img.width;
-                }
-
-                const canvas = document.createElement('canvas');
-                canvas.width = width;
-                canvas.height = height;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0, width, height);
-
-                const startTime = performance.now();
-                canvas.toBlob(
-                    (blob) => {
-                        try {
-                            // This is the compressed image data
-                            compressedImageBlob = blob;
-                            const compressedSize = blob.size;
-                            const endTime = performance.now();
-                            const timeTaken = endTime - startTime;
-
-                            compressedSizeDisplay.textContent = `Compressed Size: ${formatFileSize(compressedSize)}`;
-                            timeTakenDisplay.textContent = `Time Taken: ${formatDuration(timeTaken / 1000)}`;
-                            const compressionRate = ((originalImageSize - compressedSize) / originalImageSize) * 100;
-                            compressionRateDisplay.textContent = `Compression Rate: ${compressionRate.toFixed(2)}%`;
-
-                            const compressedUrl = URL.createObjectURL(blob);
-                            compressedImage.src = compressedUrl;
-                            downloadLink.href = compressedUrl;
-                            downloadLink.style.display = 'block';
-                            spinner.style.display = 'none'; // Hide spinner after successful compression
-                        } catch (error) {
-                            console.error("Error during toBlob:", error);
-                            alert("Error compressing the image. Please try again.");
-                            spinner.style.display = 'none';
-                        }
-                    },
-                    `image/${outputFormat}`,
-                    quality
-                );
-            };
-            img.onerror = () => {
-                alert("Error loading image. Please ensure it is a valid image file.");
-                spinner.style.display = 'none';
-            };
-            img.src = e.target.result;
+            originalImageDisplay.src = e.target.result;
+            originalSizeDisplay.textContent = formatFileSize(file.size);
+            imageResults.style.display = 'none'; // Hide previous results
         };
-        reader.onerror = () => {
-            alert("Error reading file. Please try a different file.");
-            spinner.style.display = 'none';
-        };
-        spinner.style.display = 'block'; // Show spinner before reading file
         reader.readAsDataURL(file);
     }
-}
 
-
-
-// ==================== PDF COMPRESSOR (REAL) ====================
-async function initPDFCompressor() {
-    // ... (keep existing DOM elements)
-    const fileInput = document.getElementById('pdfInput');
-    const compressBtn = document.getElementById('pdfCompressBtn');
-    const spinner = document.getElementById('pdfSpinner');
-    const resultsSection = document.getElementById('pdfResults');
-    const downloadLink = document.getElementById('pdfDownloadLink');
-
-    compressBtn.addEventListener('click', async () => {
-        if (!fileInput.files[0]) {
-            alert('Please select a PDF file');
+    // Compress image
+    compressButton.addEventListener('click', async () => {
+        if (!originalFile) {
+            alert('Please select an image to compress.');
             return;
         }
 
-        spinner.style.display = 'block';
-        resultsSection.style.display = 'none';
+        imageSpinner.style.display = 'block';
+        compressButton.disabled = true;
+        const startTime = performance.now();
 
         try {
-            const pdfBytes = await fileInput.files[0].arrayBuffer();
-            const { PDFDocument } = PDFLib;
+            const quality = parseInt(qualitySlider.value, 10);
+            const format = formatSelect.value;
+            const resize = resizeSelect.value;
 
-            // Load the PDF
-            const pdfDoc = await PDFDocument.load(pdfBytes);
-            const newPdfDoc = await PDFDocument.create();
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            img.src = originalImageDisplay.src;
 
-            // Copy pages with compressed images
-            for (let i = 0; i < pdfDoc.getPageCount(); i++) {
-                const page = pdfDoc.getPage(i);
-                const { width, height } = page.getSize();
-                const newPage = newPdfDoc.addPage([width, height]);
+            await new Promise(resolve => img.onload = resolve);
 
-                // Draw content with compressed images
-                try{
-                  const content = await page.node.Content();
-                  newPage.node.addContentStream(content);
-                }catch(e){
-                    console.error("Error processing page content", e);
-                    alert("Error processing page content. Some pages may not be compressed");
-                }
+            let targetWidth = img.width;
+            let targetHeight = img.height;
 
+            if (resize !== 'none') {
+                targetWidth = parseInt(resize, 10);
+                targetHeight = (targetWidth / img.width) * img.height;
             }
 
-            // Save with compression
-            const compressedPdfBytes = await newPdfDoc.save({
-                useObjectStreams: true,
-                // Additional compression options
+            canvas.width = targetWidth;
+            canvas.height = targetHeight;
+            ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+
+            const mimeType = format === 'jpeg' ? 'image/jpeg' :
+                format === 'png' ? 'image/png' :
+                format === 'webp' ? 'image/webp' :
+                'image/jpeg'; // Default to JPEG
+
+            const compressedDataUrl = canvas.toDataURL(mimeType, quality / 100);
+            const compressedFile = dataURLtoFile(compressedDataUrl, `compressed_image.${format === 'auto' ? 'jpg' : format}`);
+
+            const endTime = performance.now();
+            const timeTaken = (endTime - startTime).toFixed(2);
+
+            compressedImageDisplay.src = compressedDataUrl;
+            compressedSizeDisplay.textContent = formatFileSize(compressedFile.size);
+            timeTakenDisplay.textContent = `${timeTaken} ms`;
+
+            const originalSizeInBytes = originalFile.size;
+            const compressedSizeInBytes = compressedFile.size;
+            const compressionRate = originalSizeInBytes > 0 ? ((originalSizeInBytes - compressedSizeInBytes) / originalSizeInBytes) * 100 : 0;
+            compressionRateDisplay.textContent = `${compressionRate.toFixed(2)}%`;
+
+            downloadLink.href = compressedDataUrl;
+            downloadLink.download = `compressed_image.${format === 'auto' ? 'jpg' : format}`;
+            downloadLink.style.display = 'inline-block';
+            imageResults.style.display = 'block';
+
+        } catch (error) {
+            console.error('Compression failed:', error);
+            alert('Image compression failed. Please try again.');
+        } finally {
+            imageSpinner.style.display = 'none';
+            compressButton.disabled = false;
+        }
+    });
+
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    function dataURLtoFile(dataurl, filename) {
+        let arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]),
+            n = bstr.length,
+            u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, { type: mime });
+    }
+
+
+    //pdf compressor
+
+    const pdfInput = document.getElementById('pdfInput');
+    const pdfQualitySelect = document.getElementById('pdfQuality');
+    const pdfCompressBtn = document.getElementById('pdfCompressBtn');
+    const pdfSpinner = document.getElementById('pdfSpinner');
+    const pdfResults = document.getElementById('pdfResults');
+    const pdfOriginalSizeDisplay = document.getElementById('pdfOriginalSize');
+    const pdfCompressedSizeDisplay = document.getElementById('pdfCompressedSize');
+    const pdfTimeTakenDisplay = document.getElementById('pdfTimeTaken');
+    const pdfCompressionRateDisplay = document.getElementById('pdfCompressionRate');
+    const pdfDownloadLink = document.getElementById('pdfDownloadLink');
+    const pdfDropArea = document.querySelector('#pdf-upload-area .drop-area');
+
+    let originalPdfFile;
+
+    // Handle file drop for PDF
+    pdfDropArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        pdfDropArea.classList.add('highlight');
+    });
+
+    pdfDropArea.addEventListener('dragleave', () => {
+        pdfDropArea.classList.remove('highlight');
+    });
+
+    pdfDropArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        pdfDropArea.classList.remove('highlight');
+        handlePdfFile(e.dataTransfer.files[0]);
+    });
+
+    // Handle file input change for PDF
+    pdfInput.addEventListener('change', (e) => {
+        handlePdfFile(e.target.files[0]);
+    });
+
+    function handlePdfFile(file) {
+        if (file.type !== 'application/pdf') {
+            alert('Please upload a valid PDF file.');
+            return;
+        }
+        if (file.size > 200 * 1024 * 1024) {
+            alert('File size exceeds 200MB limit.');
+            return;
+        }
+
+        originalPdfFile = file;
+        pdfResults.style.display = 'none'; // Hide previous results
+        pdfOriginalSizeDisplay.textContent = formatFileSize(file.size);
+    }
+
+
+
+    // Compress PDF
+    pdfCompressBtn.addEventListener('click', async () => {
+        if (!originalPdfFile) {
+            alert('Please select a PDF file to compress.');
+            return;
+        }
+
+        pdfSpinner.style.display = 'block';
+        pdfCompressBtn.disabled = true;
+        const startTime = performance.now();
+
+        const quality = pdfQualitySelect.value;
+        const formData = new FormData();
+        formData.append('file', originalPdfFile);
+        formData.append('quality', quality);
+
+        try {
+            const response = await fetch('/compress-pdf', { //change this to  https://cloudconvert.com/api/v2/jobs
+                method: 'POST',
+                body: formData,
             });
 
-            // ... (update UI with real compressed file)
-            const compressedBlob = new Blob([compressedPdfBytes], { type: 'application/pdf' });
-            const compressedUrl = URL.createObjectURL(compressedBlob);
-            downloadLink.href = compressedUrl;
-            downloadLink.style.display = 'block';
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
 
-            spinner.style.display = 'none';
-            resultsSection.style.display = 'block';
-
-        } catch (error) {
-            console.error('PDF compression error:', error);
-            alert('Failed to compress PDF. Please try again.');
-            spinner.style.display = 'none';
-        }
-    });
-}
-
-// ==================== VIDEO COMPRESSOR (REAL - FFmpeg.wasm) ====================
-async function initVideoCompressor() {
-    const { createFFmpeg, fetchFile } = FFmpeg;
-    const ffmpeg = createFFmpeg({ log: true });
-
-    const fileInput = document.getElementById('videoInput');
-    const compressBtn = document.getElementById('videoCompressBtn');
-    const spinner = document.getElementById('videoSpinner');
-    const resultsSection = document.getElementById('videoResults');
-    const downloadLink = document.getElementById('videoDownloadLink');
-
-
-    compressBtn.addEventListener('click', async () => {
-        if (!fileInput.files[0]) {
-            alert('Please select a video file.');
-            return;
-        }
-
-        spinner.style.display = 'block';
-        resultsSection.style.display = 'none';
-
-        try {
-            // Load FFmpeg
-            if (!ffmpeg.isLoaded()) {
-                await ffmpeg.load();
+            if (data.error) {
+                throw new Error(data.error);
             }
 
-            // Write file to FFmpeg FS
-            const videoData = await fetchFile(fileInput.files[0]);
-            ffmpeg.FS('writeFile', 'input.mp4', videoData);
+            const endTime = performance.now();
+            const timeTaken = (endTime - startTime).toFixed(2);
 
-            // Run compression (example: reduce to 720p and lower bitrate)
-            await ffmpeg.run(
-                '-i', 'input.mp4',
-                '-vf', 'scale=-1:720',
-                '-b:v', '1M',
-                '-preset', 'fast',
-                'output.mp4'
-            );
+            pdfCompressedSizeDisplay.textContent = formatFileSize(data.compressedSize);
+            pdfTimeTakenDisplay.textContent = `${timeTaken} ms`;
 
-            // Read result
-            const data = ffmpeg.FS('readFile', 'output.mp4');
-            const compressedBlob = new Blob([data.buffer], { type: 'video/mp4' });
-            const compressedUrl = URL.createObjectURL(compressedBlob);
-            downloadLink.href = compressedUrl;
-            downloadLink.style.display = 'block';
+            const originalSizeInBytes = originalPdfFile.size;
+            const compressedSizeInBytes = data.compressedSize;
+            const compressionRate = originalSizeInBytes > 0 ? ((originalSizeInBytes - compressedSizeInBytes) / originalSizeInBytes) * 100 : 0;
+            pdfCompressionRateDisplay.textContent = `${compressionRate.toFixed(2)}%`;
 
-            spinner.style.display = 'none';
-            resultsSection.style.display = 'block';
+
+
+            pdfDownloadLink.href = data.downloadUrl;
+            pdfDownloadLink.style.display = 'inline-block';
+            pdfResults.style.display = 'block';
 
         } catch (error) {
-            console.error('Video compression error:', error);
-            alert('Failed to compress video. Please try again.');
-            spinner.style.display = 'none';
+            console.error('Compression failed:', error);
+            alert('PDF compression failed. Please try again.');
+        } finally {
+            pdfSpinner.style.display = 'none';
+            pdfCompressBtn.disabled = false;
         }
     });
-}
-
-// ==================== AUDIO COMPRESSOR (REAL - lamejs) ====================
-function initAudioCompressor() {
-    const fileInput = document.getElementById('audioInput');
-    const compressBtn = document.getElementById('audioCompressBtn');
-    const spinner = document.getElementById('audioSpinner');
-    const resultsSection = document.getElementById('audioResults');
-    const downloadLink = document.getElementById('audioDownloadLink');
-    const bitrateSelect = document.getElementById('audioBitrate');
-
-    compressBtn.addEventListener('click', async () => {
-        if (!fileInput.files[0]) {
-            alert('Please select an audio file.');
-            return;
-        }
-
-        spinner.style.display = 'block';
-        resultsSection.style.display = 'none';
-
-        try {
-            const audioContext = new AudioContext();
-            const arrayBuffer = await fileInput.files[0].arrayBuffer();
-            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-
-            // Convert to MP3 using lamejs
-            const mp3Encoder = new lamejs.Mp3Encoder(
-                audioBuffer.numberOfChannels,
-                audioBuffer.sampleRate,
-                parseInt(bitrateSelect.value) || 128
-            );
-
-            const samples = audioBuffer.getChannelData(0); // Left channel
-            const mp3Data = mp3Encoder.encodeBuffer(samples);
-            const blob = new Blob([mp3Data], { type: 'audio/mp3' });
-            const compressedUrl = URL.createObjectURL(blob);
-            downloadLink.href = compressedUrl;
-            downloadLink.style.display = 'block';
-
-            spinner.style.display = 'none';
-            resultsSection.style.display = 'block';
-
-        } catch (error) {
-            console.error('Audio compression error:', error);
-            alert('Failed to compress audio. Please try again.');
-            spinner.style.display = 'none';
-        }
-    });
-}
-
-// Initialize all compressors
-document.addEventListener('DOMContentLoaded', () => {
-    // Set current year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Initialize tools
-    if (document.getElementById('image-upload-area')) initImageCompressor();
-    if (document.getElementById('pdf-upload-area')) initPDFCompressor();
-    if (document.getElementById('video-upload-area')) initVideoCompressor();
-    if (document.getElementById('audio-upload-area')) initAudioCompressor();
 });
