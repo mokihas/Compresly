@@ -72,6 +72,13 @@
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i{
+            font-size: 1.8rem;
         }
 
         nav ul {
@@ -209,6 +216,13 @@
 
         .footer-logo .logo {
             color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-logo .logo i {
+            font-size: 1.8rem;
         }
 
         .footer-about {
@@ -292,7 +306,7 @@
 <body>
     <header>
         <div class="container header-content">
-            <a href="/" class="logo">Compresly</a>
+            <a href="/" class="logo"><i class="fas fa-compress-alt"></i>Compresly</a>
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
@@ -357,7 +371,7 @@
             <div class="footer-content">
                 <div>
                     <div class="footer-logo">
-                        <a href="/" class="logo">Compresly</a>
+                        <a href="/" class="logo"><i class="fas fa-compress-alt"></i>Compresly</a>
                     </div>
                     <p class="footer-about">The simplest way to compress files online. Free, secure, and no registration required.</p>
                 </div>
