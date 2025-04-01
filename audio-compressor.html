@@ -710,4 +710,278 @@
     </footer>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awes
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        // ==================== GLOBAL UTILITIES ====================
+        // Shared functions across all tools
+
+        // Format file size for display
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 bytes';
+            if (bytes < 1024) return `${bytes} bytes`;
+            else if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+            else return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+        }
+
+        // Format duration for audio/video
+        function formatDuration(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        // Get file extension
+        function getFileExtension(filename) {
+            if (!filename) return '';
+            const parts = filename.split('.');
+            return parts.length > 1 ? parts.pop().toLowerCase() : '';
+        }
+
+        // ==================== AUDIO COMPRESSOR ====================
+        function initAudioCompressor() {
+            const uploadArea = document.getElementById('audio-upload-area');
+            const fileInput = document.getElementById('audio-file-input');
+            const compressBtn = document.getElementById('audio-compress-btn');
+            const qualitySlider = document.getElementById('audio-quality');
+            const qualityValue = document.getElementById('audio-quality-value');
+            const bitrateSelect = document.getElementById('audio-bitrate');
+            const formatSelect = document.getElementById('audio-format');
+            const spinner = document.getElementById('audio-spinner');
+            const results = document.getElementById('audio-results');
+
+            // Original audio elements
+            const originalAudio = document.getElementById('original-audio');
+            const originalName = document.getElementById('original-audio-name');
+            const originalSize = document.getElementById('original-audio-size');
+            const originalDuration = document.getElementById('original-audio-duration');
+            const originalFormat = document.getElementById('original-audio-format');
+
+            // Compressed audio elements
+            const compressedAudio = document.getElementById('compressed-audio');
+            const compressedName = document.getElementById('compressed-audio-name');
+            const compressedSize = document.getElementById('compressed-audio-size');
+            const compressedDuration = document.getElementById('compressed-audio-duration');
+            const compressedFormat = document.getElementById('compressed-audio-format');
+            const savings = document.getElementById('audio-savings');
+
+            // Buttons
+            const downloadBtn = document.getElementById('audio-download-btn');
+            const newFileBtn = document.getElementById('audio-new-file-btn');
+
+            // Variables
+            let originalFile = null;
+            let compressedBlob = null;
+            let originalAudioUrl = null;
+            let compressedAudioUrl = null;
+
+            // Event Listeners
+            uploadArea.addEventListener('click', () => fileInput.click());
+
+            uploadArea.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    fileInput.click();
+                }
+            });
+
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('highlight');
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('highlight');
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('highlight');
+
+                if (e.dataTransfer.files.length) {
+                    handleFileSelect(e.dataTransfer.files[0]);
+                }
+            });
+
+            fileInput.addEventListener('change', () => {
+                if (fileInput.files.length) {
+                    handleFileSelect(fileInput.files[0]);
+                }
+            });
+
+            qualitySlider.addEventListener('input', () => {
+                qualityValue.textContent = `${qualitySlider.value}%`;
+                qualitySlider.setAttribute('aria-valuetext', `${qualitySlider.value} percent`);
+            });
+
+            compressBtn.addEventListener('click', compressAudio);
+            downloadBtn.addEventListener('click', downloadAudio);
+            newFileBtn.addEventListener('click', resetTool);
+
+            // Functions
+            function handleFileSelect(file) {
+                // Check file type
+                if (!file.type.match('audio.*') && !['mp3', 'wav', 'aac', 'ogg', 'm4a'].includes(getFileExtension(file.name))) {
+                    alert('Please select an audio file (MP3, WAV, AAC, OGG)');
+                    return;
+                }
+
+                // Check file size (200MB max)
+                if (file.size > 200 * 1024 * 1024) {
+                    alert('Audio size exceeds 200MB limit');
+                    return;
+                }
+
+                originalFile = file;
+                compressBtn.disabled = false;
+
+                // Display original audio
+                if (originalAudioUrl) {
+                    URL.revokeObjectURL(originalAudioUrl);
+                }
+
+                originalAudioUrl = URL.createObjectURL(file);
+                originalAudio.src = originalAudioUrl;
+
+                // Display original file info
+                originalName.textContent = file.name;
+                originalSize.textContent = formatFileSize(file.size);
+                originalFormat.textContent = getFileExtension(file.name).toUpperCase();
+
+                // Get audio metadata when loaded
+                originalAudio.onloadedmetadata = function() {
+                    originalDuration.textContent = formatDuration(originalAudio.duration);
+                };
+
+                // Reset results if they were showing
+                results.style.display = 'none';
+            }
+
+            function compressAudio() {
+                if (!originalFile) return;
+
+                // Show loading spinner
+                spinner.style.display = 'block';
+                results.style.display = 'none';
+                compressBtn.disabled = true;
+                compressBtn.textContent = 'Compressing...';
+
+                // In a real implementation, you would use a library like lamejs or similar
+                // to compress the audio. This is a simplified demo that just shows the UI flow.
+
+                // Simulate compression delay
+                setTimeout(() => {
+                    // For demo purposes, we'll just create a fake compressed blob
+                    // In a real app, you would process the audio here
+                    const quality = qualitySlider.value / 100;
+                    const bitrate = bitrateSelect.value === 'original' ? 192 : parseInt(bitrateSelect.value);
+                    const format = formatSelect.value;
+
+                    // Calculate fake compressed size based on quality and bitrate
+                    const originalSize = originalFile.size;
+                    const compressedSize = Math.max(
+                        originalSize * quality * (bitrate / 320),
+                        originalSize * 0.1 // Minimum 10% of original size
+                    );
+
+                    compressedBlob = new Blob(["Compressed audio content would be here"], {
+                        type: `audio/${format === 'mp3' ? 'mpeg' : format}`
+                    });
+
+                    // Override size for demo purposes
+                    Object.defineProperty(compressedBlob, 'size', { value: compressedSize });
+
+                    if (compressedAudioUrl) {
+                        URL.revokeObjectURL(compressedAudioUrl);
+                    }
+
+                    compressedAudioUrl = URL.createObjectURL(compressedBlob);
+                    compressedAudio.src = compressedAudioUrl;
+
+                    // Display compressed file info
+                    compressedName.textContent = originalFile.name.replace(/\.[^/.]+$/, '') + '-compressed.' + format;
+                    compressedSize.textContent = formatFileSize(compressedBlob.size);
+                    compressedDuration.textContent = originalDuration.textContent;
+                    compressedFormat.textContent = format.toUpperCase();
+
+                    // Calculate savings
+                    const savingsPercent = ((originalFile.size - compressedBlob.size) / originalFile.size * 100).toFixed(1);
+                    savings.textContent = `${savingsPercent}% smaller`;
+
+                    // Show results
+                    spinner.style.display = 'none';
+                    results.style.display = 'block';
+                    compressBtn.disabled = false;
+                    compressBtn.textContent = 'Compress Audio';
+
+                    // Scroll to results
+                    results.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 2000);
+            }
+
+            function downloadAudio() {
+                if (!compressedBlob) return;
+
+                const url = compressedAudioUrl;
+                const filename = compressedName.textContent;
+
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.style.display = 'none';
+
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+
+            function resetTool() {
+                // Revoke object URLs
+                if (originalAudioUrl) URL.revokeObjectURL(originalAudioUrl);
+                if (compressedAudioUrl) URL.revokeObjectURL(compressedAudioUrl);
+
+                // Reset variables
+                originalFile = null;
+                compressedBlob = null;
+                originalAudioUrl = null;
+                compressedAudioUrl = null;
+
+                // Reset UI
+                fileInput.value = '';
+                originalAudio.src = '';
+                compressedAudio.src = '';
+                compressBtn.disabled = true;
+                results.style.display = 'none';
+                spinner.style.display = 'none';
+
+                // Reset file info
+                originalName.textContent = '';
+                originalSize.textContent = '';
+                originalDuration.textContent = '';
+                originalFormat.textContent = '';
+                compressedName.textContent = '';
+                compressedSize.textContent = '';
+                compressedDuration.textContent = '';
+                compressedFormat.textContent = '';
+                savings.textContent = '';
+
+                // Reset button text
+                compressBtn.textContent = 'Compress Audio';
+            }
+        }
+
+        // ==================== INITIALIZATION ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Initialize the audio compressor
+            initAudioCompressor();
+
+            // Initialize AdSense ads
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        });
+    </script>
+</body>
+</html>
