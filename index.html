@@ -649,19 +649,34 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
     <header>
-        <div class="container header-content">
-            <a href="/" class="logo">Compresly</a>
-            <nav aria-label="Main navigation">
-                <ul>
-                    <li><a href="/" class="active">Home</a></li>
-                    <li><a href="/image-compressor.html">Image Compressor</a></li>
-                    <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
-                    <li><a href="/video-compressor.html">Video Compressor</a></li>
-                    <li><a href="/audio-compressor.html">Audio Compressor</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div class="container header-content">
+        <a href="/" class="logo">
+            <i class="fas fa-file-code"></i>
+            Compresly
+        </a>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/image-compressor.html">Image Compressor</a></li>
+                <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
+                <li><a href="/video-compressor.html">Video Compressor</a></li>
+                <li><a href="/audio-compressor.html">Audio Compressor</a></li>
+            </ul>
+        </nav>
+        <button id="hamburger-btn" class="hamburger-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav id="mobile-nav" class="mobile-nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/image-compressor.html">Image Compressor</a></li>
+                <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
+                <li><a href="/video-compressor.html">Video Compressor</a></li>
+                <li><a href="/audio-compressor.html">Audio Compressor</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
     
     <main id="main-content" class="main">
         <div class="container">
@@ -906,23 +921,25 @@
     </main>
     
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div>
-                    <div class="footer-logo">
-                        <a href="/" class="logo">Compresly</a>
-                    </div>
-                    <p class="footer-about">The simplest way to compress files online. Free, secure, and no registration required.</p>
+    <div class="container">
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">
+                    <a href="/" class="logo logo-footer">
+                        <i class="fas fa-file-code"></i>
+                        Compresly
+                    </a>
                 </div>
-                
-                <div class="footer-links">
+                <p class="footer-about">The simplest way to compress files online. Free, secure, and no registration required.</p>
+            </div>
+            <div class="footer-links">
                     <h4>Tools</h4>
                     <a href="/image-compressor.html">Image Compressor</a>
                     <a href="/pdf-compressor.html">PDF Compressor</a>
                     <a href="/video-compressor.html">Video Compressor</a>
                     <a href="/audio-compressor.html">Audio Compressor</a>
                 </div>
-                
+
                 <div class="footer-links">
                     <h4>Company</h4>
                     <a href="/about-us.html">About Us</a>
@@ -930,23 +947,21 @@
                     <a href="/privacy-policy.html">Privacy Policy</a>
                     <a href="/terms-of-service.html">Terms of Service</a>
                 </div>
-                
-                <div>
-                    <h4>Connect With Us</h4>
-                    <div class="social-links">
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    </div>
+            <div>
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                 </div>
             </div>
-            
-            <div class="copyright">
-                &copy; <script>document.write(new Date().getFullYear())</script> Compresly. All rights reserved.
-            </div>
         </div>
-    </footer>
+        <div class="copyright">
+            &copy; <script>document.write(new Date().getFullYear())</script> Compresly. All rights reserved.
+        </div>
+    </div>
+</footer>
 
     <script>
         // Enhanced FAQ accordion
