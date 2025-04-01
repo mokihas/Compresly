@@ -815,9 +815,9 @@ nav ul {
         display: block; /* Show hamburger button on small screens */
     }
 
-    nav {
-        display: none; /* Hide the regular nav on small screens */
-    }
+    nav:not(#mobile-nav) {
+  display: none; /* Hide the regular nav, but NOT the mobile nav */
+}
 
     .header-content {
         flex-direction: row; /* Ensure logo and button are on the same line */
