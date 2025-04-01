@@ -76,6 +76,7 @@ nav ul {
     gap: 1.5rem;
     flex-wrap: wrap; /* Added for wrapping navigation items */
     justify-content: center; /* Centers items on small screens */
+    margin-top: 0.75rem; /* Added margin to nav on small screens */
 }
 
 nav a {
@@ -558,12 +559,22 @@ footer {
     .header-content {
         flex-direction: column;
         gap: 0.75rem;
+        text-align: center; /* Added to center logo and nav on small screens */
+    }
+
+    .logo {
+        margin-bottom: 0; /* Removed bottom margin from logo on small screens */
     }
 
     nav ul {
         gap: 0.75rem;
         flex-wrap: wrap;
         justify-content: center;
+        margin-top: 0.75rem;
+    }
+
+    nav li {
+        margin-bottom: 0.75rem; /* Add margin to nav items for spacing when wrapped */
     }
 
     .tool-container {
