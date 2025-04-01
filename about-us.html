@@ -13,16 +13,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css"> </head>
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
     <header>
         <div class="container header-content">
             <a href="/" class="logo"><i class="fas fa-compress-alt"></i>Compresly</a>
-            <div class="menu-icon">  <div class="bar bar1"></div>
+            <div class="menu-icon">
+                <div class="bar bar1"></div>
                 <div class="bar bar2"></div>
                 <div class="bar bar3"></div>
             </div>
-            <nav class="nav-menu">  <ul>
+            <nav class="nav-menu">
+                <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/image-compressor.html">Image Compressor</a></li>
                     <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
@@ -111,5 +114,31 @@
             </div>
         </div>
     </footer>
-    <script src="script.js"></script> </body>
+    <script src="script.js"></script>
+    <script>
+    const menuIcon = document.querySelector('.menu-icon');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (menuIcon && navMenu) {
+        menuIcon.addEventListener('click', () => {
+            menuIcon.classList.toggle('open');
+            navMenu.classList.toggle('open');
+        });
+
+        navMenu.addEventListener('click', (event) => {
+            if (event.target.tagName === 'A') {
+                menuIcon.classList.remove('open');
+                navMenu.classList.remove('open');
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!navMenu.contains(event.target) && !menuIcon.contains(event.target)) {
+                menuIcon.classList.remove('open');
+                navMenu.classList.remove('open');
+            }
+        });
+    }
+    </script>
+</body>
 </html>
