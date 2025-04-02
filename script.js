@@ -1,28 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile menu toggle functionality
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const mobileNav = document.getElementById('mobile-nav');
+  // Mobile menu toggle functionality
+  const hamburgerBtn = document.getElementById('hamburger-button'); //changed Id
+  const mobileNav = document.getElementById('mobile-nav');
 
-    if (hamburgerBtn && mobileNav) { // Check if elements exist
-        hamburgerBtn.addEventListener('click', () => {
-            mobileNav.classList.toggle('open');
-        });
+  if (hamburgerBtn && mobileNav) { // Check if elements exist
+      hamburgerBtn.addEventListener('click', () => {
+          mobileNav.classList.toggle('open');
+      });
 
-        // Close menu when a link is clicked (optional)
-        const mobileNavLinks = mobileNav.querySelectorAll('a');
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('open');
-            });
-        });
+      // Close menu when a link is clicked (optional)
+      const mobileNavLinks = mobileNav.querySelectorAll('a');
+      mobileNavLinks.forEach(link => {
+          link.addEventListener('click', () => {
+              mobileNav.classList.remove('open');
+          });
+      });
 
-        // Close menu when clicking outside (optional)
-        document.addEventListener('click', (event) => {
-            if (!mobileNav.contains(event.target) && !hamburgerBtn.contains(event.target)) {
-                mobileNav.classList.remove('open');
-            }
-        });
-    }
+      // Close menu when clicking outside (optional)
+      document.addEventListener('click', (event) => {
+          if (!mobileNav.contains(event.target) && !hamburgerBtn.contains(event.target)) {
+              mobileNav.classList.remove('open');
+          }
+      });
+  }
+  ...
+});
 
     //image compressor
     const imageInput = document.getElementById('imageInput');
