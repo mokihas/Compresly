@@ -4,155 +4,161 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Compresly</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/favicon/site.webmanifest">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Learn more about Compresly and our mission to provide free and easy-to-use file compression tools.">
+    <link rel="canonical" href="https://compresly.vercel.app/about-us.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Google Analytics
+        // Paste your Google Analytics code here
+    </script>
+    <script>
+        // Google Tag Manager
+        // Paste your Google Tag Manager code here
+    </script>
 </head>
-<body>
-    <header>
-  <div class="container header-content">
-    <a href="/" class="logo">
-      <i class="fas fa-file-code"></i>
-      Compresly
-    </a>
-    <div id="desktop-nav">  <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/image-compressor.html">Image Compressor</a></li>
-        <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
-        <li><a href="/video-compressor.html">Video Compressor</a></li>
-        <li><a href="/audio-compressor.html">Audio Compressor</a></li>
-      </ul>
-    </div>
-    <button id="hamburger-button" class="hamburger-btn">
-  <i class="fas fa-bars"></i>
-</button>
-    <nav id="mobile-nav" class="mobile-nav">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/image-compressor.html">Image Compressor</a></li>
-        <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
-        <li><a href="/video-compressor.html">Video Compressor</a></li>
-        <li><a href="/audio-compressor.html">Audio Compressor</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-    <main class="container">
-        <div class="about-container">
-            <h1>About Compresly</h1>
-            <p class="effective-date">Simplifying File Compression Since 2024</p>
-            <h2>Our Story</h2>
-            <p>Compresly was born out of frustration with bloated file sizes and complicated compression tools. In 2024, our team set out to create the simplest, fastest way to compress files without sacrificing quality - completely free and accessible to everyone.</p>
-            <h2>Why Choose Compresly?</h2>
-            <section class="values-grid">
-                <div class="value-card">
-                    <h3>Privacy First</h3>
-                    <p>All files are processed in your browser - nothing is uploaded to our servers. Your files stay 100% private.</p>
+<body class="bg-gray-100 font-poppins">
+    <header class="bg-white shadow-md py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <a href="/" class="flex items-center text-xl font-semibold text-gray-800">
+                <img src="/logo.png" alt="Compresly Logo" class="mr-2 h-6">
+                Compresly
+            </a>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="/image-compressor.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Image Compressor</a></li>
+                    <li><a href="/pdf-compressor.html" class="text-gray-700 hover:text-blue-600 transition duration-300">PDF Compressor</a></li>
+                    <li><a href="/audio-compressor.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Audio Compressor</a></li>
+                    <li><a href="/video-compressor.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Video Compressor</a></li>
+                    <li><a href="/contact-us.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="md:hidden">
+                <button id="hamburger-btn" class="text-gray-700 focus:outline-none" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div id="hamburger-menu" class="hidden fixed top-0 right-0 h-screen w-64 bg-white shadow-lg z-50">
+                    <div class="p-4">
+                        <div class="flex justify-end mb-4">
+                            <button id="close-menu-btn" class="text-gray-700 focus:outline-none" aria-label="Close Menu">
+                                <i class="fas fa-times text-xl"></i>
+                            </button>
+                        </div>
+                        <nav class="block">
+                            <ul class="space-y-4">
+                                <li><a href="/image-compressor.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">Image Compressor</a></li>
+                                <li><a href="/pdf-compressor.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">PDF Compressor</a></li>
+                                <li><a href="/audio-compressor.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">Audio Compressor</a></li>
+                                <li><a href="/video-compressor.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">Video Compressor</a></li>
+                                <li><a href="/contact-us.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">Contact Us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
-                <div class="value-card">
-                    <h3>No Limits</h3>
-                    <p>Compress as many files as you need, with no watermarks, registration, or hidden fees.</p>
-                </div>
-                <div class="value-card">
-                    <h3>Cutting-Edge Tech</h3>
-                    <p>We use advanced compression algorithms to maximize quality while minimizing file size.</p>
-                </div>
-            </section>
-            <h2>Meet The Team</h2>
-            <section class="team-member">
-                <img src="/images/team-placeholder.jpg" alt="Founder" class="team-photo">
-                <article>
-                    <h3>Mokibul Hassan</h3>
-                    <p><strong>Founder & Developer</strong></p>
-                    <p>With 5+ years in web development, Mokibul built Compresly to solve everyday file size problems for creators, students, and professionals.</p>
-                </article>
-            </section>
-            <h2>Our Mission</h2>
-            <p>We believe file compression should be:</p>
-            <ul>
-                <li><strong>Instant</strong> - No waiting for uploads/downloads</li>
-                <li><strong>Accessible</strong> - Works on any device, no software needed</li>
-                <li><strong>Transparent</strong> - No hidden fees or data collection</li>
-            </ul>
-            <h2>Join Our Community</h2>
-            <p>Over 50,000 users trust Compresly monthly for their compression needs. We're constantly improving based on your feedback - <a href="/contactus.html">share your suggestions</a>!</p>
+            </div>
         </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <section class="text-center mb-12">
+            <h1 class="text-3xl font-semibold text-gray-800 mb-4">About Us</h1>
+            <p class="text-lg text-gray-600">Welcome to Compresly, your free online solution for compressing various types of files.</p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h2>
+            <p class="text-gray-700 leading-relaxed">
+                At Compresly, our mission is to make file compression accessible to everyone. We understand that large files can be a burden, whether you're trying to share them, upload them, or simply store them efficiently.  We strive to provide user-friendly tools that simplify the process of reducing file sizes without compromising quality.
+            </p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">What We Offer</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Compresly offers a suite of online tools that allow you to compress:
+            </p>
+            <ul class="list-disc list-inside text-gray-700 mb-4">
+                <li>Images: Reduce the size of your image files (JPG, PNG, GIF, etc.) for faster loading and easier sharing.</li>
+                <li>PDFs: Compress your PDF documents to make them smaller and more manageable.</li>
+                <li>Audio files: Shrink the size of your audio files (MP3, WAV, etc.) for easier storage and streaming.</li>
+                <li>Videos: Compress your video files to reduce their size for easier sharing and uploading.</li>
+            </ul>
+            <p class="text-gray-700 leading-relaxed">
+                Our tools are designed to be simple and intuitive, so you don't need any technical expertise to use them.  Simply upload your file, select your desired compression level, and download the compressed file.
+            </p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Why Choose Compresly?</h2>
+            <ul class="list-disc list-inside text-gray-700">
+                <li>Free: Our tools are completely free to use.</li>
+                <li>Easy to Use: Our interface is designed to be simple and intuitive.</li>
+                <li>High Quality: We strive to maintain the best possible quality after compression.</li>
+                <li>Fast: Our compression process is quick and efficient.</li>
+                <li>Online: No software installation is required.  Use our tools from any device with an internet connection.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Our Team</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Compresly is developed and maintained by a team of dedicated individuals passionate about making technology accessible to everyone. We are committed to providing the best possible user experience and are constantly working to improve our tools and services.
+            </p>
+             <p class="text-gray-700 leading-relaxed">
+                If you have any questions or feedback, please don't hesitate to <a href="/contact-us.html" class="text-blue-600 hover:text-blue-800 transition duration-300">contact us</a>.
+            </p>
+        </section>
     </main>
-    <footer>
-    <div class="container">
-        <div class="footer-content">
-            <div>
-                <div class="footer-logo">
-                    <a href="/" class="logo logo-footer">
-                        <i class="fas fa-file-code"></i>
+
+    <footer class="bg-gray-200 py-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center md:text-left">
+                <div class="mb-4 lg:mb-0">
+                    <a href="/" class="flex items-center text-xl font-semibold text-gray-800">
+                        <img src="/logo.png" alt="Compresly Logo" class="mr-2 h-6">
                         Compresly
                     </a>
                 </div>
-                <p class="footer-about">The simplest way to compress files online. Free, secure, and no registration required.</p>
-            </div>
-            <div class="footer-links">
-                    <h4>Tools</h4>
-                    <a href="/image-compressor.html">Image Compressor</a>
-                    <a href="/pdf-compressor.html">PDF Compressor</a>
-                    <a href="/video-compressor.html">Video Compressor</a>
-                    <a href="/audio-compressor.html">Audio Compressor</a>
+                <div class="mb-4 lg:mb-0">
+                    <h4 class="font-semibold text-gray-700 mb-2">Tools</h4>
+                    <ul class="text-gray-600">
+                        <li><a href="/image-compressor.html" class="hover:text-blue-600 transition duration-300">Image Compressor</a></li>
+                        <li><a href="/pdf-compressor.html" class="hover:text-blue-600 transition duration-300">PDF Compressor</a></li>
+                        <li><a href="/audio-compressor.html" class="hover:text-blue-600 transition duration-300">Audio Compressor</a></li>
+                        <li><a href="/video-compressor.html" class="hover:text-blue-600 transition duration-300">Video Compressor</a></li>
+                    </ul>
                 </div>
+                <div class="mb-4 lg:mb-0">
+                    <h4 class="font-semibold text-gray-700 mb-2">About Us</h4>
+                    <ul class="text-gray-600">
+                         <li><a href="/contact-us.html" class="hover:text-blue-600 transition duration-300">Contact Us</a></li>
+                        <li><a href="/privacy-policy.html" class="hover:text-blue-600 transition duration-300">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-blue-600 transition duration-300">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-700 mb-2">Connect With Us</h4>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-400 transition duration-300" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-600 transition duration-300" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-pink-500 transition duration-300" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-red-600 transition duration-300" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4 text-gray-600">
+                <p>© 2023 Compresly. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-                <div class="footer-links">
-                    <h4>Company</h4>
-                    <a href="/about-us.html">About Us</a>
-                    <a href="/contactus.html">Contact</a>
-                    <a href="/privacy-policy.html">Privacy Policy</a>
-                    <a href="/terms-of-service.html">Terms of Service</a>
-                </div>
-            <div>
-                <h4>Connect With Us</h4>
-                <div class="social-links">
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            &copy; <script>document.write(new Date().getFullYear())</script> Compresly. All rights reserved.
-        </div>
-    </div>
-</footer>
     <script src="script.js"></script>
     <script>
-    const menuIcon = document.querySelector('.menu-icon');
-    const navMenu = document.querySelector('.nav-menu');
-
-    if (menuIcon && navMenu) {
-        menuIcon.addEventListener('click', () => {
-            menuIcon.classList.toggle('open');
-            navMenu.classList.toggle('open');
-        });
-
-        navMenu.addEventListener('click', (event) => {
-            if (event.target.tagName === 'A') {
-                menuIcon.classList.remove('open');
-                navMenu.classList.remove('open');
-            }
-        });
-
-        document.addEventListener('click', (event) => {
-            if (!navMenu.contains(event.target) && !menuIcon.contains(event.target)) {
-                menuIcon.classList.remove('open');
-                navMenu.classList.remove('open');
-            }
-        });
-    }
+        // Google AdSense
+        // Paste your Google AdSense code here
     </script>
 </body>
 </html>
