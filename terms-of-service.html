@@ -4,404 +4,213 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service - Compresly</title>
-    <!-- Favicon Config -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/favicon/site.webmanifest">
-    <meta name="theme-color" content="#ffffff">
-    
-    <!-- Fonts -->
+    <meta name="description" content="Read the Terms of Service for Compresly to understand the rules and conditions for using our services.">
+    <link rel="canonical" href="https://compresly.vercel.app/terms-of-service.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-   <link rel="stylesheet" href="styles.css">
-    
-    <style>
-        :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4895ef;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-            --success: #4cc9f0;
-            --border-radius: 12px;
-            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: #f5f7ff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background-color: white;
-            box-shadow: var(--box-shadow);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
-
-        nav a {
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        nav a.active {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        main {
-            flex: 1;
-            padding: 2rem 0;
-        }
-
-        /* Terms of Service Specific Styles */
-        .terms-container {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 2.5rem;
-            margin: 0 auto;
-            max-width: 800px;
-            line-height: 1.7;
-        }
-
-        .terms-container h1 {
-            color: var(--primary);
-            margin-bottom: 1.8rem;
-            font-size: 2rem;
-            text-align: center;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--light);
-        }
-
-        .effective-date {
-            text-align: center;
-            font-style: italic;
-            color: var(--gray);
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-        }
-
-        .terms-container h2 {
-            color: var(--dark);
-            margin: 2.2rem 0 1.2rem;
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        .terms-container p, .terms-container li {
-            margin-bottom: 1rem;
-        }
-
-        .terms-container ul {
-            padding-left: 1.8rem;
-            margin: 1.2rem 0;
-        }
-
-        .terms-container li {
-            margin-bottom: 0.8rem;
-            position: relative;
-        }
-
-        .terms-container li::before {
-            content: "•";
-            color: var(--primary);
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-        }
-
-        .terms-container strong {
-            color: var(--dark);
-        }
-
-        .terms-container a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .terms-container a:hover {
-            text-decoration: underline;
-        }
-
-        .highlight {
-            background-color: rgba(251, 188, 5, 0.1);
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-weight: 500;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 3rem 0 1.5rem;
-            margin-top: auto;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-logo {
-            margin-bottom: 1rem;
-        }
-
-        .footer-logo .logo {
-            color: white;
-        }
-
-        .footer-about {
-            color: #BDC1C6;
-            margin-bottom: 1rem;
-            max-width: 300px;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer-links h4 {
-            margin-bottom: 1rem;
-            color: white;
-            font-size: 1.1rem;
-        }
-
-        .footer-links a {
-            color: #BDC1C6;
-            text-decoration: none;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--accent);
-        }
-
-        .copyright {
-            text-align: center;
-            color: #BDC1C6;
-            padding-top: 1.5rem;
-            border-top: 1px solid #495057;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            nav ul {
-                gap: 1rem;
-            }
-            
-            .terms-container {
-                padding: 1.5rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Google Analytics
+        // Paste your Google Analytics code here
+    </script>
+    <script>
+        // Google Tag Manager
+        // Paste your Google Tag Manager code here
+    </script>
 </head>
-<body>
-    <header>
-  <div class="container header-content">
-    <a href="/" class="logo">
-      <i class="fas fa-file-code"></i>
-      Compresly
-    </a>
-    <div id="desktop-nav">  <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/image-compressor.html">Image Compressor</a></li>
-        <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
-        <li><a href="/video-compressor.html">Video Compressor</a></li>
-        <li><a href="/audio-compressor.html">Audio Compressor</a></li>
-      </ul>
-    </div>
-    <button id="hamburger-button" class="hamburger-btn">
-  <i class="fas fa-bars"></i>
-</button>
-    <nav id="mobile-nav" class="mobile-nav">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/image-compressor.html">Image Compressor</a></li>
-        <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
-        <li><a href="/video-compressor.html">Video Compressor</a></li>
-        <li><a href="/audio-compressor.html">Audio Compressor</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-
-    <main class="container">
-        <div class="terms-container">
-            <h1>Terms of Service</h1>
-            <p class="effective-date">Effective Date: June 28, 2024</p>
-
-            <h2>1. Acceptance of Terms</h2>
-            <p>By accessing or using Compresly ("Service"), you agree to be bound by these Terms of Service. If you disagree with any part, you may not use our service.</p>
-
-            <h2>2. Service Description</h2>
-            <p>Compresly provides browser-based file compression tools that:</p>
-            <ul>
-                <li>Process files locally in your web browser (images, PDFs, videos)</li>
-                <li>Support multiple formats (JPG, PNG, WebP, PDF, MP4, etc.)</li>
-                <li>Offer adjustable compression settings</li>
-            </ul>
-            <p>This is a <span class="highlight">free service</span> with no warranty of uninterrupted availability. No refunds are applicable.</p>
-
-            <h2>3. User Responsibilities</h2>
-            <p>You agree not to:</p>
-            <ul>
-                <li>Upload files containing illegal, copyrighted (without permission), or harmful content</li>
-                <li>Use automated systems (bots, scrapers) to access the service excessively</li>
-                <li>Attempt to reverse-engineer, decompile, or extract our source code</li>
-                <li>Impersonate others or misrepresent affiliation</li>
-            </ul>
-
-            <h2>4. Intellectual Property</h2>
-            <p>All uploaded files remain your property. By using our service, you grant us a limited, non-exclusive license to process your files solely for providing the compression functionality.</p>
-            <p>Files are processed temporarily and not stored permanently.</p>
-            <p>The Compresly software, interface, and branding are our exclusive property.</p>
-
-            <h2>5. Limitation of Liability</h2>
-            <p>To the maximum extent permitted by law:</p>
-            <ul>
-                <li>We are not liable for any data loss resulting from file compression</li>
-                <li>We do not guarantee specific compression ratios or quality levels</li>
-                <li>We are not responsible for third-party content (including advertisements)</li>
-            </ul>
-
-            <h2>6. Advertisements</h2>
-            <p>Our free service displays ads via Google AdSense. These ads may use cookies for personalization (see our <a href="/privacy-policy.html">Privacy Policy</a>). You can manage ad preferences in <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google's Ad Settings</a>. We are not responsible for third-party ad content.</p>
-
-            <h2>7. Termination</h2>
-            <p>We may suspend or terminate your access to the Service for violations of these Terms.</p>
-
-            <h2>8. Modifications</h2>
-            <p>We reserve the right to modify these terms at any time. Continued use after changes constitutes acceptance. Major changes will be announced via service notifications.</p>
-
-            <h2>9. Governing Law</h2>
-            <p>These Terms shall be governed by the laws of India without regard to conflict of law principles.</p>
-
-            <h2>10. Contact</h2>
-            <p>For questions regarding these Terms, please use our <a href="/contactus.html">Contact Form</a>.</p>
+<body class="bg-gray-100 font-poppins">
+    <header class="bg-white shadow-md py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <a href="/" class="flex items-center text-xl font-semibold text-gray-800">
+                <img src="/logo.png" alt="Compresly Logo" class="mr-2 h-6">
+                Compresly
+            </a>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="/image-compressor.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Image Compressor</a></li>
+                    <li><a href="/pdf-compressor.html" class="text-gray-700 hover:text-blue-600 transition duration-300">PDF Compressor</a></li>
+                    <li><a href="/audio-compressor.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Audio Compressor</a></li>
+                    <li><a href="/video-compressor.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Video Compressor</a></li>
+                    <li><a href="/contact-us.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="md:hidden">
+                <button id="hamburger-btn" class="text-gray-700 focus:outline-none" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div id="hamburger-menu" class="hidden fixed top-0 right-0 h-screen w-64 bg-white shadow-lg z-50">
+                    <div class="p-4">
+                        <div class="flex justify-end mb-4">
+                            <button id="close-menu-btn" class="text-gray-700 focus:outline-none" aria-label="Close Menu">
+                                <i class="fas fa-times text-xl"></i>
+                            </button>
+                        </div>
+                        <nav class="block">
+                            <ul class="space-y-4">
+                                <li><a href="/image-compressor.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">Image Compressor</a></li>
+                                <li><a href="/pdf-compressor.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">PDF Compressor</a></li>
+                                <li><a href="/audio-compressor.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">Audio Compressor</a></li>
+                                <li><a href="/video-compressor.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">Video Compressor</a></li>
+                                 <li><a href="/contact-us.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">Contact Us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
         </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <section class="text-center mb-12">
+            <h1 class="text-3xl font-semibold text-gray-800 mb-4">Terms of Service</h1>
+            <p class="text-lg text-gray-600">Please read these Terms of Service carefully before using our services.</p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Acceptance of Terms</h2>
+            <p class="text-gray-700">
+                By accessing or using Compresly, you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, you may not use our services.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Description of Services</h2>
+            <p class="text-gray-700 mb-4">
+                Compresly provides online tools that allow you to compress various types of files, including images, PDFs, audio files, and video files.  We strive to provide efficient and user-friendly services.
+            </p>
+            <p class="text-gray-700">
+               We may modify or discontinue, temporarily or permanently, any service or feature, with or without notice. You agree that we shall not be liable to you or any third party for any modification, suspension, or discontinuance of the Services.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Use of Services</h2>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 mb-6">
+                <li><strong>Eligibility:</strong> You must be at least 13 years old to use our services. By using our services, you represent and warrant that you meet this age requirement.</li>
+                <li><strong>Acceptable Use:</strong> You agree to use our services only for lawful purposes and in accordance with these Terms. You agree not to:
+                    <ul class="list-decimal list-inside ml-6 space-y-2">
+                        <li>Upload, transmit, or otherwise make available any content that is illegal, harmful, threatening, abusive, harassing, tortious, defamatory, vulgar, obscene, libelous, invasive of another's privacy, hateful, or racially, ethnically, or otherwise objectionable.</li>
+                        <li>Use our services to infringe upon the intellectual property rights of others.</li>
+                        <li>Attempt to interfere with or disrupt our services or servers.</li>
+                        <li>Use our services to transmit any viruses, worms, or other malicious code.</li>
+                        <li>Collect or store personal information about other users without their consent.</li>
+                        <li>Use any automated means, including robots, spiders, or scrapers, to access our services without our prior written permission.</li>
+                    </ul>
+                </li>
+                <li><strong>Account Responsibility:</strong> You are responsible for maintaining the confidentiality of any account credentials you use to access our services and are fully responsible for all activities that occur under your account.</li>
+            </ul>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Intellectual Property</h2>
+            <p class="text-gray-700 mb-4">
+                The content and materials available through our services, including but not limited to text, graphics, logos, and software, are owned by or licensed to us and are protected by copyright, trademark, and other intellectual property laws.
+            </p>
+            <p class="text-gray-700">
+                You may use our services for your personal, non-commercial use only. You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the content or materials available through our services without our prior written consent.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Disclaimer of Warranties</h2>
+            <p class="text-gray-700">
+                OUR SERVICES ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS. WE MAKE NO WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT OUR SERVICES WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Limitation of Liability</h2>
+            <p class="text-gray-700">
+                TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL COMPRESLY BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO, LOSS OF PROFITS, DATA, OR GOODWILL, ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF OUR SERVICES, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. OUR TOTAL LIABILITY TO YOU FOR ANY CLAIM ARISING OUT OF OR RELATING TO THESE TERMS OR OUR SERVICES SHALL NOT EXCEED THE AMOUNT PAID BY YOU, IF ANY, FOR ACCESSING OUR SERVICES.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Indemnification</h2>
+            <p class="text-gray-700">
+                You agree to indemnify and hold Compresly and its affiliates, officers, directors, employees, and agents harmless from any and all claims, liabilities, damages, losses, costs, or expenses, including reasonable attorneys' fees, arising out of or in connection with your use of our services or your breach of these Terms.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Third-Party Links</h2>
+            <p class="text-gray-700">
+                Our services may contain links to third-party websites or resources. We are not responsible for the content or availability of such websites or resources. Your use of such third-party websites or resources is at your own risk.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Changes to These Terms</h2>
+            <p class="text-gray-700">
+                We may update these Terms from time to time. We will notify you of any material changes by posting the new Terms on our website. You are advised to review these Terms periodically for any changes. Your continued use of our services after the posting of revised Terms constitutes your acceptance of the revised Terms.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Governing Law</h2>
+             <p class="text-gray-700">
+                These Terms shall be governed by and construed in accordance with the laws of [Your Country/State], without regard to its conflict of laws principles.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Contact Us</h2>
+            <p class="text-gray-700">
+                If you have any questions about these Terms, please contact us at:
+            </p>
+            <p class="text-gray-700 font-medium">
+                [Company Name]<br>
+                [Company Address]<br>
+                Email: [Company Email Address]<br>
+                Phone: [Company Phone Number]
+            </p>
+        </section>
     </main>
 
-    <footer>
-    <div class="container">
-        <div class="footer-content">
-            <div>
-                <div class="footer-logo">
-                    <a href="/" class="logo logo-footer">
-                        <i class="fas fa-file-code"></i>
+    <footer class="bg-gray-200 py-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center md:text-left">
+                <div class="mb-4 lg:mb-0">
+                    <a href="/" class="flex items-center text-xl font-semibold text-gray-800">
+                        <img src="/logo.png" alt="Compresly Logo" class="mr-2 h-6">
                         Compresly
                     </a>
                 </div>
-                <p class="footer-about">The simplest way to compress files online. Free, secure, and no registration required.</p>
-            </div>
-            <div class="footer-links">
-                    <h4>Tools</h4>
-                    <a href="/image-compressor.html">Image Compressor</a>
-                    <a href="/pdf-compressor.html">PDF Compressor</a>
-                    <a href="/video-compressor.html">Video Compressor</a>
-                    <a href="/audio-compressor.html">Audio Compressor</a>
+                <div class="mb-4 lg:mb-0">
+                    <h4 class="font-semibold text-gray-700 mb-2">Tools</h4>
+                    <ul class="text-gray-600">
+                        <li><a href="/image-compressor.html" class="hover:text-blue-600 transition duration-300">Image Compressor</a></li>
+                        <li><a href="/pdf-compressor.html" class="hover:text-blue-600 transition duration-300">PDF Compressor</a></li>
+                        <li><a href="/audio-compressor.html" class="hover:text-blue-600 transition duration-300">Audio Compressor</a></li>
+                        <li><a href="/video-compressor.html" class="hover:text-blue-600 transition duration-300">Video Compressor</a></li>
+                    </ul>
                 </div>
+                <div class="mb-4 lg:mb-0">
+                    <h4 class="font-semibold text-gray-700 mb-2">About Us</h4>
+                    <ul class="text-gray-600">
+                         <li><a href="/contact-us.html" class="hover:text-blue-600 transition duration-300">Contact Us</a></li>
+                        <li><a href="/privacy-policy.html" class="hover:text-blue-600 transition duration-300">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-blue-600 transition duration-300">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-700 mb-2">Connect With Us</h4>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-400 transition duration-300" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-600 transition duration-300" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-pink-500 transition duration-300" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-red-600 transition duration-300" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4 text-gray-600">
+                <p>© 2023 Compresly. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-                <div class="footer-links">
-                    <h4>Company</h4>
-                    <a href="/about-us.html">About Us</a>
-                    <a href="/contactus.html">Contact</a>
-                    <a href="/privacy-policy.html">Privacy Policy</a>
-                    <a href="/terms-of-service.html">Terms of Service</a>
-                </div>
-            <div>
-                <h4>Connect With Us</h4>
-                <div class="social-links">
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            &copy; <script>document.write(new Date().getFullYear())</script> Compresly. All rights reserved.
-        </div>
-    </div>
-</footer>
     <script src="script.js"></script>
 </body>
 </html>
