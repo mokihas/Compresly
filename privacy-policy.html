@@ -4,399 +4,215 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Compresly</title>
-    <!-- Favicon Config -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/favicon/site.webmanifest">
-    <meta name="theme-color" content="#ffffff">
-    
-    <!-- Fonts -->
+    <meta name="description" content="Read the Privacy Policy for Compresly to understand how your data is collected, used, and protected.">
+    <link rel="canonical" href="https://compresly.vercel.app/privacy-policy.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
- <link rel="stylesheet" href="styles.css">
-    
-    <style>
-        :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4895ef;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-            --success: #4cc9f0;
-            --border-radius: 12px;
-            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: #f5f7ff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background-color: white;
-            box-shadow: var(--box-shadow);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
-
-        nav a {
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        nav a.active {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        main {
-            flex: 1;
-            padding: 2rem 0;
-        }
-
-        /* Privacy Policy Specific Styles */
-        .policy-container {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 2.5rem;
-            margin: 0 auto;
-            max-width: 800px;
-            line-height: 1.7;
-        }
-
-        .policy-container h1 {
-            color: var(--primary);
-            margin-bottom: 1.8rem;
-            font-size: 2rem;
-            text-align: center;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--light);
-        }
-
-        .last-updated {
-            text-align: center;
-            font-style: italic;
-            color: var(--gray);
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-        }
-
-        .policy-container h2 {
-            color: var(--dark);
-            margin: 2.2rem 0 1.2rem;
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        .policy-container p, .policy-container li {
-            margin-bottom: 1rem;
-        }
-
-        .policy-container ul {
-            padding-left: 1.8rem;
-            margin: 1.2rem 0;
-        }
-
-        .policy-container li {
-            margin-bottom: 0.8rem;
-            position: relative;
-        }
-
-        .policy-container li::before {
-            content: "•";
-            color: var(--primary);
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-        }
-
-        .policy-container strong {
-            color: var(--dark);
-        }
-
-        .policy-container a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .policy-container a:hover {
-            text-decoration: underline;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 3rem 0 1.5rem;
-            margin-top: auto;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-logo {
-            margin-bottom: 1rem;
-        }
-
-        .footer-logo .logo {
-            color: white;
-        }
-
-        .footer-about {
-            color: #BDC1C6;
-            margin-bottom: 1rem;
-            max-width: 300px;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer-links h4 {
-            margin-bottom: 1rem;
-            color: white;
-            font-size: 1.1rem;
-        }
-
-        .footer-links a {
-            color: #BDC1C6;
-            text-decoration: none;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--accent);
-        }
-
-        .copyright {
-            text-align: center;
-            color: #BDC1C6;
-            padding-top: 1.5rem;
-            border-top: 1px solid #495057;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            nav ul {
-                gap: 1rem;
-            }
-            
-            .policy-container {
-                padding: 1.5rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Google Analytics
+        // Paste your Google Analytics code here
+    </script>
+    <script>
+        // Google Tag Manager
+        // Paste your Google Tag Manager code here
+    </script>
 </head>
-<body>
-   <header>
-  <div class="container header-content">
-    <a href="/" class="logo">
-      <i class="fas fa-file-code"></i>
-      Compresly
-    </a>
-    <div id="desktop-nav">  <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/image-compressor.html">Image Compressor</a></li>
-        <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
-        <li><a href="/video-compressor.html">Video Compressor</a></li>
-        <li><a href="/audio-compressor.html">Audio Compressor</a></li>
-      </ul>
-    </div>
-    <button id="hamburger-button" class="hamburger-btn">
-  <i class="fas fa-bars"></i>
-</button>
-    <nav id="mobile-nav" class="mobile-nav">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/image-compressor.html">Image Compressor</a></li>
-        <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
-        <li><a href="/video-compressor.html">Video Compressor</a></li>
-        <li><a href="/audio-compressor.html">Audio Compressor</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-
-    <main class="container">
-        <div class="policy-container">
-            <h1>Privacy Policy</h1>
-            <p class="last-updated">Last Updated: June 28, 2024</p>
-
-            <h2>1. Information We Process</h2>
-            <p>When you use Compresly, we may handle the following data:</p>
-            <ul>
-                <li><strong>Uploaded Files</strong>: All processing occurs in your browser. We do not store your files permanently - they are deleted immediately after processing.</li>
-                <li><strong>Technical Data</strong>: Anonymized IP address, browser type, device type, and country-level location for analytics.</li>
-                <li><strong>Usage Data</strong>: Compression settings selected, tool usage frequency, and error reports (no personal identification).</li>
-            </ul>
-
-            <h2>2. Data Usage</h2>
-            <p>We use data exclusively to:</p>
-            <ul>
-                <li>Provide and improve our compression tools</li>
-                <li>Monitor service performance and prevent abuse</li>
-                <li>Develop new features based on aggregated usage patterns</li>
-                <li>Comply with legal obligations</li>
-            </ul>
-
-            <h2>3. Third-Party Services</h2>
-            <p>We use:</p>
-            <ul>
-                <li><strong>Google AdSense</strong>: Serves personalized ads using cookies. Opt-out via <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google's Ad Settings</a>.</li>
-                <li><strong>Google Analytics</strong>: Tracks anonymized usage data with IP anonymization enabled.</li>
-            </ul>
-            <p>We never sell your data to third parties.</p>
-
-            <h2>4. Cookies</h2>
-            <p>We use only essential cookies for:</p>
-            <ul>
-                <li>Ad personalization (via AdSense)</li>
-                <li>Remembering user preferences (e.g., dark mode)</li>
-                <li>Preventing fraud</li>
-            </ul>
-            <p>Manage cookies through your browser settings.</p>
-
-            <h2>5. Data Security</h2>
-            <p>Security measures include:</p>
-            <ul>
-                <li>Client-side file processing (no server uploads)</li>
-                <li>HTTPS encryption for all data transmission</li>
-                <li>Regular security audits</li>
-            </ul>
-
-            <h2>6. Children's Privacy</h2>
-            <p>Our service is not intended for users under 13. We do not knowingly collect data from children.</p>
-
-            <h2>7. Policy Changes</h2>
-            <p>Updates will be posted here with a revised "Last Updated" date. Continued use constitutes acceptance.</p>
-
-            <h2>8. Contact Us</h2>
-            <p>For privacy concerns, use our <a href="/contactus.html">Contact Form</a> or email:<br>
-            <a href="mailto:privacy@compresly.com">privacy@compresly.com</a></p>
+<body class="bg-gray-100 font-poppins">
+    <header class="bg-white shadow-md py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <a href="/" class="flex items-center text-xl font-semibold text-gray-800">
+                <img src="/logo.png" alt="Compresly Logo" class="mr-2 h-6">
+                Compresly
+            </a>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="/image-compressor.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Image Compressor</a></li>
+                    <li><a href="/pdf-compressor.html" class="text-gray-700 hover:text-blue-600 transition duration-300">PDF Compressor</a></li>
+                    <li><a href="/audio-compressor.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Audio Compressor</a></li>
+                    <li><a href="/video-compressor.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Video Compressor</a></li>
+                     <li><a href="/contact-us.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="md:hidden">
+                <button id="hamburger-btn" class="text-gray-700 focus:outline-none" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div id="hamburger-menu" class="hidden fixed top-0 right-0 h-screen w-64 bg-white shadow-lg z-50">
+                    <div class="p-4">
+                        <div class="flex justify-end mb-4">
+                            <button id="close-menu-btn" class="text-gray-700 focus:outline-none" aria-label="Close Menu">
+                                <i class="fas fa-times text-xl"></i>
+                            </button>
+                        </div>
+                        <nav class="block">
+                            <ul class="space-y-4">
+                                <li><a href="/image-compressor.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">Image Compressor</a></li>
+                                <li><a href="/pdf-compressor.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">PDF Compressor</a></li>
+                                <li><a href="/audio-compressor.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">Audio Compressor</a></li>
+                                <li><a href="/video-compressor.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">Video Compressor</a></li>
+                                <li><a href="/contact-us.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">Contact Us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
         </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <section class="text-center mb-12">
+            <h1 class="text-3xl font-semibold text-gray-800 mb-4">Privacy Policy</h1>
+            <p class="text-lg text-gray-600">Your privacy is important to us. This policy explains how we collect, use, and protect your personal information.</p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Information We Collect</h2>
+            <p class="text-gray-700 mb-4">
+                We collect information to provide you with a better experience when using our services. The information we collect and how we use it depends on how you use our services.
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 mb-6">
+                <li><strong>Information You Provide:</strong> We may collect information you provide directly to us, such as when you contact us through our contact form. This information may include your name, email address, and any other information you choose to provide.</li>
+                <li><strong>Usage Data:</strong> We automatically collect information about how you use our services. This may include your IP address, browser type, operating system, referring URLs, pages visited, and the dates and times of your visits.</li>
+                <li><strong>Cookies and Similar Technologies:</strong> We use cookies and similar technologies to collect information about your browsing behavior. Cookies are small text files that are stored on your device. They help us to analyze website traffic, personalize your experience, and improve our services.</li>
+            </ul>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">How We Use Your Information</h2>
+            <p class="text-gray-700 mb-4">We use the information we collect for various purposes, including:</p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 mb-6">
+                <li><strong>To Provide and Maintain Our Services:</strong> We use your information to operate our website, provide our services, and ensure that they are working correctly.</li>
+                <li><strong>To Improve Our Services:</strong> We analyze how you use our services to understand how we can improve them.</li>
+                <li><strong>To Communicate With You:</strong> We may use your information to respond to your inquiries, provide customer support, and send you updates about our services.</li>
+                <li><strong>To Personalize Your Experience:</strong> We may use cookies to personalize your experience on our website, such as remembering your preferences.</li>
+                <li><strong>For Analytics:</strong> We use aggregated and anonymized data for analytics purposes to track website traffic and usage patterns.</li>
+            </ul>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">How We Share Your Information</h2>
+            <p class="text-gray-700 mb-4">We do not share your personal information with third parties except in the following circumstances:</p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 mb-6">
+                <li><strong>Service Providers:</strong> We may share your information with third-party service providers who help us to operate our website, such as hosting providers, analytics providers, and payment processors. These service providers are contractually obligated to protect your information and only use it for the purposes for which it was disclosed.</li>
+                 <li><strong>Legal Requirements:</strong> We may disclose your information if required to do so by law, or in response to a valid legal request, such as a court order or subpoena.</li>
+                <li><strong>Business Transfers:</strong> If we are involved in a merger, acquisition, or sale of all or a portion of our assets, your information may be transferred as part of that transaction. We will notify you of any such change in ownership or control of your information.</li>
+                <li><strong>Aggregated and Anonymized Data:</strong> We may share aggregated and anonymized data with third parties for analytics or other purposes. This data does not identify you personally.</li>
+            </ul>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Data Security</h2>
+            <p class="text-gray-700 mb-4">
+                We take reasonable measures to protect your personal information from unauthorized access, use, or disclosure. These measures include:
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 mb-6">
+                <li><strong>Encryption:</strong> We use encryption to protect your information during transmission.</li>
+                <li><strong>Access Controls:</strong> We restrict access to your personal information to authorized personnel only.</li>
+                <li><strong>Regular Security Assessments:</strong> We regularly assess our security measures to ensure that they remain effective.</li>
+            </ul>
+            <p class="text-gray-700 mb-4">
+                However, please note that no method of transmission over the internet or method of electronic storage is completely secure. Therefore, we cannot guarantee the absolute security of your information.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Your Rights</h2>
+            <p class="text-gray-700 mb-4">
+                You have the following rights with respect to your personal information:
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 mb-6">
+                <li><strong>Access:</strong> You have the right to access the personal information we hold about you.</li>
+                <li><strong>Rectification:</strong> You have the right to request that we correct any inaccurate or incomplete personal information.</li>
+                <li><strong>Erasure:</strong> You have the right to request that we delete your personal information.</li>
+                <li><strong>Objection:</strong> You have the right to object to the processing of your personal information.</li>
+                <li><strong>Restriction of Processing:</strong> You have the right to request that we restrict the processing of your personal information.</li>
+                 <li><strong>Data Portability:</strong> You have the right to receive your personal information in a structured, commonly used, and machine-readable format and to transmit that data to another controller.</li>
+            </ul>
+            <p class="text-gray-700 mb-4">
+                To exercise your rights, please contact us using the contact information provided below. We will respond to your request within a reasonable timeframe.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Data Retention</h2>
+            <p class="text-gray-700">
+                We will retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Children's Privacy</h2>
+            <p class="text-gray-700">
+                Our services are not intended for children under the age of 13, and we do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe that your child has provided us with personal information, please contact us, and we will take steps to delete that information.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Changes to This Privacy Policy</h2>
+            <p class="text-gray-700">
+                We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new Privacy Policy on our website. You are advised to review this Privacy Policy periodically for any changes.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Contact Us</h2>
+            <p class="text-gray-700">
+                If you have any questions about this Privacy Policy, please contact us at:
+            </p>
+            <p class="text-gray-700 font-medium">
+                [Company Name]<br>
+                [Company Address]<br>
+                Email: [Company Email Address]<br>
+                Phone: [Company Phone Number]
+            </p>
+        </section>
     </main>
 
-    <footer>
-    <div class="container">
-        <div class="footer-content">
-            <div>
-                <div class="footer-logo">
-                    <a href="/" class="logo logo-footer">
-                        <i class="fas fa-file-code"></i>
+    <footer class="bg-gray-200 py-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center md:text-left">
+                <div class="mb-4 lg:mb-0">
+                    <a href="/" class="flex items-center text-xl font-semibold text-gray-800">
+                        <img src="/logo.png" alt="Compresly Logo" class="mr-2 h-6">
                         Compresly
                     </a>
                 </div>
-                <p class="footer-about">The simplest way to compress files online. Free, secure, and no registration required.</p>
-            </div>
-            <div class="footer-links">
-                    <h4>Tools</h4>
-                    <a href="/image-compressor.html">Image Compressor</a>
-                    <a href="/pdf-compressor.html">PDF Compressor</a>
-                    <a href="/video-compressor.html">Video Compressor</a>
-                    <a href="/audio-compressor.html">Audio Compressor</a>
+                <div class="mb-4 lg:mb-0">
+                    <h4 class="font-semibold text-gray-700 mb-2">Tools</h4>
+                    <ul class="text-gray-600">
+                        <li><a href="/image-compressor.html" class="hover:text-blue-600 transition duration-300">Image Compressor</a></li>
+                        <li><a href="/pdf-compressor.html" class="hover:text-blue-600 transition duration-300">PDF Compressor</a></li>
+                        <li><a href="/audio-compressor.html" class="hover:text-blue-600 transition duration-300">Audio Compressor</a></li>
+                        <li><a href="/video-compressor.html" class="hover:text-blue-600 transition duration-300">Video Compressor</a></li>
+                    </ul>
                 </div>
+                <div class="mb-4 lg:mb-0">
+                    <h4 class="font-semibold text-gray-700 mb-2">About Us</h4>
+                    <ul class="text-gray-600">
+                        <li><a href="/contact-us.html" class="hover:text-blue-600 transition duration-300">Contact Us</a></li>
+                        <li><a href="/privacy-policy.html" class="hover:text-blue-600 transition duration-300">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-blue-600 transition duration-300">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-700 mb-2">Connect With Us</h4>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-400 transition duration-300" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-600 transition duration-300" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-pink-500 transition duration-300" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-red-600 transition duration-300" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4 text-gray-600">
+                <p>© 2023 Compresly. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-                <div class="footer-links">
-                    <h4>Company</h4>
-                    <a href="/about-us.html">About Us</a>
-                    <a href="/contactus.html">Contact</a>
-                    <a href="/privacy-policy.html">Privacy Policy</a>
-                    <a href="/terms-of-service.html">Terms of Service</a>
-                </div>
-            <div>
-                <h4>Connect With Us</h4>
-                <div class="social-links">
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            &copy; <script>document.write(new Date().getFullYear())</script> Compresly. All rights reserved.
-        </div>
-    </div>
-</footer>
+    <script src="script.js"></script>
 </body>
 </html>
