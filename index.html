@@ -3,51 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compresly - Free Online File Compression Tool</title>
-    <meta name="description" content="Free online file compression tool. Reduce image, PDF, video, and audio file sizes while maintaining quality. Supports JPG, PNG, WebP, PDF, MP4, and MP3 formats.">
-    <meta name="keywords" content="file compressor, image compressor, PDF compressor, video compressor, audio compressor, reduce file size">
-    <meta name="author" content="Compresly">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Compresly - Free Online File Compression Tool">
-    <meta property="og:description" content="Compress your images, PDFs, videos and audio files online for free. Reduce file size without losing quality.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://compresly.vercel.app">
-    <meta property="og:image" content="https://compresly.vercel.app/images/social-preview.jpg">
-    <meta name="theme-color" content="#4361ee">
-
-    <!-- Add these to your HTML head -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.0/lame.min.js"></script>
-
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/favicon/site.webmanifest">
-
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-   
-    <link rel="stylesheet" href="styles.css">
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BP01PS3NM1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BP01PS3NM1', {
-        'anonymize_ip': true,
-        'allow_ad_personalization_signals': false
-      });
-    </script>
-    
-    <!-- Google AdSense -->
+    <title>Online Audio Compressor - Compresly</title>
+    <meta name="description" content="Compress audio files online for free. Reduce file size of MP3, WAV, AAC, and other audio formats quickly and easily.">
+    <link rel="canonical" href="https://compresly.com/audio-compressor.html">
+    <link rel="alternate" hreflang="en" href="https://compresly.com/audio-compressor.html">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8373245520045377" crossorigin="anonymous"></script>
-    
     <style>
         :root {
             --primary: #4361ee;
@@ -70,7 +37,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             color: var(--dark);
             background-color: #f5f7ff;
             min-height: 100vh;
@@ -85,7 +52,6 @@
             padding: 0 20px;
         }
 
-        /* Header */
         header {
             background-color: white;
             box-shadow: var(--box-shadow);
@@ -102,10 +68,17 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i{
+            font-size: 1.8rem;
         }
 
         nav ul {
@@ -135,7 +108,6 @@
             font-weight: 600;
         }
 
-        /* Skip link for accessibility */
         .skip-link {
             position: absolute;
             top: -40px;
@@ -151,441 +123,375 @@
             top: 0;
         }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 5rem 0 3rem;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .hero .subtitle {
-            font-size: 1.1rem;
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto 3rem;
-        }
-
-        /* Tool Cards */
-        .tool-selector {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
-
-        .tool-card {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 2rem 1.5rem;
-            text-align: center;
-            box-shadow: var(--box-shadow);
-            transition: var(--transition);
-            border: 1px solid var(--light);
-            color: var(--dark);
-            text-decoration: none;
-            display: block;
-        }
-
-        .tool-card:hover,
-        .tool-card:focus {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-            border-color: var(--primary);
-            outline: none;
-        }
-
-        .tool-card i {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            background: rgba(67, 97, 238, 0.1);
-            width: 80px;
-            height: 80px;
-            line-height: 80px;
-            border-radius: 50%;
-            display: inline-block;
-            transition: var(--transition);
-        }
-
-        .tool-card:hover i,
-        .tool-card:focus i {
-            background: rgba(67, 97, 238, 0.2);
-        }
-
-        .tool-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .tool-card p {
-            color: var(--gray);
-            font-size: 0.95rem;
-        }
-
-        /* How It Works Section */
-        .info-section {
-            padding: 4rem 0;
-        }
-
-        .info-section h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .section-description {
-            text-align: center;
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            font-size: 1.1rem;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .step {
-            background: white;
-            padding: 2.5rem 2rem 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .step:hover {
-            transform: translateY(-5px);
-        }
-
-        .step-number {
-            position: absolute;
-            top: -1.5rem;
-            left: 1.5rem;
-            background: var(--primary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 8px rgba(67, 97, 238, 0.3);
-        }
-
-        .step h3 {
-            margin-top: 0.5rem;
-            color: var(--dark);
-            font-size: 1.3rem;
-        }
-
-        .step p {
-            color: var(--gray);
-            margin-top: 0.5rem;
-        }
-
-        /* FAQ Section */
-        .faq-container {
-            max-width: 800px;
-            margin: 3rem auto;
-        }
-
-        .faq-item {
-            background: white;
-            margin-bottom: 1rem;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--box-shadow);
-        }
-
-        .faq-question {
-            padding: 1.25rem;
-            background: white;
-            cursor: pointer;
-            position: relative;
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .faq-question:after {
-            content: '+';
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        .faq-item.active .faq-question:after {
-            content: '-';
-        }
-
-        .faq-answer {
-            padding: 0 1.25rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .faq-item.active .faq-answer {
-            padding: 0 1.25rem 1.25rem;
-            max-height: 500px;
-        }
-
-        .faq-answer p {
-            margin-bottom: 1rem;
-            color: var(--gray);
-        }
-
-        .faq-answer ul {
-            margin-left: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        .faq-answer li {
-            margin-bottom: 0.5rem;
-            color: var(--gray);
-        }
-
-        .format-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .format-grid h4 {
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Testimonials */
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 2.5rem 2rem 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            position: relative;
-        }
-
-        .testimonial-card:before {
-            content: '"';
-            font-size: 5rem;
-            position: absolute;
-            top: 0.5rem;
-            left: 1rem;
-            color: rgba(67, 97, 238, 0.1);
-            font-family: serif;
-            line-height: 1;
-            z-index: 0;
-        }
-
-        .quote {
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 1;
-            color: var(--dark);
-        }
-
-        .author {
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.05) 0%, rgba(73, 157, 255, 0.05) 100%);
-            margin: 4rem 0;
-            border-radius: var(--border-radius);
-        }
-
-        .cta-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta-section p {
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            font-size: 1.1rem;
-        }
-
-        /* External Tools Section */
-        .external-tools {
-            background: white;
-            padding: 2.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            margin: 4rem 0;
-        }
-
-        .external-tools h3 {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--dark);
-        }
-
-        .tool-tiles {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .tool-tile {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: var(--box-shadow);
-            transition: var(--transition);
-            border: 1px solid var(--light);
-            color: var(--dark);
-            text-decoration: none;
+        main {
+            flex: 1;
+            padding: 2rem 0;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .tool-tile:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-            border-color: var(--primary);
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 2rem;
+            text-align: center;
         }
 
-        .tool-tile i.fas {
-            font-size: 2rem;
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 500px;
+            padding: 2rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .upload-container p{
+            color: var(--gray);
             margin-bottom: 1rem;
-            color: var(--primary);
-            background: rgba(67, 97, 238, 0.1);
-            width: 60px;
-            height: 60px;
-            line-height: 60px;
-            border-radius: 50%;
+        }
+
+        .upload-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            cursor: pointer;
             transition: var(--transition);
-        }
-
-        .tool-tile:hover i.fas {
-            background: rgba(67, 97, 238, 0.2);
-        }
-
-        .tool-tile h4 {
+            border: none;
             font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+        }
+
+        .upload-btn:hover,
+        .upload-btn:focus {
+            background-color: var(--secondary);
+            outline: none;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        #file-name {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: var(--gray);
+            word-wrap: break-word;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .compression-options {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 500px;
+            padding: 2rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+        }
+
+        .options-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .options-header h2{
+            font-size: 1.5rem;
             color: var(--dark);
         }
 
-        .tool-tile p {
+        .options-header p{
             color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            flex-grow: 1;
         }
 
-        .tool-tile .external-link {
-            font-size: 0.9rem;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: auto;
+        .quality-setting {
+            margin-bottom: 1.5rem;
         }
 
-        .tool-tile .external-link i {
-            margin-left: 0.3rem;
-            font-size: 0.8rem;
+        .quality-setting label {
+            display: block;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
         }
 
-        /* Ad Container */
-        .ad-container {
-            background: white;
-            padding: 1.25rem;
-            border-radius: var(--border-radius);
-            margin: 3rem 0;
+        .quality-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 5px;
+            background: #E8EAED;
+            outline: none;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .quality-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+        }
+
+        .quality-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+        }
+
+        .quality-slider:focus::-webkit-slider-thumb {
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.3);
+        }
+
+        .quality-slider:focus::-moz-range-thumb {
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.3);
+        }
+
+        .quality-value {
+            font-size: 1rem;
+            color: var(--dark);
+            margin-top: 0.5rem;
             text-align: center;
-            box-shadow: var(--box-shadow);
-            min-height: 100px;
+        }
+
+        .advanced-options {
+            margin-bottom: 1.5rem;
+        }
+
+        .advanced-options-header {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            cursor: pointer;
         }
 
-        .ad-label {
-            font-size: 0.8rem;
+        .advanced-options-header h3 {
+            font-size: 1.1rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .advanced-options-header i {
+            font-size: 1.2rem;
             color: var(--gray);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            transition: var(--transition);
         }
 
-        /* Footer */
-        footer {
-            background-color: var(--dark);
+        .advanced-options-header.collapsed i {
+            transform: rotate(180deg);
+        }
+
+        .advanced-options-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+        }
+
+        .advanced-options-content.expanded {
+            max-height: 500px;
+            padding-bottom: 1.5rem;
+        }
+
+        .format-select {
+            margin-bottom: 1rem;
+        }
+
+        .format-select label {
+            display: block;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .format-select select {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            border: 1px solid #E8EAED;
+            font-size: 1rem;
+            color: var(--dark);
+            transition: var(--transition);
+            outline: none;
+            background-color: white;
+        }
+
+        .format-select select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+
+        .settings-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .settings-group label {
+            display: block;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .settings-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            border: 1px solid #E8EAED;
+            font-size: 1rem;
+            color: var(--dark);
+            transition: var(--transition);
+            outline: none;
+            background-color: white;
+        }
+
+        .settings-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+
+        .compress-btn {
+            background-color: var(--success);
             color: white;
-            padding: 4rem 0 1.5rem;
-            margin-top: auto;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .compress-btn:hover,
+        .compress-btn:focus {
+            background-color: #34c759;
+            outline: none;
+        }
+
+        #compression-results {
+            margin-top: 2rem;
+            text-align: center;
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            width: 100%;
+            max-width: 500px;
+            display: none;
+        }
+
+        #compression-results p {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        #download-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            text-align: center;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        #download-btn:hover,
+        #download-btn:focus {
+            background-color: var(--secondary);
+            outline: none;
+        }
+
+        #file-size-info {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             margin-bottom: 1rem;
+            color: white; /* Added here */
         }
 
-        .footer-logo .logo {
-            color: white;
+        .footer-logo i {
+            font-size: 1.8rem;
         }
 
         .footer-about {
             color: #BDC1C6;
-            margin-bottom: 1rem;
-            max-width: 300px;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
 
         .footer-links h4 {
-            margin-bottom: 1rem;
-            color: white;
             font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
 
         .footer-links a {
+            display: block;
             color: #BDC1C6;
             text-decoration: none;
             margin-bottom: 0.75rem;
             transition: var(--transition);
+            font-size: 0.9rem;
         }
 
         .footer-links a:hover {
@@ -610,13 +516,12 @@
 
         .copyright {
             text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #BDC1C6;
+            padding-top: 1.5rem;
+            border-top: 1px solid #495057;
             font-size: 0.9rem;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -627,312 +532,200 @@
                 gap: 1rem;
             }
 
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1rem;
-            }
-
-            .tool-selector {
-                grid-template-columns: 1fr;
-            }
-
-            .external-tools {
+            .upload-container,
+            .compression-options,
+            #compression-results {
                 padding: 1.5rem;
+            }
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            max-width: 90%;
+        }
+
+        .popup-content h2 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .popup-content p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .popup-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .popup-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 1.1rem;
+        }
+
+        .popup-btn.confirm {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .popup-btn.confirm:hover,
+        .popup-btn.confirm:focus {
+            background-color: #34c759;
+            outline: none;
+        }
+
+        .popup-btn.cancel {
+            background-color: #e0e0e0;
+            color: var(--dark);
+        }
+
+        .popup-btn.cancel:hover,
+        .popup-btn.cancel:focus {
+            background-color: #d0d0d0;
+            outline: none;
+        }
+
+        @media (max-width: 768px) {
+            .popup-content {
+                padding: 1.5rem;
+            }
+
+            .popup-buttons {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    
     <header>
-  <div class="container header-content">
-    <a href="/" class="logo">
-      <i class="fas fa-file-code"></i>
-      Compresly
-    </a>
-    <div id="desktop-nav">  <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/image-compressor.html">Image Compressor</a></li>
-        <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
-        <li><a href="/video-compressor.html">Video Compressor</a></li>
-        <li><a href="/audio-compressor.html">Audio Compressor</a></li>
-      </ul>
-    </div>
-    <button id="hamburger-button" class="hamburger-btn">
-  <i class="fas fa-bars"></i>
-</button>
-    <nav id="mobile-nav" class="mobile-nav">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/image-compressor.html">Image Compressor</a></li>
-        <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
-        <li><a href="/video-compressor.html">Video Compressor</a></li>
-        <li><a href="/audio-compressor.html">Audio Compressor</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+        <div class="container header-content">
+            <a href="/" class="logo"><i class="fas fa-compress-alt"></i>Compresly</a>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/image-compressor.html">Image Compressor</a></li>
+                    <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
+                    <li><a href="/video-compressor.html">Video Compressor</a></li>
+                    <li><a href="/audio-compressor.html" class="active">Audio Compressor</a></li>
+                    <li><a href="/about-us.html">About Us</a></li>
+                    <li><a href="/contactus.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    
-    <main id="main-content" class="main">
+    <main id="main-content">
         <div class="container">
-            <section class="hero">
-                <h1>Optimize Your Files in Seconds</h1>
-                <p class="subtitle">Reduce file sizes without quality loss - perfect for websites, emails, and storage optimization</p>
-                
-                <div class="tool-selector">
-                    <a href="/image-compressor.html" class="tool-card" aria-label="Image Compressor">
-                        <i class="fas fa-image"></i>
-                        <h3>Image Compressor</h3>
-                        <p>Reduce JPG, PNG, WebP sizes by up to 80% while preserving quality</p>
-                    </a>
-                    
-                    <a href="/pdf-compressor.html" class="tool-card" aria-label="PDF Compressor">
-                        <i class="fas fa-file-pdf"></i>
-                        <h3>PDF Compressor</h3>
-                        <p>Shrink PDF documents without losing text clarity or image quality</p>
-                    </a>
-                    
-                    <a href="/video-compressor.html" class="tool-card" aria-label="Video Compressor">
-                        <i class="fas fa-video"></i>
-                        <h3>Video Compressor</h3>
-                        <p>Compress MP4, MOV videos while maintaining good resolution</p>
-                    </a>
-                    
-                    <a href="/audio-compressor.html" class="tool-card" aria-label="Audio Compressor">
-                        <i class="fas fa-music"></i>
-                        <h3>Audio Compressor</h3>
-                        <p>Reduce MP3, WAV file sizes for faster sharing and streaming</p>
-                    </a>
-                </div>
-            </section>
+            <h1 class="section-title">Online Audio Compressor</h1>
+            <p>Compress audio files online for free. Reduce file size of MP3, WAV, AAC, and other audio formats quickly and easily.</p>
 
-            <div class="ad-container" aria-label="Advertisement">
-                <div class="ad-label">Advertisement</div>
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-8373245520045377"
-                     data-ad-slot="2930075773"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+            <div class="upload-container">
+                <p>Select an audio file to compress:</p>
+                <button class="upload-btn" id="upload-button">
+                    <i class="fas fa-upload"></i> Choose File
+                </button>
+                <input type="file" id="file-input" accept="audio/*">
+                <p id="file-name"></p>
             </div>
 
-            <section id="how-it-works" class="info-section" aria-labelledby="how-it-works-heading">
-                <h2 id="how-it-works-heading">How Compresly Works</h2>
-                <p class="section-description">Our 3-step process makes file optimization simple and secure</p>
-                
-                <div class="steps">
-                    <article class="step">
-                        <div class="step-number">1</div>
-                        <h3>Select Your Tool</h3>
-                        <p>Choose the appropriate compressor for your file type. We support images (JPG, PNG, WebP), PDF documents, videos (MP4, MOV), and audio files (MP3, WAV). Each tool is specially optimized for that file type.</p>
-                    </article>
-                    
-                    <article class="step">
-                        <div class="step-number">2</div>
-                        <h3>Upload & Adjust</h3>
-                        <p>Drag and drop your file or click to browse. Use our intuitive controls to set your preferred compression level. See real-time estimates of the output file size before processing.</p>
-                    </article>
-                    
-                    <article class="step">
-                        <div class="step-number">3</div>
-                        <h3>Download & Use</h3>
-                        <p>Get your optimized file instantly. Typical reductions of 50-80% without noticeable quality loss. All processing happens in your browser - your files never leave your device.</p>
-                    </article>
+            <div class="compression-options">
+                <div class="options-header">
+                    <h2>Compression Options</h2>
+                    <p>Adjust the settings below to customize the compression process.</p>
                 </div>
-            </section>
-            
-            <section id="faq" class="info-section" aria-labelledby="faq-heading">
-                <h2 id="faq-heading">Frequently Asked Questions</h2>
-                <p class="section-description">Everything you need to know about Compresly</p>
-                
-                <div class="faq-container">
-                    <article class="faq-item">
-                        <h3 class="faq-question" id="faq1-question" tabindex="0" aria-expanded="false" aria-controls="faq1-answer">Is my data private and secure?</h3>
-                        <div id="faq1-answer" class="faq-answer" aria-labelledby="faq1-question" hidden>
-                            <p>Absolutely! Unlike many online tools, Compresly processes all files directly in your web browser. This means:</p>
-                            <ul>
-                                <li>Your files never upload to any server</li>
-                                <li>No one else can access your documents</li>
-                                <li>Files are automatically deleted after processing</li>
-                                <li>We use industry-standard encryption for all transfers</li>
-                            </ul>
-                        </div>
-                    </article>
-                    
-                    <article class="faq-item">
-                        <h3 class="faq-question" id="faq2-question" tabindex="0" aria-expanded="false" aria-controls="faq2-answer">What file types and sizes can I compress?</h3>
-                        <div id="faq2-answer" class="faq-answer" aria-labelledby="faq2-question" hidden>
-                            <p>We support a wide range of formats with generous size limits:</p>
-                            <div class="format-grid">
-                                <div>
-                                    <h4>Images:</h4>
-                                    <p>JPG, PNG, WebP (up to 15MB)</p>
-                                </div>
-                                <div>
-                                    <h4>Documents:</h4>
-                                    <p>PDF (up to 30MB)</p>
-                                </div>
-                                <div>
-                                    <h4>Videos:</h4>
-                                    <p>MP4, MOV (up to 100MB)</p>
-                                </div>
-                                <div>
-                                    <h4>Audio:</h4>
-                                    <p>MP3, WAV (up to 50MB)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    
-                    <article class="faq-item">
-                        <h3 class="faq-question" id="faq3-question" tabindex="0" aria-expanded="false" aria-controls="faq3-answer">Will compression reduce my file quality?</h3>
-                        <div id="faq3-answer" class="faq-answer" aria-labelledby="faq3-question" hidden>
-                            <p>Our smart algorithms minimize quality loss while maximizing size reduction:</p>
-                            <ul>
-                                <li>Images: Adjustable quality settings let you balance size vs quality</li>
-                                <li>PDFs: Text remains sharp while optimizing embedded images</li>
-                                <li>Videos: Preserves resolution while reducing bitrate</li>
-                                <li>Audio: Maintains clarity while optimizing file size</li>
-                            </ul>
-                        </div>
-                    </article>
-                    
-                    <article class="faq-item">
-                        <h3 class="faq-question" id="faq4-question" tabindex="0" aria-expanded="false" aria-controls="faq4-answer">How is this service free?</h3>
-                        <div id="faq4-answer" class="faq-answer" aria-labelledby="faq4-question" hidden>
-                            <p>Compresly is supported by non-intrusive advertisements. You can help us by:</p>
-                            <ul>
-                                <li>Whitelisting us in your ad blocker</li>
-                                <li>Sharing our tool with others</li>
-                                <li><a href="/contactus.html">Donating</a> to support development</li>
-                            </ul>
-                            <p>We never charge for basic compression features.</p>
-                        </div>
-                    </article>
-                    
-                    <article class="faq-item">
-                        <h3 class="faq-question" id="faq5-question" tabindex="0" aria-expanded="false" aria-controls="faq5-answer">Do you store my files after compression?</h3>
-                        <div id="faq5-answer" class="faq-answer" aria-labelledby="faq5-question" hidden>
-                            <p>No. Compresly was designed with privacy in mind:</p>
-                            <ul>
-                                <li>All processing happens in your browser</li>
-                                <li>Files are deleted immediately after processing</li>
-                                <li>We don't have access to your original or compressed files</li>
-                                <li>No account registration required</li>
-                            </ul>
-                        </div>
-                    </article>
+                <div class="quality-setting">
+                    <label for="quality-slider">Quality</label>
+                    <input type="range" min="0" max="100" value="50" class="quality-slider" id="quality-slider">
+                    <p class="quality-value">Medium (50)</p>
                 </div>
-            </section>
 
-            <section class="testimonials" aria-labelledby="testimonials-heading">
-                <h2 id="testimonials-heading">Trusted by Thousands of Users</h2>
-                <p class="section-description">Here's what our community says about Compresly</p>
-                
-                <div class="testimonial-grid">
-                    <blockquote class="testimonial-card">
-                        <div class="quote">"As a photographer, I need to send high-quality images to clients without huge file sizes. Compresly reduced my portfolio images by 75% with no visible difference. It's now my go-to tool."</div>
-                        <footer class="author">- Sarah K., Professional Photographer</footer>
-                    </blockquote>
-                    
-                    <blockquote class="testimonial-card">
-                        <div class="quote">"The PDF compressor saved my thesis submission! I was over the size limit and Compresly reduced it perfectly without affecting any of my charts or images."</div>
-                        <footer class="author">- Michael T., Graduate Student</footer>
-                    </blockquote>
-                    
-                    <blockquote class="testimonial-card">
-                        <div class="quote">"I run a small business and need to send product videos via email. Before Compresly, this was impossible. Now I can compress 2-minute videos to under 10MB!"</div>
-                        <footer class="author">- Raj P., E-commerce Owner</footer>
-                    </blockquote>
+                <div class="advanced-options">
+                    <div class="advanced-options-header" id="advanced-options-header">
+                        <h3>Advanced Options</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="advanced-options-content" id="advanced-options-content">
+                        <div class="format-select">
+                            <label for="format-select">Output Format</label>
+                            <select id="format-select">
+                                <option value="mp3">MP3</option>
+                                <option value="wav">WAV</option>
+                                <option value="aac">AAC</option>
+                                <option value="ogg">OGG</option>
+                            </select>
+                        </div>
+                        <div class="settings-group">
+                            <label for="bitrate-input">Bitrate (kbps)</label>
+                            <input type="number" id="bitrate-input" value="128" placeholder="128">
+                        </div>
+                        <div class="settings-group">
+                            <label for="channels-input">Channels (1 for Mono, 2 for Stereo)</label>
+                            <input type="number" id="channels-input" value="2" min="1" max="2" placeholder="2">
+                        </div>
+                    </div>
                 </div>
-            </section>
-            
-            <div class="ad-container" aria-label="Advertisement">
-                <div class="ad-label">Advertisement</div>
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-8373245520045377"
-                     data-ad-slot="2930075773"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+
+                <button class="compress-btn" id="compress-button" disabled>Compress Audio</button>
             </div>
-            
-            <section class="cta-section" aria-labelledby="cta-heading">
-                <h2 id="cta-heading">Ready to Optimize Your Files?</h2>
-                <p>Join thousands of users who save time and space with Compresly</p>
-                <div class="tool-selector">
-                    <a href="/image-compressor.html" class="tool-card" aria-label="Compress Images">
-                        <i class="fas fa-image"></i>
-                        <h3>Compress Images</h3>
-                    </a>
-                    <a href="/pdf-compressor.html" class="tool-card" aria-label="Shrink PDFs">
-                        <i class="fas fa-file-pdf"></i>
-                        <h3>Shrink PDFs</h3>
-                    </a>
-                    <a href="/video-compressor.html" class="tool-card" aria-label="Reduce Videos">
-                        <i class="fas fa-video"></i>
-                        <h3>Reduce Videos</h3>
-                    </a>
-                    <a href="/audio-compressor.html" class="tool-card" aria-label="Optimize Audio">
-                        <i class="fas fa-music"></i>
-                        <h3>Optimize Audio</h3>
-                    </a>
-                </div>
-            </section>
 
-            <section class="external-tools" aria-labelledby="external-tools-heading">
-                <h3 id="external-tools-heading">More Helpful Online Tools</h3>
-                <div class="tool-tiles">
-                    <a href="https://tinypng.com/" target="_blank" rel="noopener noreferrer" class="tool-tile" aria-label="TinyPNG">
-                        <i class="fas fa-image"></i>
-                        <h4>TinyPNG</h4>
-                        <p>Smart PNG and JPEG compression with excellent quality preservation</p>
-                        <span class="external-link">Visit Tool <i class="fas fa-external-link-alt"></i></span>
-                    </a>
-                    
-                    <a href="https://squoosh.app/" target="_blank" rel="noopener noreferrer" class="tool-tile" aria-label="Squoosh">
-                        <i class="fas fa-compress-alt"></i>
-                        <h4>Squoosh</h4>
-                        <p>Advanced image optimization tool developed by Google</p>
-                        <span class="external-link">Visit Tool <i class="fas fa-external-link-alt"></i></span>
-                    </a>
-                    
-                    <a href="https://www.ilovepdf.com/" target="_blank" rel="noopener noreferrer" class="tool-tile" aria-label="iLovePDF">
-                        <i class="fas fa-file-pdf"></i>
-                        <h4>iLovePDF</h4>
-                        <p>Comprehensive PDF tools for all your document needs</p>
-                        <span class="external-link">Visit Tool <i class="fas fa-external-link-alt"></i></span>
-                    </a>
-                    
-                    <a href="https://www.youcompress.com/" target="_blank" rel="noopener noreferrer" class="tool-tile" aria-label="YouCompress">
-                        <i class="fas fa-file-video"></i>
-                        <h4>YouCompress</h4>
-                        <p>Simple video compression tool for various formats</p>
-                        <span class="external-link">Visit Tool <i class="fas fa-external-link-alt"></i></span>
-                    </a>
+            <div id="compression-results"  >
+                <p>Compression complete! Your compressed audio file is ready for download.</p>
+                <p id="file-size-info"></p>
+                <button id="download-btn"  >Download Audio</button>
+            </div>
+
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <h2 id="popup-title">Are you sure?</h2>
+                    <p id="popup-text">You have not selected a file. Please choose an audio file to compress.</p>
+                    <div class="popup-buttons">
+                        <button id="popup-confirm" class="popup-btn confirm">OK</button>
+                    </div>
                 </div>
-            </section>
+            </div>
         </div>
     </main>
-    
+
     <footer>
-    <div class="container">
-        <div class="footer-content">
-            <div>
-                <div class="footer-logo">
-                    <a href="/" class="logo logo-footer">
-                        <i class="fas fa-file-code"></i>
-                        Compresly
-                    </a>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">
+                        <a href="/" class="logo"><i class="fas fa-compress-alt"></i>Compresly</a>
+                    </div>
+                    <p class="footer-about">The simplest way to compress files online. Free, secure, and no registration required.</p>
                 </div>
-                <p class="footer-about">The simplest way to compress files online. Free, secure, and no registration required.</p>
-            </div>
-            <div class="footer-links">
+
+                <div class="footer-links">
                     <h4>Tools</h4>
                     <a href="/image-compressor.html">Image Compressor</a>
                     <a href="/pdf-compressor.html">PDF Compressor</a>
@@ -947,69 +740,23 @@
                     <a href="/privacy-policy.html">Privacy Policy</a>
                     <a href="/terms-of-service.html">Terms of Service</a>
                 </div>
-            <div>
-                <h4>Connect With Us</h4>
-                <div class="social-links">
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+
+                <div>
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    </div>
                 </div>
             </div>
+
+            <div class="copyright">
+                &copy; <script>document.write(new Date().getFullYear())</script> Compresly. All rights reserved.
+            </div>
         </div>
-        <div class="copyright">
-            &copy; <script>document.write(new Date().getFullYear())</script> Compresly. All rights reserved.
-        </div>
-    </div>
-</footer>
-
-    <script>
-        // Enhanced FAQ accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', toggleFAQ);
-            question.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggleFAQ(e);
-                }
-            });
-        });
-
-        function toggleFAQ(e) {
-            const question = e.currentTarget;
-            const answer = document.getElementById(question.getAttribute('aria-controls'));
-            const isExpanded = question.getAttribute('aria-expanded') === 'true';
-            
-            // Toggle current item
-            question.setAttribute('aria-expanded', !isExpanded);
-            answer.hidden = isExpanded;
-            
-            // Close other items if this is being opened
-            if (!isExpanded) {
-                document.querySelectorAll('.faq-question').forEach(q => {
-                    if (q !== question && q.getAttribute('aria-expanded') === 'true') {
-                        q.setAttribute('aria-expanded', 'false');
-                        document.getElementById(q.getAttribute('aria-controls')).hidden = true;
-                    }
-                });
-            }
-        }
-
-        // Lazy load ads
-        document.addEventListener('DOMContentLoaded', () => {
-            const adContainers = document.querySelectorAll('.ad-container ins');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            adContainers.forEach(ad => observer.observe(ad));
-        });
-    </script>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
