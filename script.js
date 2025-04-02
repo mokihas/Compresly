@@ -44,9 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let originalFile;
 
   // Update quality value display
-  qualitySlider.addEventListener('input', () => {
-    qualityValue.textContent = qualitySlider.value;
-  });
+  const qualitySlider = document.getElementById('qualitySlider'); // Get the element
+const qualityValue = document.getElementById('qualityValue');
+
+if (qualitySlider) { // Check if the element exists
+    qualitySlider.addEventListener('input', () => { // *Only* add the listener if it exists
+        qualityValue.textContent = qualitySlider.value;
+    });
+}
 
   // Handle file drop
   dropArea.addEventListener('dragover', (e) => {
