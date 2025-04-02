@@ -4,470 +4,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Compresly</title>
-    <!-- Favicon Config -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/favicon/site.webmanifest">
-    <meta name="theme-color" content="#ffffff">
-    
-    <!-- Fonts -->
+    <meta name="description" content="Contact Compresly for any inquiries, support, or feedback.  Reach out to us and we'll get back to you as soon as possible.">
+    <link rel="canonical" href="https://compresly.vercel.app/contact-us.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-   <link rel="stylesheet" href="styles.css">
-    
-    <style>
-        :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4895ef;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-            --success: #4cc9f0;
-            --border-radius: 12px;
-            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: #f5f7ff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background-color: white;
-            box-shadow: var(--box-shadow);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
-
-        nav a {
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        nav a.active {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        main {
-            flex: 1;
-            padding: 2rem 0;
-        }
-
-        /* Contact Page Specific Styles */
-        .contact-container {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 2.5rem;
-            margin: 0 auto;
-            max-width: 600px;
-        }
-
-        .contact-container h1 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--dark);
-        }
-
-        input, textarea, select {
-            width: 100%;
-            padding: 0.875rem 1rem;
-            border: 1px solid #E8EAED;
-            border-radius: var(--border-radius);
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
-        }
-
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .btn {
-            display: inline-block;
-            width: 100%;
-            padding: 0.875rem 1rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            border-radius: var(--border-radius);
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--secondary);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .btn-primary:disabled {
-            background: #E8EAED;
-            color: #5F6368;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .contact-info {
-            text-align: center;
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: #f8f9fa;
-            border-radius: var(--border-radius);
-        }
-
-        .contact-info p {
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-info a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-
-        .success-message {
-            display: none;
-            background: #34A853;
-            color: white;
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 3rem 0 1.5rem;
-            margin-top: auto;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-logo {
-            margin-bottom: 1rem;
-        }
-
-        .footer-logo .logo {
-            color: white;
-        }
-
-        .footer-about {
-            color: #BDC1C6;
-            margin-bottom: 1rem;
-            max-width: 300px;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer-links h4 {
-            margin-bottom: 1rem;
-            color: white;
-            font-size: 1.1rem;
-        }
-
-        .footer-links a {
-            color: #BDC1C6;
-            text-decoration: none;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--accent);
-        }
-
-        .copyright {
-            text-align: center;
-            color: #BDC1C6;
-            padding-top: 1.5rem;
-            border-top: 1px solid #495057;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            nav ul {
-                gap: 1rem;
-            }
-            
-            .contact-container {
-                padding: 1.5rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Google Analytics
+        // Paste your Google Analytics code here
+    </script>
+    <script>
+        // Google Tag Manager
+        // Paste your Google Tag Manager code here
+    </script>
 </head>
-<body>
-    <header>
-  <div class="container header-content">
-    <a href="/" class="logo">
-      <i class="fas fa-file-code"></i>
-      Compresly
-    </a>
-    <div id="desktop-nav">  <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/image-compressor.html">Image Compressor</a></li>
-        <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
-        <li><a href="/video-compressor.html">Video Compressor</a></li>
-        <li><a href="/audio-compressor.html">Audio Compressor</a></li>
-      </ul>
-    </div>
-    <button id="hamburger-button" class="hamburger-btn">
-  <i class="fas fa-bars"></i>
-</button>
-    <nav id="mobile-nav" class="mobile-nav">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/image-compressor.html">Image Compressor</a></li>
-        <li><a href="/pdf-compressor.html">PDF Compressor</a></li>
-        <li><a href="/video-compressor.html">Video Compressor</a></li>
-        <li><a href="/audio-compressor.html">Audio Compressor</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-
-    <main class="container">
-        <div class="contact-container">
-            <h1>Contact Our Team</h1>
-            
-            <div id="successMessage" class="success-message">
-                <i class="fas fa-check-circle"></i> Thank you! We'll respond within 48 hours.
-            </div>
-            
-            <form id="contactForm">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="from_name" required>
+<body class="bg-gray-100 font-poppins">
+    <header class="bg-white shadow-md py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <a href="/" class="flex items-center text-xl font-semibold text-gray-800">
+                <img src="/logo.png" alt="Compresly Logo" class="mr-2 h-6">
+                Compresly
+            </a>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="/image-compressor.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Image Compressor</a></li>
+                    <li><a href="/pdf-compressor.html" class="text-gray-700 hover:text-blue-600 transition duration-300">PDF Compressor</a></li>
+                    <li><a href="/audio-compressor.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Audio Compressor</a></li>
+                    <li><a href="/video-compressor.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Video Compressor</a></li>
+                    <li><a href="/contact-us.html" class="text-gray-700 hover:text-blue-600 transition duration-300">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="md:hidden">
+                <button id="hamburger-btn" class="text-gray-700 focus:outline-none" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div id="hamburger-menu" class="hidden fixed top-0 right-0 h-screen w-64 bg-white shadow-lg z-50">
+                    <div class="p-4">
+                        <div class="flex justify-end mb-4">
+                            <button id="close-menu-btn" class="text-gray-700 focus:outline-none" aria-label="Close Menu">
+                                <i class="fas fa-times text-xl"></i>
+                            </button>
+                        </div>
+                        <nav class="block">
+                            <ul class="space-y-4">
+                                <li><a href="/image-compressor.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">Image Compressor</a></li>
+                                <li><a href="/pdf-compressor.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">PDF Compressor</a></li>
+                                <li><a href="/audio-compressor.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">Audio Compressor</a></li>
+                                <li><a href="/video-compressor.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">Video Compressor</a></li>
+                                <li><a href="/contact-us.html" class="block text-gray-700 hover:text-blue-600 transition duration-300 py-2">Contact Us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="from_email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <select id="subject" name="subject">
-                        <option value="General Inquiry">General Inquiry</option>
-                        <option value="Support Request">Support Request</option>
-                        <option value="Feature Suggestion">Feature Suggestion</option>
-                        <option value="Business Inquiry">Business Inquiry</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                
-                <button type="submit" id="submitBtn" class="btn btn-primary">Send Message</button>
-            </form>
-
-            <div class="contact-info">
-                <p><i class="fas fa-envelope"></i> Prefer email? Contact us at:</p>
-                <p><a href="mailto:support@compresly.com">support@compresly.com</a></p>
-                <p class="response-time"><i class="fas fa-clock"></i> Typical response time: 24-48 hours</p>
             </div>
         </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <section class="text-center mb-12">
+            <h1 class="text-3xl font-semibold text-gray-800 mb-4">Contact Us</h1>
+            <p class="text-lg text-gray-600">We'd love to hear from you!  Please use the form below to send us your inquiries, feedback, or support requests.</p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-8 mb-12">
+            <form id="contact-form" class="space-y-6">
+                <div>
+                    <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                    <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Your Name" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                    <input type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Your Email" required>
+                </div>
+                <div>
+                    <label for="subject" class="block text-gray-700 text-sm font-bold mb-2">Subject:</label>
+                    <input type="text" id="subject" name="subject" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Subject" required>
+                </div>
+                <div>
+                    <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Message:</label>
+                    <textarea id="message" name="message" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32 resize-y" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline w-full">Send Message</button>
+            </form>
+            <div id="form-message" class="mt-6 text-center font-semibold hidden">
+                <p id="form-message-text" class="text-green-500"></p>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Contact Information</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-semibold text-gray-700 mb-2">Email:</h3>
+                    <p class="text-gray-600">support@compresly.com</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-700 mb-2">Address:</h3>
+                    <p class="text-gray-600">
+                        123 Compresly Avenue<br>
+                        Tech City, State 12345<br>
+                        Country
+                    </p>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer>
-    <div class="container">
-        <div class="footer-content">
-            <div>
-                <div class="footer-logo">
-                    <a href="/" class="logo logo-footer">
-                        <i class="fas fa-file-code"></i>
+    <footer class="bg-gray-200 py-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center md:text-left">
+                <div class="mb-4 lg:mb-0">
+                    <a href="/" class="flex items-center text-xl font-semibold text-gray-800">
+                        <img src="/logo.png" alt="Compresly Logo" class="mr-2 h-6">
                         Compresly
                     </a>
                 </div>
-                <p class="footer-about">The simplest way to compress files online. Free, secure, and no registration required.</p>
+                <div class="mb-4 lg:mb-0">
+                    <h4 class="font-semibold text-gray-700 mb-2">Tools</h4>
+                    <ul class="text-gray-600">
+                        <li><a href="/image-compressor.html" class="hover:text-blue-600 transition duration-300">Image Compressor</a></li>
+                        <li><a href="/pdf-compressor.html" class="hover:text-blue-600 transition duration-300">PDF Compressor</a></li>
+                        <li><a href="/audio-compressor.html" class="hover:text-blue-600 transition duration-300">Audio Compressor</a></li>
+                        <li><a href="/video-compressor.html" class="hover:text-blue-600 transition duration-300">Video Compressor</a></li>
+                    </ul>
+                </div>
+                <div class="mb-4 lg:mb-0">
+                    <h4 class="font-semibold text-gray-700 mb-2">About Us</h4>
+                    <ul class="text-gray-600">
+                         <li><a href="/contact-us.html" class="hover:text-blue-600 transition duration-300">Contact Us</a></li>
+                        <li><a href="/privacy-policy.html" class="hover:text-blue-600 transition duration-300">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-blue-600 transition duration-300">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-700 mb-2">Connect With Us</h4>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-400 transition duration-300" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-600 transition duration-300" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-pink-500 transition duration-300" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-red-600 transition duration-300" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="footer-links">
-                    <h4>Tools</h4>
-                    <a href="/image-compressor.html">Image Compressor</a>
-                    <a href="/pdf-compressor.html">PDF Compressor</a>
-                    <a href="/video-compressor.html">Video Compressor</a>
-                    <a href="/audio-compressor.html">Audio Compressor</a>
-                </div>
-
-                <div class="footer-links">
-                    <h4>Company</h4>
-                    <a href="/about-us.html">About Us</a>
-                    <a href="/contactus.html">Contact</a>
-                    <a href="/privacy-policy.html">Privacy Policy</a>
-                    <a href="/terms-of-service.html">Terms of Service</a>
-                </div>
-            <div>
-                <h4>Connect With Us</h4>
-                <div class="social-links">
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                </div>
+            <div class="text-center mt-4 text-gray-600">
+                <p>© 2023 Compresly. All rights reserved.</p>
             </div>
         </div>
-        <div class="copyright">
-            &copy; <script>document.write(new Date().getFullYear())</script> Compresly. All rights reserved.
-        </div>
-    </div>
-</footer>
+    </footer>
 
-    <!-- EmailJS Integration -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js"></script>
     <script>
-        // Initialize EmailJS with your public key
-        emailjs.init('S-bfEvWeIPqaJWduk'); // Keep your existing key
-        
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            const successMsg = document.getElementById('successMessage');
-            
-            btn.disabled = true;
-            btn.textContent = 'Sending...';
-            
-            emailjs.sendForm(
-                'service_q4nrg3c',   // Your service ID
-                'template_77ru82o',  // Your template ID
-                this
-            ).then(() => {
-                successMsg.style.display = 'block';
-                this.reset();
+        // Google AdSense
+        // Paste your Google AdSense code here
+    </script>
+    <script>
+    const contactForm = document.getElementById('contact-form');
+    const formMessage = document.getElementById('form-message');
+    const formMessageText = document.getElementById('form-message-text');
+
+    contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(contactForm);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const subject = formData.get('subject');
+        const message = formData.get('message');
+
+        // Simulate sending the message (replace with actual server-side logic)
+        simulateSendMessage(name, email, subject, message)
+            .then(response => {
+                formMessageText.textContent = response.message;
+                formMessage.classList.remove('hidden');
+                contactForm.reset();
                 setTimeout(() => {
-                    successMsg.style.display = 'none';
+                    formMessage.classList.add('hidden');
                 }, 5000);
-                
-                // Scroll to show success message
-                window.scrollTo({
-                    top: successMsg.offsetTop - 20,
-                    behavior: 'smooth'
-                });
-            }, (error) => {
-                alert('Failed to send: ' + error.text);
-            }).finally(() => {
-                btn.disabled = false;
-                btn.textContent = 'Send Message';
+            })
+            .catch(error => {
+                formMessageText.textContent = 'Error: ' + error.message;
+                formMessage.classList.remove('hidden');
+                formMessageText.classList.remove('text-green-500');
+                formMessageText.classList.add('text-red-500');
             });
+    });
+
+    function simulateSendMessage(name, email, subject, message) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (name && email && subject && message) {
+                    resolve({ message: 'Message sent successfully! We will get back to you shortly.' });
+                } else {
+                    reject(new Error('Failed to send message. Please check your input and try again.'));
+                }
+            }, 2000);
         });
+    }
     </script>
 </body>
 </html>
