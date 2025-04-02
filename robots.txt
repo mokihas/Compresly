@@ -1,3 +1,13 @@
 User-agent: *
-Allow: /
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /cache/
+Disallow: /log/
+Disallow: /uploads/
+Disallow: /cgi-bin/
+
+#  Crawl-delay is not supported by all search engines.
+#  Crawl-delay: 10
+
+# Sitemap location
 Sitemap: https://compresly.vercel.app/sitemap.xml
